@@ -530,10 +530,6 @@
                                 "caption": "Config.templatesOverridePossibleValueFooter"
                             },
                             {
-                                "value": "homepage",
-                                "caption": "Config.templatesOverridePossibleValueHomepage"
-                            },
-                            {
                                 "value": "basket",
                                 "caption": "Config.templatesOverridePossibleValueBasket"
                             },

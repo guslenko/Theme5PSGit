@@ -76,16 +76,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
             return false;
         }, self::PRIORITY);
 
-        // Override homepage
-        if (in_array("homepage", $enabledOverrides) || in_array("all", $enabledOverrides))
-        {
-
-            $dispatcher->listen('IO.tpl.home', function (TemplateContainer $container)
-            {
-                $container->setTemplate('Theme5PS::Homepage.Homepage');
-                return false;
-            }, self::PRIORITY);
-        }
+        // Homepage is handled by the page-design override in this theme.
 
         // Override template for content categories
         if (in_array("category_content", $enabledOverrides) || in_array("all", $enabledOverrides))
