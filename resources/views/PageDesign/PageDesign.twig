@@ -1007,7 +1007,7 @@ Unsere <a href="https://serviceformular.pentagonservice.de/" target=_blank rel="
             "bundlePrefix": "{{ services.order.getOrderItemPrefix(2) }}",
             "bundleComponentPrefix": "{{ services.order.getOrderItemPrefix(3) }}",
             "initialPleaseSelect": {{ webstoreConfig.attributeSelectDefaultOption | default(0) }},
-            "publicPath": "{{ plugin_path('Theme5PS') ~ '/js/dist/' }}",
+            "publicPath": "{{ plugin_path('Theme5PSGit') ~ '/js/dist/' }}",
             "isCheapestSorting": "{{ services.template.isCheapestSorting() }}",
             "useVariationOrderProperties": {% if webstoreConfig.useVariationOrderProperties | default(0) %}true{% else %}false{% endif %},
             "initialData": {
@@ -1042,12 +1042,12 @@ Unsere <a href="https://serviceformular.pentagonservice.de/" target=_blank rel="
 
     <!-- SSR:entry({{ ssr_entry('Theme5PS', 'resources/js/dist/ceres-server' ~ minSuffix ~ '.js') }}) -->
     <!-- SSR:on() -->
-    <script src="{{ plugin_path('Theme5PS') }}/js/dist/ceres-client{{ minSuffix }}.js?v={{ buildHash }}"></script>
+    <script src="{{ plugin_path('Theme5PSGit') }}/js/dist/ceres-client{{ minSuffix }}.js?v={{ buildHash }}"></script>
     <!-- /SSR -->
     <!-- SSR:off() -->
-    <script src="{{ plugin_path('Theme5PS') }}/js/dist/{{ assetName }}{{ minSuffix }}.js?v={{ buildHash }}"></script>
+    <script src="{{ plugin_path('Theme5PSGit') }}/js/dist/{{ assetName }}{{ minSuffix }}.js?v={{ buildHash }}"></script>
     <!-- /SSR -->
-    <script src="{{ plugin_path('Theme5PS') }}/js/dist/project.js?v={{ buildHash }}"></script>
+    <script src="{{ plugin_path('Theme5PSGit') }}/js/dist/project.js?v={{ buildHash }}"></script>
 
 
     {% for scriptTemplate in get_additional_scripts() %}
@@ -1332,7 +1332,7 @@ Unsere <a href="https://serviceformular.pentagonservice.de/" target=_blank rel="
 {% endif %}
 
 {% if services.template.isHome() %}
-<script src="{{ plugin_path('Theme5PS') }}/js/jquery.fliptimer.js"></script>
+<script src="{{ plugin_path('Theme5PSGit') }}/js/jquery.fliptimer.js"></script>
 {% endif %}
  
 {% if services.template.isHome() %}
