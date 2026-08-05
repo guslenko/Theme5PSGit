@@ -1,0 +1,866 @@
+{% import "Ceres::PageDesign.Macros.IncludeComponents" as Loader %}
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Ceres::PageDesign.Macros.Translations" as Translations %}
+{{ component( "Ceres::PageDesign.Components.Notifications" ) }}
+{{ component( "Theme5PS::Basket.Components.BasketPreview" ) }}
+{{ component( "Ceres::Customer.Components.Login" ) }}
+{{ component( "Theme5PS::Customer.Components.Registration" ) }}
+{{ component( "Theme5PS::PageDesign.Components.StoreList" ) }}
+{#{ component( "Theme5PS::PageDesign.Components.FrameCalculator" ) }#}
+{{ component( "Ceres::Basket.Components.AddItemToBasketOverlay" ) }}
+{{ component( "Ceres::PageDesign.Components.Popper" ) }}
+{{ component( "Ceres::Customer.Components.ForgotPassword" ) }}
+{{ component("Ceres::Customer.Components.Contact.AcceptPrivacyPolicyCheck") }}
+{# TODO: remove if shop builder pages can be rebuild by migrations #}
+{{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
+{{ component( "Ceres::ItemList.Components.CategoryItem") }}
+{{ component( "Ceres::Newsletter.Components.NewsletterInput" ) }}
+{{ component( "Ceres::PageDesign.Components.Carousel" ) }}
+{% if isShopBuilder %}
+    {% include "Ceres::Widgets.WidgetComponents" %}
+{% endif %}
+{% set isItem = services.template.isItem() == "1" %}
+{% set currencyFormat = config("Ceres.currency.format") %}
+{% set defaultLanguage = webstoreConfig.defaultLanguage %}
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#" class="icons-loading">
+<head>
+{% if category.id == '603' %}
+{% else %}
+    {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningHeadTag") }}
+    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
+    {% include getPartial('head') %}
+    {% block PartialHead %}
+      {% embed getPartial('page-metadata') %}{% endembed %}
+    {% endblock %}
+    {% for styleTemplate in get_additional_styles() %}
+        {% include styleTemplate.path ignore missing with styleTemplate.params %}
+    {% endfor %}
+    {% if assetName == 'ceres-checkout' %}
+        {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
+    {% endif %}
+    {% if isItem %}
+        {{ LayoutContainer.show("Ceres::SingleItem.Styles") }}
+    {% endif %}
+{% endif %}
+</head>
+<body class="{{ bodyClasses | join(' ') }} {% if request.get('openBasketPreview') == 1 %} basket-open{% endif %} {% if isShopBuilder %} shop-builder-editor{% endif %}">
+<div style="position: absolute; background: #ff0000; height: 50px; width: 100%; z-index: 9999; top: 0; left: 0; color: #fff; text-align: center;">DEMO</div>
+
+    {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningBodyTag") }}
+    <script>
+        if('ontouchstart' in document.documentElement)
+        {
+            document.body.classList.add("touch");
+        }
+        else
+        {
+            document.body.classList.add("no-touch");
+        }
+    </script>
+    <!-- SSR:app() -->
+    <div id="vue-app" class="app">
+      {# Ostern start #}
+      {% if date() >= date("2023-03-21") and date() <= date("2023-04-11")  %}
+          {% if (category.id == 13) %}
+          {# 5% #}
+          <div class="easter drag easter06"><a class="easter-link" title="5%" href="https://www.pentagonsports.de/rabattcodes/6487s5">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 33 or category.id == 35 or category.id == 53 or category.id == 85 or category.id == 70 or category.id == 57 or category.id == 117 or category.id == 39 ) %}
+          {# 5% #}
+          <div class="easter drag easter01"><a class="easter-link" title="5%" href="https://www.pentagonsports.de/rabattcodes/6487s5">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 64 or category.id == 45 or category.id == 122 or category.id == 38 or category.id == 358 or category.id == 192 or category.id == 646 or category.id == 818) %}
+          {# 5% #}
+          <div class="easter drag easter02"><a class="easter-link" title="5%" href="https://www.pentagonsports.de/rabattcodes/6487s5">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 34 or category.id == 55 or category.id == 50 or category.id == 59 or category.id == 37 or category.id == 58) %}
+          {# 10% #}
+          <div class="easter drag easter03"><a class="easter-link" title="10%" href="https://www.pentagonsports.de/rabattcodes/cqhry9">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 46 or category.id == 82 or category.id == 89) %}
+          {# 15% #}
+          <div class="easter drag easter04"><a class="easter-link" title="15%" href="https://www.pentagonsports.de/rabattcodes/mkn7g4">&nbsp;</a></div>
+          {% endif %}
+          {% if (item.documents[0].data.item.id == 812555 or category.id == 164 or category.id == 876) %}
+          {# 20% #}
+          <div class="easter drag easter05"><a class="easter-link" title="20%" href="https://www.pentagonsports.de/rabattcodes/gfa32dv/">&nbsp;</a></div>
+          {% endif %}
+      {% endif %}
+      {# Ostern end #}
+        {{ context.renderState() }}
+        <lazy-hydrate when-idle>
+            <notifications template="#vue-notifications" :initial-notifications="{{ notifications | json_encode() }}"></notifications>
+        </lazy-hydrate>
+{% if category.id == '603' %}
+{% else %}
+        {% include getPartial('header') %}
+        {% if not services.template.isHome() %}
+      {% else %}
+    {% include "Theme5PS::PageDesign.Components.psBannerSlide" %}
+     {% endif %}
+        <div id="page-body" class="main">
+            {% block PageBody %}{% endblock %}
+
+
+            {% if services.template.isHome() %}
+
+            <div class="container-fluid bgcolorps0 brandsHome py-4">
+            <div class="container">
+              <a class="imgBrands" title="Ghost" href="/search?query=ghost"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogoGHOST20182.png" alt="Logo Ghost" border="0"></a>
+              <a class="imgBrands" title="GT" href="/search?query=gt"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogogt.png" alt="Logo GT" border="0"></a>
+              <a class="imgBrands" title="Zündapp" href="/marken/zuendapp"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/Zundapp_LogosBlackFull.svg" alt="Logo Zündapp" border="0"></a>
+              <a class="imgBrands" title="Whistle" href="/search?query=whistle"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogoWHISTLE2.png" alt="Logo Whislte" border="0"></a>
+              <a class="imgBrands" title="Ezyroller" href="/search?query=ezyroller"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogoezyroller2.png" alt="Logo Ezyroller" border="0"></a>
+              <a class="imgBrands" title="Mafiabikes BMX" href="/search?query=mafiabikes"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogomafia.png" alt="Logo Mafiabikes BMX" border="0"></a>
+              <a class="imgBrands" title="Disney Kinderfahrräder" href="/search?query=disney"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogodisney.png" alt="Disney Kinderfahrräder" border="0"></a>
+              <a class="imgBrands" title="Fuji" href="/search?query=fuji"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogofuji.png" alt="Logo Fuji" border="0"></a>
+              <a class="imgBrands" title="Galano Bikes" href="/search?query=galano"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/brand/kleineslogoGALANO.png" alt="Logo Galano Bikes" border="0"></a>
+              <div class="box-moreInfo"><a href="https://www.pentagonsports.de/content/marken/">Weitere Marken anzeigen</a></div>
+            </div>
+          </div>
+          <div class="container-fluid bgcolorps1 brandsHome py-4">
+            <div class="container">
+              <div class="headlineHome dark mb-3 mt-3">TOP E-BIKES</div>
+            <div id="tophome-one" class="owl-carousel owl-theme owl-single-item">
+            {# % set list = services.itemList.getItemList( "category",34, "variation.position_desc", 12).documents % #}
+            {% set list = services.itemList.getItemList( "tag_list",10, "default.recommended_sorting", 12).documents %}
+            {% for items in list %}
+              <div class="item">
+                <category-item
+                    :item-data="{{ items.data | json_encode }}"
+                    :decimal-count="{{ decimalCount }}">
+                    <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                    <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+                </category-item>
+              </div>
+            {% endfor %}
+            </div>
+          </div>
+          </div>
+          <div class="container-max">
+
+          <div class="headlineHome dark mb-3 mt-3">Neuheiten</div>
+          <div id="tophome-four" class="owl-carousel owl-theme owl-single-item">
+          {% set list = services.itemList.getItemList( "category",28, "variation.createdAt_desc", 18).documents %}
+          {% for items in list %}
+          <div class="item">
+            <category-item
+                :item-data="{{ items.data | json_encode }}"
+                :decimal-count="{{ decimalCount }}">
+                <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+            </category-item>
+          </div>
+          {% endfor %}
+          </div>
+                <div class="headlineHome dark mb-3 mt-3">Top Zubehör</div>
+              <div id="tophome-three" class="owl-carousel owl-theme owl-single-item">
+              {% set list = services.itemList.getItemList( "tag_list",9, "variation.position_desc", 18).documents %}
+              {% for items in list %}
+                <div class="item">
+                  <category-item
+                      :item-data="{{ items.data | json_encode }}"
+                      :decimal-count="{{ decimalCount }}">
+                      <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                      <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+                  </category-item>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+
+
+            {% set higSlide1TextBig = config("Theme5PS.homepage.higSliderItemTextBig1") %}
+            {% set higSlide1Img = config("Theme5PS.homepage.higSliderImageUrl1") %}
+            {% set higSlide1Link = config("Theme5PS.homepage.higSliderItemId1") %}
+            {% set higSlide1DateFrom = config("Theme5PS.homepage.higSliderItemDateFrom1") %}
+            {% set higSlide1DateUntil = config("Theme5PS.homepage.higSliderItemDateUntil1") %}
+
+            {% set higSlide2TextBig = config("Theme5PS.homepage.higSliderItemTextBig2") %}
+            {% set higSlide2Img = config("Theme5PS.homepage.higSliderImageUrl2") %}
+            {% set higSlide2Link = config("Theme5PS.homepage.higSliderItemId2") %}
+            {% set higSlide2DateFrom = config("Theme5PS.homepage.higSliderItemDateFrom2") %}
+            {% set higSlide2DateUntil = config("Theme5PS.homepage.higSliderItemDateUntil2") %}
+
+            {% set higSlide3TextBig = config("Theme5PS.homepage.higSliderItemTextBig3") %}
+            {% set higSlide3Img = config("Theme5PS.homepage.higSliderImageUrl3") %}
+            {% set higSlide3Link = config("Theme5PS.homepage.higSliderItemId3") %}
+            {% set higSlide3DateFrom = config("Theme5PS.homepage.higSliderItemDateFrom3") %}
+            {% set higSlide3DateUntil = config("Theme5PS.homepage.higSliderItemDateUntil3") %}
+
+            {% set higSlide4TextBig = config("Theme5PS.homepage.higSliderItemTextBig4") %}
+            {% set higSlide4Img = config("Theme5PS.homepage.higSliderImageUrl4") %}
+            {% set higSlide4Link = config("Theme5PS.homepage.higSliderItemId4") %}
+            {% set higSlide4DateFrom = config("Theme5PS.homepage.higSliderItemDateFrom4") %}
+            {% set higSlide4DateUntil = config("Theme5PS.homepage.higSliderItemDateUntil4") %}
+
+            {% set higSlide5TextBig = config("Theme5PS.homepage.higSliderItemTextBig5") %}
+            {% set higSlide5Img = config("Theme5PS.homepage.higSliderImageUrl5") %}
+            {% set higSlide5Link = config("Theme5PS.homepage.higSliderItemId5") %}
+            {% set higSlide5DateFrom = config("Theme5PS.homepage.higSliderItemDateFrom5") %}
+            {% set higSlide5DateUntil = config("Theme5PS.homepage.higSliderItemDateUntil5") %}
+
+            <div class="container-fluid bgcolorps1 py-5 highlightSlider">
+              <div class="container">
+                <div class="swiper-container swiper-container-highlights">
+                  <div class="swiper-wrapper">
+                    {% if higSlide1Img is not null and higSlide1Img is not empty %}
+                    {% if date() >= date(higSlide1DateFrom) and date() <= date(higSlide1DateUntil)  %}
+                    <div class="swiper-slide">
+                      <a href="{{ higSlide1Link }}">
+                        <picture class="object-fit--picture swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide1Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide1Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide1Img }}_550.jpg" type="image/jpeg" class="swiper-lazy" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide1Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                          <img data-srcset="{{ higslide1Img }}_550.jpg" alt="{{ higSlide1TextBig }}" title="{{ higSlide1TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                        </picture>
+                    </a><div class="swiper-lazy-preloader"></div></div>
+                    {% endif %}
+                    {% endif %}
+                    {% if higSlide2Img is not null and higSlide2Img is not empty %}
+                    {% if date() >= date(higSlide2DateFrom) and date() <= date(higSlide2DateUntil)  %}
+                    <div class="swiper-slide">
+                      <a href="{{ higSlide2Link }}">
+                        <picture class="object-fit--picture swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide2Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide2Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide2Img }}_550.jpg" type="image/jpeg" class="swiper-lazy" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide2Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                          <img data-srcset="{{ higSlide2Img }}_550.jpg" alt="{{ higSlide2TextBig }}" title="{{ higSlide2TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                        </picture>
+                    </a><div class="swiper-lazy-preloader"></div></div>
+                    {% endif %}
+                    {% endif %}
+                    {% if higSlide3Img is not null and higSlide3Img is not empty %}
+                    {% if date() >= date(higSlide3DateFrom) and date() <= date(higSlide3DateUntil)  %}
+                    <div class="swiper-slide">
+                      <a href="{{ higSlide3Link }}">
+                        <picture class="object-fit--picture swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide3Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide3Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide3Img }}_550.jpg" type="image/jpeg" class="swiper-lazy" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide3Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                          <img data-srcset="{{ higSlide3Img }}_550.jpg" alt="{{ higSlide3TextBig }}" title="{{ higSlide3TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                        </picture>
+                    </a><div class="swiper-lazy-preloader"></div></div>
+                    {% endif %}
+                    {% endif %}
+                    {% if higSlide4Img is not null and higSlide4Img is not empty %}
+                    {% if date() >= date(higSlide4DateFrom) and date() <= date(higSlide4DateUntil)  %}
+                    <div class="swiper-slide">
+                      <a href="{{ higSlide4Link }}">
+                        <picture class="object-fit--picture swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide4Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide4Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide4Img }}_550.jpg" type="image/jpeg" class="swiper-lazy" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide4Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                          <img data-srcset="{{ higSlide4Img }}_550.jpg" alt="{{ higSlide4TextBig }}" title="{{ higSlide4TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                        </picture>
+                    </a><div class="swiper-lazy-preloader"></div></div>
+                    {% endif %}
+                    {% endif %}
+                    {% if higSlide5Img is not null and higSlide5Img is not empty %}
+                    {% if date() >= date(higSlide5DateFrom) and date() <= date(higSlide5DateUntil)  %}
+                    <div class="swiper-slide">
+                      <a href="{{ higSlide5Link }}">
+                        <picture class="object-fit--picture swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide5Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide5Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                          <source media="(max-width: 550px)" data-srcset="{{ higSlide5Img }}_550.jpg" type="image/jpeg" class="swiper-lazy" class="swiper-lazy">
+                          <source media="(min-width: 551px)" data-srcset="{{ higSlide5Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                          <img data-srcset="{{ higSlide5Img }}_550.jpg" alt="{{ higSlide5TextBig }}" title="{{ higSlide5TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                        </picture>
+                    </a><div class="swiper-lazy-preloader"></div></div>
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                  <div class="swiper-pagination-highlights">
+                  <div class="swiper-button-prev fa fa-chevron-left"></div>
+                  <div class="swiper-button-next fa fa-chevron-right"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid bgcolorps0 py-3 seoText">
+            <div class="container">
+              <div class="seoTextTitle h3 mb-3 pb-2">Über Pentagonsports.de - Dein Fahrrad Online Shop</div>
+              <div class="col-12 px-0">
+                <div class="seoTextTitle h4 mb-3">Jung und Dynamisch</div>
+                      <p><strong>Pentagon Sports</strong> ist ein junges dynamisches Unternehmen, das seit über 10 Jahren <a href="/fahrrad" title="Kategorie Fahrräder anzeigen"><strong>Fahrräder</strong></a>, <a href="/fahrradzubehoer" title="Kategorie Zubehör anzeigen"><strong>Zubehör</strong></a> und <a href="/freizeit" title="Kategorie Freizeitartikel anzeigen"><strong>Freizeitartikel</strong></a> über das Internet verkauft. Mit Stolz können wir uns mit unserem Team zu den größten Online-Fahrrad - Händlern - Deutschlands zählen. Jüngst wurden wir sogar von der Financial Times und Statista  als eines der 1000 schnellst wachsenden Unternehmen in Europa ausgezeichnet. </p>
+              </div>
+              <div class="col-12 px-0">
+                <div class="seoTextTitle h4 mb-3">E-Commerce mit Persönlichkeit!</div>
+          <p>Ein <strong>kundenfreundlicher, schneller und innovativer Service</strong> ist bei uns ebenso eine Selbstverständlichkeit wie <strong>fachkundige und freundliche Beratung</strong>. Dabei ist es egal, ob Sie noch Einsteiger oder bereits ein Profi sind. Unser Team von kompetenten Mitarbeitern, die selbst eine Affinität zum Fahrradfahren entwickelt haben, werden sich um all Ihre Fragen und Probleme kümmern.
+          </p>
+          <p>Hierfür können Sie sich an unseren <strong>technischen Support</strong> wenden. Dort werden Sie persönlich und kompetent beraten, egal ob es sich um Fragen zum Aufbau Ihres Lieblingsrades oder um kleinere Reklamationen handelt. Stets steht Ihre Zufriedenheit im Vordergrund und damit wir dies noch besser umsetzen können, möchten wir Ihnen das Anpassen Ihres Wunschfahrrads noch leichter gestalten. Hierfür finden Sie auf unserer Homepage einen praktischen <a href="/content/fahrrad-rahmengroesse/"  title="Die richtige Rahmenhöhe/Rahmengröße mit dem Rahmengrößenrechner ermitteln"><strong>Rahmengrößenrechner</strong></a>, der Ihnen bei der Ermittlung Ihrer perfekten Rahmengröße hilft. </p>
+              </div>
+              <div class="col-12 px-0">
+                <div class="seoTextTitle h4 mb-3">Angebote mit Zukunft</div>
+                <p>Wir sind ständig auf der Suche nach neuen und interessanten Marken und Produkten. Dabei schrecken wir auch vor einem Blick über die Grenze nicht zurück, um uns exklusive Vertriebsrechte sichern zu können. Dadurch finden Sie bei uns im Shop eine Vielzahl an Artikeln unterschiedlichster Marken, darunter auch etablierte Eigenmarken wie z. B. <a href="?ActionCall=WebActionArticleSearch&Params[Producer]=galano"  title="Artikel der Marke Galano anzeigen"><strong>Galano</strong></a> oder <a href="?ActionCall=WebActionArticleSearch&Params[Producer]=viking"  title="Artikel der Marke Viking anzeigen"><strong>Viking</strong></a>. </p>
+                  <p>Doch nicht nur unsere <a href="/content/marken/" title="Weiter zur Kategorie Marken"><strong>Markenvielfalt</strong></a> zeichnet uns aus. Bei uns findet JEDER was er möchte! Egal ob die ganz Kleinen angefangen von einem <a href="/fahrrad/laufrad"  title="Weiter zur Kategorie Laufrad"><strong>Laufrad</strong></a>, bis hin zum ersten <a href="/fahrrad/kinderfahrrad"  title="Kategorie Kinderfahrrad anzeigen"><strong>Kinderfahrrad</strong></a>, oder auch die kleinen Rebellen mit ihren Boards. Sie werden genau wie die Jugendlichen, die mit Ihrem exklusiven <a href="/fahrrad/jugendrad"  title="Kategorie Jugendfahrrad anzeigen">
+                    <strong>Jugendfahrrad</strong></a> Eindruck schinden wollen, ein Fahrrad oder <a href="/freizeit/skateboards-und-longboards" title="Skateboards Longboards anzeigen"><strong>Skateboard</strong></a> bei uns finden. Auch die kleinen Prinzessinnen kommen bei uns mit einem <a href="?ActionCall=WebActionArticleSearch&Params[Producer]=disney"  title="Disney Kinderfahrräder anzeigen"><strong>Kinderfahrrad von Disney</strong></a> nicht zu kurz. Naturfreunde finden bei uns <a href="/fahrrad/mtb"  title="Weiter zur Kategorie Mountainbike"><strong>Mountainbikes</strong></a> und die, die etwas mehr Adrenalin benötigen, können sich ein <a href="/fahrrad/bmx"  title="BMX Bikes anzeigen"><strong>BMX</strong></a> Fahrrad oder, wenn man es schnell aber nicht zu gefährlich will, auch ein <a href="/fahrrad/rennrad"  title="Rennrad Kategorie anzeigen"><strong>Rennrad</strong></a> unserer hauseigenen Marken kaufen. Mittlerweile bieten wir auch sogenannte
+                    <strong>Cyclocross</strong> Fahrräder an: Ein Rennrad, mit dem man nicht nur wie bei einem klassischen Rennrad auf der Straße, sondern auch im Gelände fahren kann. Geht dort mal etwas schief, ist für eine Reparatur in der firmeneigenen Werkstatt auch gesorgt. Exklusiv für die Frau gibt es in unserem Online Shop selbstverständlich auch ein
+                    <a href="/fahrrad/cityrad" title="Damenfahrräder/Cityräder anzeigen"><strong>Damenfahrrad</strong></a> zu kaufen. Diese sind auch mit Körbchen erhältlich, in dem man den kleinen Einkauf oder gar den kleinen Hund gut transportieren kann. </p>
+                  <p>Für den Mann, der nun nicht auf BMX oder Mountainbikes steht, ist mit einem klassischen Herrenfahrrad oder einem einfachen <a href="/fahrrad/fixie"  title="Fixie Bikes anzeigen"><strong>Fixie</strong></a> auch <a href="/fahrrad/fixie"  title="Kategorie Singlespeed anzeigen"><strong>Singlespeed</strong></a> genannt, gesorgt.
+          Selbstverständlich denken wir trotz allem noch einige Schritte weiter, denn was ist mit den Geselligen und den Damen und Herren, die in den großen Städten wohnen?
+            Für den Stadtverkehr bieten wir verschiedene Ausführungen eines Klapprades an. Das Praktische daran: Zusammengeklappt können Sie ihr <a href="/fahrrad/faltrad"  title="Weiter zur Kategorie Klapprad"><strong>Klapprad</strong></a> in öffentlichen Verkehrsmitteln kostenlos mitführen. Somit steht dem entspannten Bus- oder Bahnfahren nichts mehr im Wege, denn statt die Strecke zu den Haltestellen zu Fuß zu gehen, können Sie ganz entspannt ihr praktisches Klapprad benutzen.
+
+            Gehören Sie zu den Menschen, die eher die ganze Strecke mit dem Fahrrad fahren wollen, bieten wir Ihnen Citybikes an. Ein <a href="/fahrrad/cityrad"  title="Weiter zur Kategorie Citybike"><strong>Citybike</strong></a> ist perfekt für den Alltag ausgelegt und somit ideal für den täglichen Weg zur Arbeit, in die Schule oder die Uni. Wollen Sie sportlicher unterwegs sein, dann können Sie einen Scooter verwenden, um von A nach B zu kommen. Doch auch für Wochenendtrips bieten wir Ihnen das passende Fahrrad an – für entspanntes Fahren zu zweit können sie sich in unserem Online Shop ein <a href="/fahrrad/tandem"  title="Tandem Fahrräder anzeigen"><strong>Tandem</strong></a> aussuchen. </p>
+          <p>Doch auch die ältere Generation soll bei uns nicht zu kurz kommen: Von einem praktischen Fahrrad mit <a href="/fahrrad/e-bike"  title="Pedelecs anzeigen"><strong>Pedelec</strong></a> System, dass den Fahrer nur unterstützt, bis hin zu einem klassischen <a href="/fahrrad/e-bike"  title="Weiter zur Kategorie E-Bike"><strong>E-Bike</strong></a>. Unser Shop bietet auch für solche Anliegen das passende Fahrrad. Ganz nach ihrem Bedarf!
+            Darüber hinaus bieten wir Ihnen auch passendes <a href="/freizeit/spielzeug-fuer-draussen"  title="Outdoorspielzeug anzeigen"><strong>Outdoorspielzeug</strong></a> an. </p>
+                  </div>
+                  <div class="col-12 px-0">
+                  <div class="seoTextTitle h4 mb-3">„Selbstgemacht“ statt „machen lassen“</div>
+                <p>Für die Kunden unter Ihnen, die handwerkliches Geschick an den Tag legen oder gar für ein kleines Missgeschick im Gelände gewappnet sein wollen, bieten wir Ihnen eine Vielzahl an Ersatzteilen an. Egal ob <strong>Reifen, Pedale, Bremsen, Sättel, Luftpumpen oder anderes Zubehör, wie Fahrradcomputer, Fahrradschlösser und Helme</strong>. Sie finden es in unserem Onlineshop und können es ganz <strong>bequem von zu Hause aus bestellen</strong> und sich bequem nach Hause liefern lassen. </p>
+                  </div>
+            </div>
+            </div>
+            {% endif %}
+
+
+
+
+
+        </div>
+
+        {% cacheblock %}
+            {% include getPartial('footer') %}
+            {% block PartialFooter %}{% endblock %}
+        {% endcacheblock %}
+
+        <!-- LOGIN MODAL -->
+        <div id="login-modal-wrapper">
+            <div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title h3">{{ trans("Ceres::Template.login") }}</div>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="{{ trans("Ceres::Template.closeIcon") }}">&times;</button>
+                        </div>
+                        <lazy-load component="login-modal">
+                            <login modal-element="login-modal-wrapper">
+                                <template #extend-overlay-buttons>
+                                    {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
+                                </template>
+                            </login>
+                        </lazy-load>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./LOGIN MODAL -->
+
+        <!-- REGISTRATION MODAL -->
+        <div id="simple-registration-modal-wrapper">
+            <div class="modal fade" id="registration" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <lazy-load component="register-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title h3">
+                                    {{ trans("Ceres::Template.regCreateAccount") }}
+
+                                </div>
+
+                                <popper v-cloak class="ml-auto">
+                                    <template #handle>
+                                        <button class="btn btn-icon btn-secondary btn-sm">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </template>
+                                    <template #title>
+                                        {{ trans("Ceres::Template.regContactInformations") }}
+                                    </template>
+                                    <template #content>
+                                        <ul class='pl-3'>
+                                            <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText1') }}</li>
+                                            <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText2') }}</li>
+                                            <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText3') }}</li>
+                                            <li>{{ trans('Ceres::Template.regContactInfoText4') }}</li>
+                                        </ul>
+                                    </template>
+                                </popper>
+
+                                <button type="button" class="close ml-0" data-dismiss="modal" aria-hidden="true" aria-label="{{ trans("Ceres::Template.closeIcon") }}">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <registration :is-simple-registration="true" modal-element="simple-registration-modal-wrapper">
+                                    <template #extend-overlay-buttons>
+                                        {{ LayoutContainer.show("Ceres::RegistrationOverlay.ExtendOverlayButtons") }}
+                                    </template>
+                                    <template #custom-address-fields>
+                                        {{ LayoutContainer.show("Ceres::Checkout.CustomAddressField") }}
+                                    </template>
+                                </registration>
+                            </div>
+                        </div>
+                    </lazy-load>
+                </div>
+            </div>
+        </div>
+        <!-- ./REGISTRATION MODAL -->
+
+        <!-- BASKET MODAL -->
+        <lazy-load component="add-item-to-basket-overlay">
+            <add-item-to-basket-overlay>
+                <template slot="extendOverlayButtons">
+                    {{ LayoutContainer.show("Ceres::Basket.ExtendOverlayButtons") }}
+                </template>
+            </add-item-to-basket-overlay>
+        </lazy-load>
+        <!-- ./BASKET MODAL -->
+
+        <!-- PASSWORD RESET MODAL -->
+        <lazy-load component="forgot-password-modal">
+            <forgot-password-modal :current-template="{{ services.template.getCurrentTemplate() | json_encode }}">
+                <template slot="extendOverlayButtons">
+                    {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
+                </template>
+            </forgot-password-modal>
+        </lazy-load>
+        <!-- ./PASSWORD RESET MODAL -->
+
+        <!-- SHIPPINGCOSTS MODAL -->
+        {% if ceresConfig.global.shippingCostsCategoryId > 0 %}
+            <div id="shippingscosts-modal-wrapper">
+                <div class="modal fade" id="shippingscosts" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title h3">{{ trans('Ceres::Template.shippingInfoCosts') }}</div>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="{{ trans("Ceres::Template.closeIcon") }}">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                {% set shopBuilderShippingTemplate = shop_builder_category_template(ceresConfig.global.shippingCostsCategoryId) %}
+                                {% if shopBuilderShippingTemplate | trim is not empty %}
+                                    {{ shopBuilderShippingTemplate | raw }}
+                                {% else %}
+                                    {% include category_template(ceresConfig.global.shippingCostsCategoryId, lang, webstoreConfig.webstoreId) ignore missing %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <!-- ./SHIPPINGCOSTS MODAL -->
+
+
+        <!-- Root element of PhotoSwipe -->
+                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="pswp__bg"></div>
+                                <div class="pswp__scroll-wrap">
+
+                                    <div class="pswp__container">
+                                        <div class="pswp__item"></div>
+                                        <div class="pswp__item"></div>
+                                        <div class="pswp__item"></div>
+                                    </div>
+
+                                    <div class="pswp__ui pswp__ui--hidden">
+                                      <div class="pswp__top-bar">
+                                          <div class="pswp__counter"></div>
+
+                                          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                          <div class="pswp__preloader">
+                                              <div class="pswp__preloader__icn">
+                                                <div class="pswp__preloader__cut">
+                                                  <div class="pswp__preloader__donut"></div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>
+
+                                        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                                        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+                                        <div class="pswp__caption">
+                                            <div class="pswp__caption__center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./Root element of PhotoSwipe -->
+
+{% endif %}
+    </div>
+    <!-- /SSR -->
+
+    {#
+          <div role="alert" data-autohide="false" class="toast bg-dark text-white w-20 mw-20 hinweis fixed-bottom m-4 hide">
+              <div class="toast-body p-4 d-flex flex-column">
+                  <h4>Erhöhte Lieferzeit bei Speditionsware</h4>
+                  <p>
+    Aufgrund des derzeit sehr hohen Transportaufkommens bei den deutschen Spediteuren kann es in manchen Fällen zu erhöhten Avisierungs-/ und Transportzeiten kommen. Wir bitten an dieser Stelle um Verständnis und entschuldigen uns für längere Lieferzeiten.
+            </p>
+                  <div class="ml-auto">
+                      <button type="button" class="btn btn-light btn-sm" id="btnAccept">
+                          OK
+                      </button>
+                  </div>
+              </div>
+          </div>
+    #}
+
+    <!-- SSR:global(App) -->
+    <script id="app-data" type="application/json">
+        {
+            "config": {{ ceresConfig | json_encode | raw }},
+            "urls": {{ urls | json_encode | raw }},
+            "activeCurrency": "{{ currencyData[currencyFormat] }}",
+            "currencyPattern": {{  services.checkout.getCurrencyPattern() | json_encode | raw }},
+            "isCategoryView": {% if services.template.isCategory() == "1" %}true{% else %}false{% endif %},
+            "isCheckoutView": {% if services.template.isCheckout() == "1" %}true{% else %}false{% endif %},
+            "isSearch": {% if services.template.isSearch() == "1" %}true{% else %}false{% endif %},
+            "isItemView": {% if isItem %}true{% else %}false{% endif %},
+            "templateEvent": "{{ templateEvent }}",
+            "templateType": "{{ urls.templateType }}",
+            "language": "{{ lang }}",
+            "defaultLanguage": "{{ defaultLanguage }}",
+            "decimalSeparator": "{{ config("IO.format.separator_decimal") }}",
+            "urlTrailingSlash": {{ urls.appendTrailingSlash | json_encode }},
+            "propertyFileUrl": "{{ services.propertyFile.getPropertyFileUrl() }}",
+            "isShopBuilder": {{ isShopBuilder | default(false) | json_encode }},
+            "bundleSetting": {{ webstoreConfig.dontSplitItemBundle | default(1) }},
+            "bundlePrefix": "{{ services.order.getOrderItemPrefix(2) }}",
+            "bundleComponentPrefix": "{{ services.order.getOrderItemPrefix(3) }}",
+            "initialPleaseSelect": {{ webstoreConfig.attributeSelectDefaultOption | default(0) }},
+            "publicPath": "{{ plugin_path('Theme5PS') ~ '/js/dist/' }}",
+            "isCheapestSorting": "{{ services.template.isCheapestSorting() }}",
+            "useVariationOrderProperties": {% if webstoreConfig.useVariationOrderProperties | default(0) %}true{% else %}false{% endif %},
+            "initialData": {
+                "shippingCountries": {{ services.country.getActiveCountriesList() | filterFields(["id", "currLangName", "isoCode2", "states.id", "states.name", "vatCodes"]) | json_encode | raw }},
+                "shippingCountryId": {{ services.checkout.getShippingCountryId() }},
+                "showNetPrices": {{ showNetPrices | json_encode }}
+            },
+            "features": {},
+            "languageMap": {{ webstoreConfig.browserLanguage | json_encode | raw }}
+        }
+    </script>
+    <!-- /SSR -->
+    <script>
+        window.App = JSON.parse(document.getElementById("app-data").innerText);
+        window.__loadPluginChunk = function(source) {
+            return source += "?v={{ buildHash }}";
+        };
+    </script>
+
+    {{ Loader.include_components() }}
+
+    {{ LayoutContainer.show("Ceres::Script.Loader") }}
+
+    {{ Translations.add( "Ceres", "Template" ) }}
+
+    {{ get_json_data() }}
+
+    {% set minSuffix = '.min' %}
+    {% if ceresConfig.log.performanceLevel  == 'development' %}
+        {% set minSuffix = '' %}
+    {% endif %}
+
+    <!-- SSR:entry({{ ssr_entry('Theme5PS', 'resources/js/dist/ceres-server' ~ minSuffix ~ '.js') }}) -->
+    <!-- SSR:on() -->
+    <script src="{{ plugin_path('Theme5PS') }}/js/dist/ceres-client{{ minSuffix }}.js?v={{ buildHash }}"></script>
+    <!-- /SSR -->
+    <!-- SSR:off() -->
+    <script src="{{ plugin_path('Theme5PS') }}/js/dist/{{ assetName }}{{ minSuffix }}.js?v={{ buildHash }}"></script>
+    <!-- /SSR -->
+    <script src="{{ plugin_path('Theme5PS') }}/js/dist/project.js?v={{ buildHash }}"></script>
+
+
+    {% for scriptTemplate in get_additional_scripts() %}
+        {% include scriptTemplate.path ignore missing with scriptTemplate.params %}
+    {% endfor %}
+
+{% if category.id == '603' %}
+{% else %}
+    {{ LayoutContainer.show("Ceres::Script.AfterScriptsLoaded") }}
+{% endif %}
+    {% if assetName == 'ceres-checkout' %}
+        {{ LayoutContainer.show("Ceres::Checkout.AfterScriptsLoaded") }}
+    {% endif %}
+
+    {% if isItem %}
+        {{ LayoutContainer.show("Ceres::SingleItem.AfterScriptsLoaded") }}
+    {% endif %}
+
+    <!-- SSR:on() -->
+    <script>
+        window.createApp("#vue-app");
+    </script>
+    <!-- /SSR -->
+
+    <!-- SSR:off() -->
+    <script>
+        window.vueEventHub = new Vue();
+        if (App.config.log.checkSyntax)
+        {
+            var rootElement = document.getElementById("vue-app");
+            rootElement.innerHTML = rootElement.innerHTML.replace(/(?:^|\s)(?::|v-bind:)\S+=(?:""|'')/g, "");
+            window.vueApp = new Vue({
+                store: window.ceresStore
+            });
+            vueApp.$mount( rootElement.cloneNode(true) );
+            if (vueApp.$el.id === "vue-app")
+            {
+                document.body.replaceChild( vueApp.$el, rootElement );
+            }
+        }
+        else
+        {
+            // eslint-disable-next-line no-unused-vars
+            window.vueApp = new Vue({
+                el: "#vue-app",
+                store: window.ceresStore
+            });
+        }
+    </script>
+    <!-- /SSR -->
+
+
+    {% if isShopBuilder %}
+        {% include "Ceres::Widgets.ShopBuilderDataStore" %}
+    {% endif %}
+
+    <script>
+        {% if request.get("openBasketPreview") == 1 %}window.ceresStore.dispatch("loadComponent", "basket-preview"){% endif %}
+        {% if request.get("show") == "forgotPassword" %}window.ceresStore.dispatch("loadComponent", "forgot-password-modal"){% endif %}
+    </script>
+
+    {{ get_filtered_tags() }}
+
+    {{ get_shop_builder_scripts( "latest", ceresConfig.log.performanceLevel == 'live') }}
+
+    {% if not services.template.shouldBeCached() %}
+        <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
+    {% endif %}
+{% if category.id == '603' %}
+<script type="text/javascript" src="https://t.adcell.com/js/trad.js"></script>
+<script>Adcell.Tracking.track();</script>
+{% else %}
+    <!-- start GoogleBadge -->
+    <script src="https://apis.google.com/js/platform.js?onload=renderBadge" async defer></script>
+    <script>
+      window.renderBadge = function() {
+        var ratingBadgeContainer = document.createElement("div");
+        document.body.appendChild(ratingBadgeContainer);
+        window.gapi.load('ratingbadge', function() {
+          window.gapi.ratingbadge.render(ratingBadgeContainer, {"merchant_id": 8844712, "position": "BOTTOM_RIGHT"});
+        });
+      }
+    </script>
+    <!-- end GoogleBadge -->
+	<!-- Belboon Start  -->
+	{% if services.template.getCurrentTemplate() == "tpl.home.category" %}
+	<script type="text/javascript">
+	    (function(d) {
+	        var s = d.createElement("script");
+	        s.async = true;
+	        s.src = "https://containertags.belboon.com/js/93783/start/script.js";
+	        var a = d.getElementsByTagName("script")[0];
+	        a.parentNode.insertBefore(s, a);
+	    }(document));
+	</script>
+	{% endif %}
+
+	{% if services.template.getCurrentTemplate() == "tpl.category.item" %}
+	<script type="text/javascript">
+	    belboonTag = {
+	        "categoryId": "{{ category.id }}"
+	    };
+	</script>
+	<script type="text/javascript">
+	    (function(d) {
+	        var s = d.createElement("script");
+	        s.async = true;
+	        s.src = "https://containertags.belboon.com/js/93783/category/script.js";
+	        var a = d.getElementsByTagName("script")[0];
+	        a.parentNode.insertBefore(s, a);
+	    }(document));
+	</script>
+	{% endif %}
+
+	{% if services.template.getCurrentTemplate() == "tpl.item" %}
+	{% set itemData = item.documents[0].data %}
+	<script type="text/javascript">
+	    belboonTag = {
+	        "productBrand": "{{ itemData.item.manufacturer.externalName }}",
+	        "categoryId": "{{ defaultCategory.details[0].name }}",
+	        "products": [
+	            {
+	                "id": "{{ itemData.variation.id }}",
+	                "price": "{{ itemData.prices.default.data.priceNet | number_format(2, '.', '') }}"
+	            }
+	        ]
+	    };
+	</script>
+	<script type="text/javascript">
+	    (function(d) {
+	        var s = d.createElement("script");
+	        s.async = true;
+	        s.src = "https://containertags.belboon.com/js/93783/product/script.js";
+	        var a = d.getElementsByTagName("script")[0];
+	        a.parentNode.insertBefore(s, a);
+	    }(document));
+	</script>
+	{% endif %}
+
+	{% if services.template.getCurrentTemplate() == "tpl.basket" %}
+	{% set basketItems = services.basket.getBasketItems %}
+	{% set basket = services.basket.getBasketForTemplate %}
+	<script type="text/javascript">
+	    belboonTag = {
+	        "productBrand": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.data.item.manufacturer.externalName }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+	        "orderProducts": [
+	            {
+	                "id": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.id }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+	                "price": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.data.prices.default.data.basePriceNet  | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+	                "qty": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]"
+	            }
+	        ]
+	    };
+	</script>
+	<script type="text/javascript">
+	    (function(d) {
+	        var s = d.createElement("script");
+	        s.async = true;
+	        s.src = "https://containertags.belboon.com/js/93783/basket/script.js";
+	        var a = d.getElementsByTagName("script")[0];
+	        a.parentNode.insertBefore(s, a);
+	    }(document));
+	</script>
+	{% endif %}
+
+	{% if services.template.getCurrentTemplate() == "tpl.confirmation" %}
+
+	{#
+	{% for item in data.order.orderItems %}
+	        OrderID: {{ orderId }}
+	        priceNet: {{ item.amounts[0].priceNet }}
+
+	        orderProducts:
+
+	        id: {{ item.itemVariationId }},
+	        price: {{ item.amounts[0].priceNet }},
+	        qty: {{ item.quantity }},
+	        Nettowarenwert: {{ data.order.amounts[0].netTotal }},
+	        Rabbatwert des Gutscheins: {{ data.totals.couponValue }},
+	        Gutscheincode: {{ data.totals.couponCode }},
+	{% endfor %}
+
+	"id": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.itemVariationId }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+	"price": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.amounts[0].priceNet | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+	"qty": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]"
+	#}
+
+
+	<script type="text/javascript">
+	    belboonTag = {
+	        "orderId": "{{ orderId }}",
+	        "orderProducts": [
+	            {
+	                "id": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.itemVariationId }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+	                "price": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.amounts[0].priceNet | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+	                "qty": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]"
+	            }
+	        ],
+	        "orderTransactionAmount": "{{ data.order.amounts[0].netTotal }}"
+	    };
+	</script>
+
+	<script type="text/javascript">
+	    (function(d) {
+	        var s = d.createElement("script");
+	        s.async = true;
+	        s.src = "https://containertags.belboon.com/js/93783/checkout/script.js";
+	        var a = d.getElementsByTagName("script")[0];
+	        a.parentNode.insertBefore(s, a);
+	    }(document));
+	</script>
+
+	<!-- BEGIN BELBOON - PERFORMANCE MARKETING NETWORK TRACKING CODE version 4.31 -->
+	<script type="text/javascript">
+	var itsConv = {
+
+	    trcCat     : 'default',
+	    convTarget : 'sale',
+
+	    convId     : '{{ orderId }}', //Bestellnummer
+
+	    //clickIds   : ['${CLICK_IDS}'],  //Session-Tracking via belboon=Parameter in der URL
+
+	    ordCurr    : 'EUR',
+	    ordValue   : '{{ data.order.amounts[0].netTotal }}', //Nettowarenwert
+	    discValue  : '{{ data.totals.couponValue }}', //Rabbatwert des Gutscheins
+	    discCode   : '{{ data.totals.couponCode }}', //Gutscheincode
+
+
+	    //gdpr         : '${GDPR}',  //Consent 1=Ja 2=Nein
+	    //gdprConsent  : '${GDPR_CONSENT}', //Consentstring aus CMP
+
+	    locationHref : window.location.href,
+
+	    // DO NOT CHANGE. The following parameters are used to identify the advertiser in the network.
+	    advId : '93783',
+	    trcDomain : 'gatneo.pentagonsports.de'
+
+	  };
+	  // DO NOT CHANGE. The following lines assure tracking functionality.
+	  en=function(v){if(v){if(typeof(encodeURIComponent)=='function'){return(encodeURIComponent(v));}return(escape(v));}};ts=function(){var d=new Date();var t=d.getTime();return(t);};im=function(s){if(document.images){if(typeof(ia)!="object"){
+	  var ia=new Array();};var i=ia.length;ia[i]=new Image();ia[i].src=s;ia[i].onload=function(){};}else{document.write('<img src="'+s+'" height="1" width="1" border="0" alt="" style="display:none;">');}};var pr='https:';
+	  fr=function(s){var d=document;var i=d.createElement("iframe");i.src=s;i.frameBorder=0;i.width=0;i.height=0;i.vspace=0;i.hspace=0;i.marginWidth=0;i.marginHeight=0;i.scrolling="no";i.allowTransparency=true;i.style.display="none";try{d.body.insertBefore(i,d.body.firstChild);}catch(e){
+	  d.write('<ifr'+'ame'+' src="'+s+'" width="0" height="0" frameborder="0" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="true" style="display:none;"></ifr'+'ame>');}};ap=function(o){var v='tst='+ts();if(o.trcCat){v+='&trc='+en(o.trcCat);}
+	  v+='&ctg='+en(o.convTarget);v+='&cid='+en(o.convId);if(o.ordValue){v+='&orv='+en(o.ordValue);}if(o.ordCurr){v+='&orc='+en(o.ordCurr);}if(o.discValue){v+='&dsv='+en(o.discValue);}if(o.discCode){v+='&dsc='+en(o.discCode);}
+	  if(o.invValue){v+='&inv='+en(o.invValue);}if(o.payMethod){v+='&pmt='+en(o.payMethod);}if(o.userVal1){v+='&uv1='+en(o.userVal1);}if(o.userVal2){v+='&uv2='+en(o.userVal2);}if(o.userVal3){
+	  v+='&uv3='+en(o.userVal3);}if(o.userVal4){v+='&uv4='+en(o.userVal4);}if(o.isCustNew){var n=o.isCustNew.toLowerCase();v+='&csn=';v+=(n=="true"||n=="false")?n:"null";}if(o.custId){v+='&csi='+en(o.custId);}if(o.sessionId){v+='&session='+en(o.sessionId);}if(o.basket){v+='&bsk='+en(JSON.stringify(o.basket));}if(o.uniqid){v+='&uniqid='+en(o.uniqid);}if(o.clickIds && o.clickIds.length > 0){v+='&cli='+en(o.clickIds.join('%2C'));}if(o.siteId){v+='&sid='+en(o.siteId);}var s=(screen.width)?screen.width:"0";
+	  s+="X";s+=(screen.height)?screen.height:"0";s+="X";s+=(screen.colorDepth)?screen.colorDepth:"0";v+='&scr='+s;v+='&nck=';v+=(navigator.cookieEnabled)?navigator.cookieEnabled:"null";v+='&njv=';v+=(navigator.javaEnabled())?navigator.javaEnabled():"null";if (o.locationHref){v+='&hrf='+en(o.locationHref);}if(o.gdpr){v+='&gdpr='+en(o.gdpr);}if(o.gdprConsent){v+='&gdpr_consent='+en(o.gdprConsent);}v+='&ver='+en('4.31');return(v);};
+	  itsStartConv=function(o){var s=pr+'//'+o.trcDomain+'/ts/'+o.advId+'/tsa?typ=f&'+ap(o);fr(s);};itsStartConv(itsConv);
+
+	  var a = document.createElement('script'); a.type = 'text/javascript'; a.async = true; a.src = 'https://'+itsConv.trcDomain+'/scripts/ts/'+itsConv.advId+'contA.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(a, s);
+
+	</script>
+	<noscript>
+	<!-- ------------ SET THE PARAMETERS FOR NOSCRIPT PART HERE ---------------- -->
+	<!-- The parameter values have to be set in realtime. Every special characters have to be URL-encoded. -->
+	<img src="https://gatneo.pentagonsports.de/ts/93783/tsa?typ=i&trc=default&ctg=sale&cid={{ orderId }}&orv={{ data.order.amounts[0].netTotal }}&orc=EUR&dsv={{ data.totals.couponValue }}&dsc={{ data.totals.couponCode }}&ver=4.31" width="1" height="1" border="0" style="display:none;">
+	</noscript>
+	<!-- END BELBOON - PERFORMANCE MARKETING NETWORK TRACKING CODE -->
+
+
+
+	{% endif %}
+	<!-- Belboon End -->
+
+	{% if ceresConfig.log.performanceLevel  == 'development' %}
+	<script>
+	console.log("%c---- START SHOP DATA ---","color:blue")
+	console.log("%cORDER-DATA","color:blue",{{ data | json_encode | raw }});
+	console.log("%cBASKET-DATA","color:blue", {{ services.basket.getBasket() | json_encode | raw }});
+	console.log("%cBASKET-Items","color:blue", {{ services.basket.getBasketItems() | json_encode | raw }});
+	console.log("%cCHECKOUT-DATA","color:blue", {{ services.checkout.getCheckout() | json_encode | raw }});
+	console.log("%cCATEGORY-DATA","color:blue", {{ services.category.getCurrentCategory() | json_encode | raw }});
+	console.log("%cITEM-DATA", "color:blue",{{ item.documents[0].data | json_encode | raw }});
+	console.log("%cITEM-LIST-DATA","color:blue", {{ itemList | json_encode | raw }});
+	console.log("%cCUSTOMER-DATA","color:blue", {{services.customer.getContact() | json_encode | raw}});
+	console.log("%cTEMPLATE","color:blue", {{services.template.getCurrentTemplate() | json_encode | raw}});
+	console.log("%c---- END SHOP DATA ---","color:blue");
+	</script>
+	{% endif %}
+
+{% endif %}
+{% set itemData = item.documents[0].data %}
+{% set languageUrls = services.url.getLanguageURLs() %}
+<!--  authorized.by  |  basic  code  |  begin  -->
+  <script  src="https://app.authorized.by/trustedretailers/badges.js"></script>
+  <div data-authorizedby
+  data-authorizedby-product="{{ itemData.barcodes.0.code }}"  lang="{{ lang }}">
+  <div data-authorizedby-badge="sidebar"></div></div>
+ <!--  authorized.by  |  basic  code  |  end   -->
+
+</body>
+</html>

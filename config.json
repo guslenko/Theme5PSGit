@@ -1,0 +1,665 @@
+{
+    "formatVersion": 1,
+    "menu": {
+      "Config.HomepageTab": {
+            "label": "Config.homepageTab",
+            "formFields": {
+            "homepage.sliderImageUrl1": {
+                "type": "inputText",
+                "required": false,
+                "deprecated": false,
+                "label": "Config.homepageSliderImageUrl1Label",
+                "options": {}
+            },
+              "homepage.sliderItemTextBig1": {
+                  "type": "inputText",
+                  "required": false,
+                  "deprecated": false,
+                  "label": "Config.homepageSliderItemTextBig1Label",
+                  "options": {}
+              },
+              "homepage.sliderItemId1": {
+                  "type": "inputText",
+                  "required": false,
+                  "deprecated": false,
+                  "label": "Config.homepageSliderItemId1Label",
+                  "options": {}
+              },
+              "homepage.sliderItemDateFrom1": {
+                  "type": "inputText",
+                  "required": false,
+                  "deprecated": false,
+                  "label": "Config.homepageSliderItemDateFrom1Label",
+                  "options": {}
+              },
+              "homepage.sliderItemDateUntil1": {
+                  "type": "inputText",
+                  "required": false,
+                  "deprecated": false,
+                  "label": "Config.homepageSliderItemDateUntil1Label",
+                  "options": {}
+              },
+              "homepage.sliderImageUrl2": {
+                  "type": "inputText",
+                  "required": false,
+                  "deprecated": false,
+                  "label": "Config.homepageSliderImageUrl2Label",
+                  "options": {}
+              },
+                "homepage.sliderItemTextBig2": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepageSliderItemTextBig2Label",
+                    "options": {}
+                },
+                "homepage.sliderItemId2": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepageSliderItemId2Label",
+                    "options": {}
+                },
+                "homepage.sliderItemDateFrom2": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepageSliderItemDateFrom2Label",
+                    "options": {}
+                },
+                "homepage.sliderItemDateUntil2": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepageSliderItemDateUntil2Label",
+                    "options": {}
+                },
+                "homepage.sliderImageUrl3": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepageSliderImageUrl3Label",
+                    "options": {}
+                },
+                  "homepage.sliderItemTextBig3": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepageSliderItemTextBig3Label",
+                      "options": {}
+                  },
+                  "homepage.sliderItemId3": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepageSliderItemId3Label",
+                      "options": {}
+                  },
+                  "homepage.sliderItemDateFrom3": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepageSliderItemDateFrom3Label",
+                      "options": {}
+                  },
+                  "homepage.sliderItemDateUntil3": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepageSliderItemDateUntil3Label",
+                      "options": {}
+                  },
+                  "homepage.sliderImageUrl4": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepageSliderImageUrl4Label",
+                      "options": {}
+                  },
+                    "homepage.sliderItemTextBig4": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepageSliderItemTextBig4Label",
+                        "options": {}
+                    },
+                    "homepage.sliderItemId4": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepageSliderItemId4Label",
+                        "options": {}
+                    },
+                    "homepage.sliderItemDateFrom4": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepageSliderItemDateFrom4Label",
+                        "options": {}
+                    },
+                    "homepage.sliderItemDateUntil4": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepageSliderItemDateUntil4Label",
+                        "options": {}
+                    },
+                    "homepage.sliderImageUrl5": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepageSliderImageUrl5Label",
+                        "options": {}
+                    },
+                      "homepage.sliderItemTextBig5": {
+                          "type": "inputText",
+                          "required": false,
+                          "deprecated": false,
+                          "label": "Config.homepageSliderItemTextBig5Label",
+                          "options": {}
+                          },
+                          "homepage.sliderItemId5": {
+                              "type": "inputText",
+                              "required": false,
+                              "deprecated": false,
+                              "label": "Config.homepageSliderItemId5Label",
+                              "options": {}
+                          },
+                          "homepage.sliderItemDateFrom5": {
+                              "type": "inputText",
+                              "required": false,
+                              "deprecated": false,
+                              "label": "Config.homepageSliderItemDateFrom5Label",
+                              "options": {}
+                              },
+                              "homepage.sliderItemDateUntil4": {
+                                  "type": "inputText",
+                                  "required": false,
+                                  "deprecated": false,
+                                  "label": "Config.homepageSliderItemDateUntil5Label",
+                                  "options": {}
+                      },
+                    "homepage.sliderImageUrl6": {
+                          "type": "inputText",
+                          "required": false,
+                          "deprecated": false,
+                          "label": "Config.homepageSliderImageUrl6Label",
+                          "options": {}
+                      },
+                        "homepage.sliderItemTextBig6": {
+                            "type": "inputText",
+                            "required": false,
+                            "deprecated": false,
+                            "label": "Config.homepageSliderItemTextBig6Label",
+                            "options": {}
+                            },
+                            "homepage.sliderItemId6": {
+                                "type": "inputText",
+                                "required": false,
+                                "deprecated": false,
+                                "label": "Config.homepageSliderItemId6Label",
+                                "options": {}
+                            },
+                            "homepage.sliderItemDateFrom6": {
+                                "type": "inputText",
+                                "required": false,
+                                "deprecated": false,
+                                "label": "Config.homepageSliderItemDateFrom6Label",
+                                "options": {}
+                                },
+                                "homepage.sliderItemDateUntil4": {
+                                    "type": "inputText",
+                                    "required": false,
+                                    "deprecated": false,
+                                    "label": "Config.homepageSliderItemDateUntil6Label",
+                                    "options": {}
+                        },
+                    "homepage.sliderImageUrl7": {
+                            "type": "inputText",
+                            "required": false,
+                            "deprecated": false,
+                            "label": "Config.homepageSliderImageUrl7Label",
+                            "options": {}
+                        },
+                          "homepage.sliderItemTextBig7": {
+                              "type": "inputText",
+                              "required": false,
+                              "deprecated": false,
+                              "label": "Config.homepageSliderItemTextBig7Label",
+                              "options": {}
+                          },
+                          "homepage.sliderItemId7": {
+                              "type": "inputText",
+                              "required": false,
+                              "deprecated": false,
+                              "label": "Config.homepageSliderItemId7Label",
+                              "options": {}
+                          },
+                          "homepage.sliderItemDateFrom7": {
+                              "type": "inputText",
+                              "required": false,
+                              "deprecated": false,
+                              "label": "Config.homepageSliderItemDateFrom7Label",
+                              "options": {}
+                              },
+                              "homepage.sliderItemDateUntil4": {
+                                  "type": "inputText",
+                                  "required": false,
+                                  "deprecated": false,
+                                  "label": "Config.homepageSliderItemDateUntil7Label",
+                                  "options": {}
+                      }
+            }
+        },
+        "Config.HighlightHomepageTab": {
+              "label": "Config.highlighthomepageTab",
+              "formFields": {
+              "homepage.higSliderImageUrl1": {
+                  "type": "inputText",
+                  "required": false,
+                  "deprecated": false,
+                  "label": "Config.homepagehigSliderImageUrl1Label",
+                  "options": {}
+              },
+                "homepage.higSliderItemTextBig1": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepagehigSliderItemTextBig1Label",
+                    "options": {}
+                },
+                "homepage.higSliderItemId1": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepagehigSliderItemId1Label",
+                    "options": {}
+                },
+                "homepage.higSliderItemDateFrom1": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepagehigSliderItemDateFrom1Label",
+                    "options": {}
+                },
+                "homepage.higSliderItemDateUntil1": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepagehigSliderItemDateUntil1Label",
+                    "options": {}
+                },
+                "homepage.higSliderImageUrl2": {
+                    "type": "inputText",
+                    "required": false,
+                    "deprecated": false,
+                    "label": "Config.homepagehigSliderImageUrl2Label",
+                    "options": {}
+                },
+                  "homepage.higSliderItemTextBig2": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepagehigSliderItemTextBig2Label",
+                      "options": {}
+                  },
+                  "homepage.higSliderItemId2": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepagehigSliderItemId2Label",
+                      "options": {}
+                  },
+                  "homepage.higSliderItemDateFrom2": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepagehigSliderItemDateFrom2Label",
+                      "options": {}
+                  },
+                  "homepage.higSliderItemDateUntil2": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepagehigSliderItemDateUntil2Label",
+                      "options": {}
+                  },
+                  "homepage.higSliderImageUrl3": {
+                      "type": "inputText",
+                      "required": false,
+                      "deprecated": false,
+                      "label": "Config.homepagehigSliderImageUrl3Label",
+                      "options": {}
+                  },
+                    "homepage.higSliderItemTextBig3": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepagehigSliderItemTextBig3Label",
+                        "options": {}
+                    },
+                    "homepage.higSliderItemId3": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepagehigSliderItemId3Label",
+                        "options": {}
+                    },
+                    "homepage.higSliderItemDateFrom3": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepagehigSliderItemDateFrom3Label",
+                        "options": {}
+                    },
+                    "homepage.higSliderItemDateUntil3": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepagehigSliderItemDateUntil3Label",
+                        "options": {}
+                    },
+                    "homepage.higSliderImageUrl4": {
+                        "type": "inputText",
+                        "required": false,
+                        "deprecated": false,
+                        "label": "Config.homepagehigSliderImageUrl4Label",
+                        "options": {}
+                    },
+                      "homepage.higSliderItemTextBig4": {
+                          "type": "inputText",
+                          "required": false,
+                          "deprecated": false,
+                          "label": "Config.homepagehigSliderItemTextBig4Label",
+                          "options": {}
+                      },
+                      "homepage.higSliderItemId4": {
+                          "type": "inputText",
+                          "required": false,
+                          "deprecated": false,
+                          "label": "Config.homepagehigSliderItemId4Label",
+                          "options": {}
+                      },
+                      "homepage.higSliderItemDateFrom4": {
+                          "type": "inputText",
+                          "required": false,
+                          "deprecated": false,
+                          "label": "Config.homepagehigSliderItemDateFrom4Label",
+                          "options": {}
+                      },
+                      "homepage.higSliderItemDateUntil4": {
+                          "type": "inputText",
+                          "required": false,
+                          "deprecated": false,
+                          "label": "Config.homepagehigSliderItemDateUntil4Label",
+                          "options": {}
+                      },
+                            "homepage.higSliderImageUrl5": {
+                                "type": "inputText",
+                                "required": false,
+                                "deprecated": false,
+                                "label": "Config.homepagehigSliderImageUrl5Label",
+                                "options": {}
+                            },
+                              "homepage.higSliderItemTextBig5": {
+                                  "type": "inputText",
+                                  "required": false,
+                                  "deprecated": false,
+                                  "label": "Config.homepagehigSliderItemTextBig5Label",
+                                  "options": {}
+                              },
+                              "homepage.higSliderItemId5": {
+                                  "type": "inputText",
+                                  "required": false,
+                                  "deprecated": false,
+                                  "label": "Config.homepagehigSliderItemId5Label",
+                                  "options": {}
+                              },
+                              "homepage.higSliderItemDateFrom5": {
+                                  "type": "inputText",
+                                  "required": false,
+                                  "deprecated": false,
+                                  "label": "Config.homepagehigSliderItemDateFrom5Label",
+                                  "options": {}
+                              },
+                              "homepage.higSliderItemDateUntil5": {
+                                  "type": "inputText",
+                                  "required": false,
+                                  "deprecated": false,
+                                  "label": "Config.homepagehigSliderItemDateUntil5Label",
+                                  "options": {}
+
+                      },
+                                    "homepage.higSliderImageUrl6": {
+                                        "type": "inputText",
+                                        "required": false,
+                                        "deprecated": false,
+                                        "label": "Config.homepagehigSliderImageUrl6Label",
+                                        "options": {}
+                                    },
+                                      "homepage.higSliderItemTextBig6": {
+                                          "type": "inputText",
+                                          "required": false,
+                                          "deprecated": false,
+                                          "label": "Config.homepagehigSliderItemTextBig6Label",
+                                          "options": {}
+                                      },
+                                      "homepage.higSliderItemId6": {
+                                          "type": "inputText",
+                                          "required": false,
+                                          "deprecated": false,
+                                          "label": "Config.homepagehigSliderItemId6Label",
+                                          "options": {}
+                                      },
+                                      "homepage.higSliderItemDateFrom6": {
+                                          "type": "inputText",
+                                          "required": false,
+                                          "deprecated": false,
+                                          "label": "Config.homepagehigSliderItemDateFrom6Label",
+                                          "options": {}
+                                      },
+                                      "homepage.higSliderItemDateUntil6": {
+                                          "type": "inputText",
+                                          "required": false,
+                                          "deprecated": false,
+                                          "label": "Config.homepagehigSliderItemDateUntil6Label",
+                                          "options": {}
+
+                      },
+                                            "homepage.higSliderImageUrl7": {
+                                                "type": "inputText",
+                                                "required": false,
+                                                "deprecated": false,
+                                                "label": "Config.homepagehigSliderImageUrl7Label",
+                                                "options": {}
+                                            },
+                                              "homepage.higSliderItemTextBig7": {
+                                                  "type": "inputText",
+                                                  "required": false,
+                                                  "deprecated": false,
+                                                  "label": "Config.homepagehigSliderItemTextBig7Label",
+                                                  "options": {}
+                                              },
+                                              "homepage.higSliderItemId7": {
+                                                  "type": "inputText",
+                                                  "required": false,
+                                                  "deprecated": false,
+                                                  "label": "Config.homepagehigSliderItemId7Label",
+                                                  "options": {}
+                                              },
+                                              "homepage.higSliderItemDateFrom7": {
+                                                  "type": "inputText",
+                                                  "required": false,
+                                                  "deprecated": false,
+                                                  "label": "Config.homepagehigSliderItemDateFrom7Label",
+                                                  "options": {}
+                                              },
+                                              "homepage.higSliderItemDateUntil7": {
+                                                  "type": "inputText",
+                                                  "required": false,
+                                                  "deprecated": false,
+                                                  "label": "Config.homepagehigSliderItemDateUntil7Label",
+                                                  "options": {}
+                        }
+              }
+          },
+        "Config.TemplatesTab": {
+            "label": "Config.TemplatesTab",
+            "formFields": {
+                "templates.override": {
+                    "type": "multiCheckBox",
+                    "required": false,
+                    "label": "Config.templatesOverrideLabel",
+                    "options": {
+                        "defaultValue": "",
+                        "checkBoxValues": [
+                            {
+                                "value": "page_design",
+                                "caption": "Config.templatesOverridePossibleValuePageDesign"
+                            },
+                            {
+                                "value": "head",
+                                "caption": "Config.templatesOverridePossibleValueHead"
+                            },
+                            {
+                                "value": "header",
+                                "caption": "Config.templatesOverridePossibleValueHeader"
+                            },
+                            {
+                                "value": "footer",
+                                "caption": "Config.templatesOverridePossibleValueFooter"
+                            },
+                            {
+                                "value": "homepage",
+                                "caption": "Config.templatesOverridePossibleValueHomepage"
+                            },
+                            {
+                                "value": "basket",
+                                "caption": "Config.templatesOverridePossibleValueBasket"
+                            },
+                            {
+                                "value": "checkout",
+                                "caption": "Config.templatesOverridePossibleValueCheckout"
+                            },
+                            {
+                                "value": "order_confirmation",
+                                "caption": "Config.templatesOverridePossibleValueOrderConfirmation"
+                            },
+                            {
+                                "value": "login",
+                                "caption": "Config.templatesOverridePossibleValueLogin"
+                            },
+                            {
+                                "value": "register",
+                                "caption": "Config.templatesOverridePossibleValueRegister"
+                            },
+                            {
+                                "value": "item",
+                                "caption": "Config.templatesOverridePossibleValueItem"
+                            },
+                            {
+                                "value": "category_view",
+                                "caption": "Config.templatesOverridePossibleValueCategoryView"
+                            },
+                            {
+                                "value": "search",
+                                "caption": "Config.templatesOverridePossibleValueSearchView"
+                            },
+                            {
+                                "value": "my_account",
+                                "caption": "Config.templatesOverridePossibleValueMyAccount"
+                            },
+                            {
+                                "value": "wish_list",
+                                "caption": "Config.templatesOverridePossibleValueWishList"
+                            },
+                            {
+                                "value": "contact",
+                                "caption": "Config.templatesOverridePossibleValueContact"
+                            },
+                            {
+                                "value": "order_return",
+                                "caption": "Config.templatesOverridePossibleValueOrderReturn"
+                            },
+                            {
+                                "value": "order_return_confirmation",
+                                "caption": "Config.templatesOverridePossibleValueOrderReturnConfirmation"
+                            },
+                            {
+                                "value": "cancellation_rights",
+                                "caption": "Config.templatesOverridePossibleValueCancellationRights"
+                            },
+                            {
+                                "value": "cancellation_form",
+                                "caption": "Config.templatesOverridePossibleValueCancellationForm"
+                            },
+                            {
+                                "value": "legal_disclosure",
+                                "caption": "Config.templatesOverridePossibleValueLegalDisclosure"
+                            },
+                            {
+                                "value": "privacy_policy",
+                                "caption": "Config.templatesOverridePossibleValuePrivacyPolicy"
+                            },
+                            {
+                                "value": "terms_conditions",
+                                "caption": "Config.templatesOverridePossibleValueTermsConditions"
+                            },
+                            {
+                                "value": "item_not_found",
+                                "caption": "Config.templatesOverridePossibleValueItemNotFound"
+                            },
+                            {
+                                "value": "page_not_found",
+                                "caption": "Config.templatesOverridePossibleValuePageNotFound"
+                            },
+                            {
+                                "value": "newsletter_opt_out",
+                                "caption": "Config.templatesOverridePossibleValueNewsletterOptOut"
+                            },
+                            {
+                                "value": "category_content",
+                                "caption": "Config.templatesOverridePossibleValueCategoryContent"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "Config.ResultFieldsTab": {
+            "label": "Config.ResultFieldsTab",
+            "formFields": {
+                "result_fields.override": {
+                    "type": "multiCheckBox",
+                    "required": false,
+                    "label": "Config.resultFieldsOverrideLabel",
+                    "options": {
+                        "defaultValue": "",
+                        "checkBoxValues": [
+                            {
+                                "value": "auto_complete_list_item",
+                                "caption": "Config.resultFieldsOverridePossibleValueAutoCompleteListItem"
+                            },
+                            {
+                                "value": "basket_item",
+                                "caption": "Config.resultFieldsOverridePossibleValueBasketItem"
+                            },
+                            {
+                                "value": "category_tree",
+                                "caption": "Config.resultFieldsOverridePossibleValueCategoryTree"
+                            },
+                            {
+                                "value": "list_item",
+                                "caption": "Config.resultFieldsOverridePossibleValueListItem"
+                            },
+                            {
+                                "value": "single_item",
+                                "caption": "Config.resultFieldsOverridePossibleValueSingleItem"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+  <script type="x/template" id="vue-findologic-item-filter-list">
+
+        <div class="findologic-filter-wrapper wwm3RealFilterList" :class="{'mb-1': facets.some(e => e.isMain === true)}" v-show="facets && facets.length > 0">
+
+            <div class="ml-0 main-filters">
+                <div class="container-max component-loading page-content" :class="{ 'isLoading': isLoading }">
+                  <client-only>
+                   <div class="card-columns row">
+                     <findologic-item-filter template-override="#vue-findologic-item-filter"
+                     v-bind:fallbackImageColorFilter="'{{ plugin_path("Findologic") }}/images/no-picture.png'"
+                     v-bind:fallbackImageImageFilter="'{{ plugin_path("Findologic") }}/images/no-picture-2.png'"
+                     v-bind:show-selected-filters-count="false"
+                     v-for="facet in facets"
+                     v-if="facet.id === 'cat' ? showCategoryFilter && facet.isMain : facet.isMain"
+                     :current-category="currentCategory"
+                     :show-category-filter="showCategoryFilter"
+                     :facet="facet"
+                     :key="facet.id"
+                    ></findologic-item-filter>
+                    <findologic-item-filter template-override="#vue-findologic-item-filter"
+                    v-bind:fallbackImageColorFilter="'{{ plugin_path("Findologic") }}/images/no-picture.png'"
+                    v-bind:fallbackImageImageFilter="'{{ plugin_path("Findologic") }}/images/no-picture-2.png'"
+                    v-bind:show-selected-filters-count="false"
+                    v-for="facet in facets"
+                    v-if="!facet.isMain"
+                    :current-category="currentCategory"
+                    :show-category-filter="showCategoryFilter"
+                    :facet="facet"
+                    :key="facet.id"
+                    ></findologic-item-filter>
+                    </div>
+                  </client-only>
+                </div>
+            </div>
+        </div>
+
+</script>

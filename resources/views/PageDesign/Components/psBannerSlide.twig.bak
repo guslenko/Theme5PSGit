@@ -1,0 +1,235 @@
+{% set slide2bgtitle = "Große BMX Auswahl - Markenvielfalt mafiabikes - Collective Bikes - deTox - SE Bikes" %}
+{% set slide2Img550 = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/191203_bmxbrand_550.jpg" %}
+{% set slide2Img980 = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/191203_bmxbrand_980x550.jpg" %}
+{% set slide2Img1920 = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/191203_bmxbrand_1920x550.jpg" %}
+{% set slide2Img550WebP = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/191203_bmxbrand_550.webp" %}
+{% set slide2Img980WebP = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/191203_bmxbrand_980x550.webp" %}
+{% set slide2Img1920WebP = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/191203_bmxbrand_1920x550.webp" %}
+{% set slide2Link = "/fahrrad/bmx" %}
+
+{% set slide3bgtitle = "Ideal zu Ostern - Jetzt Geschenke finden!" %}
+{% set slide3Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/ostern2020" %}
+{% set slide3Link = "/freizeit/oster-shopping?sorting=default.recommended_sorting" %}
+
+{% set slide5bgtitle = "Zubehör von A bis Zündapp" %}
+{% set slide5Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/zuendappZubehoer" %}
+{% set slide5Link = "/fahrradzubehoer?facets=54" %}
+
+{% set slide6bgtitle = "BLACK BIKE SALE - Zündapp Bikes Stark reduziert!" %}
+{% set slide6Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/HeaderBlackBikeZuendapp" %}
+{% set slide6Link = "/fahrrad/ausverkauf/aktionsdeals" %}
+
+{% set slide7bgtitle = "GHOST Bikes" %}
+{% set slide7Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/HeaderGhost2021" %}
+{% set slide7Link = "/search?query=ghost" %}
+
+{% set slide8bgtitle = "ZÜNDAPP TX630 - Gemacht für anspruchsvolle Pfade mit schnellen Trail-Passagen." %}
+{% set slide8Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/ZuendappTX630" %}
+{% set slide8Link = "/a-813655" %}
+
+{% set slide9bgtitle = "Rip Rail Stunt Scooter - jetzt anschauen!" %}
+{% set slide9Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/riprailStuntscooterV1" %}
+{% set slide9Link = "/freizeit/stuntscooter/scooter" %}
+
+{% set slide10bgtitle = "Vorinflationspreis sichern! - Deal Week" %}
+{% set slide10Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/vorinflaDeal122022" %}
+{% set slide10Link = "/fahrrad/black-week-deals" %}
+
+{% set slide11bgtitle = "Die große OSTEREIERSUCHE - JETZT OSTEREI SUCHEN UND GUTSCHEINCODE SICHERN!" %}
+{% set slide11Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/oster2022" %}
+{% set slide11Link = "/content/die-grosse-ostereiersuche" %}
+
+{% set slide12bgtitle = "Galano - Welcher Fahrradtyp bist du? DEIN WUNSCHMODELL IST AUCH DABEI!" %}
+{% set slide12Img = "https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/galanoFahrradtyp" %}
+{% set slide12Link = "/marken/galano" %}
+
+
+
+{# % set end_date = "2019-12-25" % #}
+{# { "now"|date("Y-m-d") } #}
+{# % if date() >= date("2021-11-08") % #}
+{# Ab 08.11.2021 bis unendlich #}
+{# % endif % #}
+{# % if date() <= date("2021-11-10") % #}<!-- ab sofort bis 09.11.2021 -->{# % endif % #}
+{% if date() >= date("2021-11-09") and date() <= date("2021-11-10")  %}<!-- nur 09.11.2021 -->{% endif %}
+
+
+
+
+
+<div class="container-fluid px-0 px-xl-0 mt-0">
+
+  <section data-uid-image-slider="45af5668gd1709" data-auto-slide="1" class="home-slider home-slider--45af5668gd1709">
+    <div class="swiper-container slider--home swiper-container-initialized swiper-container-horizontal">
+      <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+
+
+
+        {% if date() >= date("2022-04-13") and date() <= date("2022-04-25")  %}
+        <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+            <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+              <a href="{{ slide11Link }}" title="{{ slide11bgtitle }}">
+                <picture class="object-fit--picture swiper-lazy">
+                  <source media="(max-width: 550px)" data-srcset="{{ slide11Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(max-width: 980px)" data-srcset="{{ slide11Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(min-width: 981px)" data-srcset="{{ slide11Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(max-width: 550px)" data-srcset="{{ slide11Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                  <source media="(max-width: 980px)" data-srcset="{{ slide11Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                  <source media="(min-width: 981px)" data-srcset="{{ slide11Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                  <img data-srcset="{{ slide11Img }}_1920.jpg" alt="{{ slide11bgtitle }}" title="{{ slide11bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+                </picture>
+                <div class="swiper-lazy-preloader"></div>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+
+
+
+{% if date() >= date("2022-11-16") and date() <= date("2022-12-05")  %}
+
+<div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+    <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+      <a href="{{ slide10Link }}" title="{{ slide10bgtitle }}">
+        <picture class="object-fit--picture swiper-lazy">
+          <source media="(max-width: 550px)" data-srcset="{{ slide10Img }}_550.webp" type="image/webp" class="swiper-lazy">
+          <source media="(max-width: 980px)" data-srcset="{{ slide10Img }}_980.webp" type="image/webp" class="swiper-lazy">
+          <source media="(min-width: 981px)" data-srcset="{{ slide10Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+          <source media="(max-width: 550px)" data-srcset="{{ slide10Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+          <source media="(max-width: 980px)" data-srcset="{{ slide10Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+          <source media="(min-width: 981px)" data-srcset="{{ slide10Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+          <img data-srcset="{{ slide10Img }}_1920.jpg" alt="{{ slide10bgtitle }}" title="{{ slide10bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+        </picture>
+        <div class="swiper-lazy-preloader"></div>
+      </a>
+    </div>
+  </div>
+
+
+          <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+              <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+                <a href="{{ slide8Link }}" title="{{ slide8bgtitle }}">
+                  <picture class="object-fit--picture swiper-lazy">
+                    <source media="(max-width: 550px)" data-srcset="{{ slide8Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                    <source media="(max-width: 980px)" data-srcset="{{ slide8Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                    <source media="(min-width: 981px)" data-srcset="{{ slide8Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                    <source media="(max-width: 550px)" data-srcset="{{ slide8Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                    <source media="(max-width: 980px)" data-srcset="{{ slide8Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                    <source media="(min-width: 981px)" data-srcset="{{ slide8Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                    <img data-srcset="{{ slide8Img }}_1920.jpg" alt="{{ slide8bgtitle }}" title="{{ slide8bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+                  </picture>
+                  <div class="swiper-lazy-preloader"></div>
+                </a>
+              </div>
+            </div>
+{% else %}
+
+
+
+        <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+            <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+              <a href="{{ slide8Link }}" title="{{ slide8bgtitle }}">
+                <picture class="object-fit--picture swiper-lazy">
+                  <source media="(max-width: 550px)" data-srcset="{{ slide8Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(max-width: 980px)" data-srcset="{{ slide8Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(min-width: 981px)" data-srcset="{{ slide8Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(max-width: 550px)" data-srcset="{{ slide8Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                  <source media="(max-width: 980px)" data-srcset="{{ slide8Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                  <source media="(min-width: 981px)" data-srcset="{{ slide8Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                  <img data-srcset="{{ slide8Img }}_1920.jpg" alt="{{ slide8bgtitle }}" title="{{ slide8bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+                </picture>
+                <div class="swiper-lazy-preloader"></div>
+              </a>
+            </div>
+          </div>
+
+
+
+  <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+      <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+        <a href="{{ slide12Link }}" title="{{ slide12bgtitle }}">
+          <picture class="object-fit--picture swiper-lazy">
+            <source media="(max-width: 550px)" data-srcset="{{ slide12Img }}_550.webp" type="image/webp" class="swiper-lazy">
+            <source media="(max-width: 980px)" data-srcset="{{ slide12Img }}_980.webp" type="image/webp" class="swiper-lazy">
+            <source media="(min-width: 981px)" data-srcset="{{ slide12Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+            <source media="(max-width: 550px)" data-srcset="{{ slide12Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+            <source media="(max-width: 980px)" data-srcset="{{ slide12Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+            <source media="(min-width: 981px)" data-srcset="{{ slide12Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+            <img data-srcset="{{ slide12Img }}_1920.jpg" alt="{{ slide12bgtitle }}" title="{{ slide12bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+          </picture>
+          <div class="swiper-lazy-preloader"></div>
+        </a>
+      </div>
+    </div>
+
+
+
+
+        <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+            <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+              <a href="{{ slide7Link }}" title="{{ slide7bgtitle }}">
+                <picture class="object-fit--picture swiper-lazy">
+                  <source media="(max-width: 550px)" data-srcset="{{ slide7Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(max-width: 980px)" data-srcset="{{ slide7Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(min-width: 981px)" data-srcset="{{ slide7Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                  <source media="(max-width: 550px)" data-srcset="{{ slide7Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                  <source media="(max-width: 980px)" data-srcset="{{ slide7Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                  <source media="(min-width: 981px)" data-srcset="{{ slide7Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                  <img data-srcset="{{ slide7Img }}_1920.jpg" alt="{{ slide7bgtitle }}" title="{{ slide7bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+                </picture>
+                <div class="swiper-lazy-preloader"></div>
+              </a>
+            </div>
+          </div>
+
+
+
+
+
+        <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+          <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+            <a href="{{ slide2Link }}" title="{{ slide2bgtitle }}">
+              <picture class="object-fit--picture swiper-lazy">
+                <source media="(max-width: 550px)" data-srcset="{{ slide2Img550WebP }}" type="image/webp" class="swiper-lazy">
+                <source media="(max-width: 980px)" data-srcset="{{ slide2Img980WebP }}" type="image/webp" class="swiper-lazy">
+                <source media="(min-width: 981px)" data-srcset="{{ slide2Img1920WebP }}" type="image/webp" class="swiper-lazy">
+                <source media="(max-width: 550px)" data-srcset="{{ slide2Img550 }}" type="image/jpeg" class="swiper-lazy">
+                <source media="(max-width: 980px)" data-srcset="{{ slide2Img980 }}" type="image/jpeg" class="swiper-lazy">
+                <source media="(min-width: 981px)" data-srcset="{{ slide2Img1920 }}" type="image/jpeg" class="swiper-lazy">
+                <img data-srcset="{{ slide2Img1920 }}" alt="{{ slide2bgtitle }}" title="{{ slide2bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+              </picture>
+              <div class="swiper-lazy-preloader"></div>
+            </a>
+          </div>
+        </div>
+
+{% endif %}
+
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev fa fa-chevron-left"></div>
+      <div class="swiper-button-next fa fa-chevron-right"></div>
+      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
+  </section>
+</div>
+
+
+{#
+<!-- BEISPIEL LAZY LOAD -->
+<div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+  <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+
+    <a href="{{ slide2Link }}" title="{{ slide2bgtitle }}">
+      <picture class="object-fit--picture swiper-lazy">
+        <source media="(max-width: 767px)" data-srcset="{{ slide2Img980WebP }}" type="image/webp" class="swiper-lazy">
+        <source media="(min-width: 768px)" data-srcset="{{ slide2Img1920WebP }}" type="image/webp" class="swiper-lazy">
+        <source media="(max-width: 767px)" data-srcset="{{ slide2Img980 }}" type="image/jpeg" class="swiper-lazy">
+        <source media="(max-width: 768px)" data-srcset="{{ slide2Img1920 }}" type="image/jpeg" class="swiper-lazy">
+        <img data-srcset="{{ slide2Img980 }}" alt="{{ slide2bgtitle }}" title="{{ slide2bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+      </picture>
+      <div class="swiper-lazy-preloader"></div>
+    </a>
+  </div>
+</div>
+#}

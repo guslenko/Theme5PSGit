@@ -1,0 +1,76 @@
+/* Black Week */
+
+/*
+.nav__wrapper.navbar ul li.megamenu__item:first-child a {
+    color: red;
+    font-size: 1.5rem;
+}
+.header-fixed-down .header-wrapper  {
+  top: -135px;
+}
+@media (min-width: 576px) {
+  .header-fixed-down .header-wrapper  {
+    top: -82px;
+  }
+}
+@media (min-width: 768px) {
+  .header-fixed-down .header-wrapper  {
+    top: -46px;
+  }
+}
+@media (min-width: 992px) {
+ .header-fixed-down .header-wrapper  {
+    top: -32px;
+  }
+}
+.header-fixed-up .header-wrapper {
+   top: 0px;
+}
+*/
+
+
+/* easter start */
+
+body {
+  position: relative;
+}
+.easter {
+  position: fixed;
+  z-index: 99999;
+}
+.easter01 {
+  bottom: 5%;
+  right: 10%;
+}
+.easter02 {
+  top: 35%;
+  left: 10%;
+}
+.easter03 {
+  top: 15%;
+  left: 5%;
+}
+.easter04 {
+  bottom: 25%;
+  right: 10%;
+}
+.easter05 {
+  bottom: 25%;
+  left: 5%;
+}
+.easter06 {
+  bottom: 5%;
+  left: 10%;
+}
+.easter-link {
+  width: 40px;
+  height: 60px;
+  display: block;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMzMuNDIgMTkzLjMzIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2Q5ZGFkYTt9LmNscy0ye2ZpbGw6I2JhY2UwMTt9LmNscy0ze29wYWNpdHk6MC44O30uY2xzLTR7ZmlsbDojOGZhMDA0O308L3N0eWxlPjwvZGVmcz48dGl0bGU+RWxlbWVudCA0PC90aXRsZT48ZyBpZD0iRWJlbmVfMiIgZGF0YS1uYW1lPSJFYmVuZSAyIj48ZyBpZD0iRWJlbmVfNCIgZGF0YS1uYW1lPSJFYmVuZSA0Ij48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMzMuNDIsMTgxLjljMCw2LjMxLTI5Ljg2LDExLjQzLTY2LjcxLDExLjQzUzAsMTg4LjIxLDAsMTgxLjksMzMuODIsMTY4LDY2LjcxLDE2OCwxMzMuNDIsMTc1LjU4LDEzMy40MiwxODEuOVoiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMzMuNDIsMTAwLjU5YzAsNDUuNy0yOS44Niw4Mi43NC02Ni43MSw4Mi43NFMwLDE0Ni4yOSwwLDEwMC41OSwzMy44MiwwLDY2LjcxLDAsMTMzLjQyLDU0Ljg5LDEzMy40MiwxMDAuNTlaIi8+PGcgY2xhc3M9ImNscy0zIj48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik0xMTcuMjIsNzlhNCw0LDAsMCwxLDEuMTQsMy42OWMtNSwxNC4yMS0xMC42NywzNC44OS0xNi43NCw1OC42OEE4LjI5LDguMjksMCwwLDEsOTguMTQsMTQ2YTcxLjI4LDcxLjI4LDAsMCwxLTY0LjI4LjA2LDgsOCwwLDAsMS0zLjQ3LTQuNjVjLTIuMDctOC4xMy00LjA5LTE1Ljg5LTYuMDYtMjMuMTYtLjQzLTEuNTYuMjgtMi44LDEuNjQtMi44Miw3LjU4LS4wOSwxNi0xLjc4LDI0LjYtNC4zMSwxLjUxLS40NywxLjc5LjA2LjUsMS4xMUExNDcuNzIsMTQ3LjcyLDAsMCwxLDM5LDEyMS4zM2E0LjQxLDQuNDEsMCwwLDAtMS4zMyw0LjU0Yy41MSwxLjkxLDEsMy44NCwxLjU0LDUuNzhhNi4xOSw2LjE5LDAsMCwwLDMuNjYsNCw5Mi44OCw5Mi44OCwwLDAsMCw0Ni4yNSwwLDYuMDcsNi4wNywwLDAsMCwzLjcxLTQuMDVjNC41NS0xNyw4Ljk0LTMyLjg0LDEzLjA5LTQ2LjMzLjQ0LTEuMzgtLjI4LTIuMjktMS42Ni0xLjk0LTI0LjU1LDYuMzgtNTYuNzQsMjIuODMtODAuNDEsMjQuNzNhMy4zLDMuMywwLDAsMS0zLjEtMi41Yy0yLjUtOC43My00LjktMTYuNDUtNy4xNi0yMi44NWE0LDQsMCwwLDEsMS4wOS0zLjY3QzI4LDY1LjQzLDQ1LjcsNDMuNzQsNjMuNTcsMjguMjVhMy45MywzLjkzLDAsMCwxLDQuODIsMGMxMSw5LjQ4LDIxLjg0LDIxLjI5LDMxLjcxLDMyLjE0LDEuMTcsMS4zOCwxLDIuNDctLjQxLDIuNTMtOS44Ni44NC0yMC43Miw0LTMxLjY0LDgtMS41My41Ny0xLjc2LjEyLS41MS0xLDQtMy4yLDgtNi4yOCwxMi05LjA4YTIuMjMsMi4yMywwLDAsMCwwLTMuN2MtMy42OS0zLjQzLTcuNDItNi44LTExLjE2LTEwYTMuNjUsMy42NSwwLDAsMC00LjgyLDBDNTAuOTIsNTcuOTIsMzguMzUsNzAuODgsMjcuMzUsODAuODhhNC41NCw0LjU0LDAsMCwwLTEuMjgsNC4zNnExLDMuMTQsMiw2LjQ0YTIuNzIsMi43MiwwLDAsMCwzLjMxLDEuOTRjMjMuNDQtNy41NCw1Mi43OS0yMS44Nyw3NS4xMi0yMy4zM2E2LjM4LDYuMzgsMCwwLDEsNC4zNiwyQzExMy4wNSw3NC43MiwxMTUuMTksNzcsMTE3LjIyLDc5WiIvPjwvZz48L2c+PC9nPjwvc3ZnPg==) no-repeat;
+}
+.easter05 .easter-link {
+  background: url(https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/goldEasterv1.png) no-repeat;
+  background-size: contain;
+}
+
+/* easter end */

@@ -1,0 +1,1444 @@
+{% import "Ceres::PageDesign.Macros.IncludeComponents" as Loader %}
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Ceres::PageDesign.Macros.Translations" as Translations %}
+{{ component( "Ceres::PageDesign.Components.Notifications" ) }}
+{{ component( "Theme5PS::Basket.Components.BasketPreview" ) }}
+{{ component( "Ceres::Customer.Components.Login" ) }}
+{{ component( "Theme5PS::Customer.Components.Registration" ) }}
+{{ component( "Theme5PS::PageDesign.Components.StoreList" ) }}
+{#{ component( "Theme5PS::PageDesign.Components.FrameCalculator" ) }#}
+{{ component( "Ceres::Basket.Components.AddItemToBasketOverlay" ) }}
+{{ component( "Ceres::PageDesign.Components.Popper" ) }}
+{{ component( "Ceres::Customer.Components.ForgotPassword" ) }}
+{{ component("Ceres::Customer.Components.Contact.AcceptPrivacyPolicyCheck") }}
+{# TODO: remove if shop builder pages can be rebuild by migrations #}
+{{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
+{{ component( "Ceres::ItemList.Components.CategoryItem") }}
+{{ component( "Ceres::Newsletter.Components.NewsletterInput" ) }}
+{{ component( "Ceres::PageDesign.Components.Carousel" ) }}
+{% if isShopBuilder %}
+    {% include "Ceres::Widgets.WidgetComponents" %}
+{% endif %}
+{% set isItem = services.template.isItem() == "1" %}
+{% set currencyFormat = config("Ceres.currency.format") %}
+{% set defaultLanguage = webstoreConfig.defaultLanguage %}
+<!DOCTYPE html>
+<html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#" class="icons-loading">
+<head>
+{% if category.id == '603' %}
+{% else %}
+    {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningHeadTag") }}
+    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
+    {% include getPartial('head') %}
+    {% block PartialHead %}
+      {% embed getPartial('page-metadata') %}{% endembed %}
+    {% endblock %}
+    {% for styleTemplate in get_additional_styles() %}
+        {% include styleTemplate.path ignore missing with styleTemplate.params %}
+    {% endfor %}
+    {% if assetName == 'ceres-checkout' %}
+        {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
+    {% endif %}
+    {% if isItem %}
+        {{ LayoutContainer.show("Ceres::SingleItem.Styles") }}
+    {% endif %}
+{% endif %}
+<meta name="google-site-verification" content="VCiUJaWq74fH1FDNHnVtoQvLsSVSnzJTN8iG6B4To1g" />
+</head>
+<body class="{{ bodyClasses | join(' ') }} {% if request.get('openBasketPreview') == 1 %} basket-open{% endif %} {% if isShopBuilder %} shop-builder-editor{% endif %}">
+
+    {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningBodyTag") }}
+    <script>
+        if('ontouchstart' in document.documentElement)
+        {
+            document.body.classList.add("touch");
+        }
+        else
+        {
+            document.body.classList.add("no-touch");
+        }
+    </script>
+    
+    <!-- SSR:app() -->
+    <div id="vue-app" class="app">
+      {# Ostern start #}
+      {% if date() >= date("2023-03-21") and date() <= date("2023-04-11")  %}
+          {% if (category.id == 13) %}
+          {# 5% #}
+          <div class="easter drag easter06"><a class="easter-link" title="5%" href="https://www.pentagonsports.de/rabattcodes/6487s5">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 33 or category.id == 35 or category.id == 53 or category.id == 85 or category.id == 70 or category.id == 57 or category.id == 117 or category.id == 39 ) %}
+          {# 5% #}
+          <div class="easter drag easter01"><a class="easter-link" title="5%" href="https://www.pentagonsports.de/rabattcodes/6487s5">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 64 or category.id == 45 or category.id == 122 or category.id == 38 or category.id == 358 or category.id == 192 or category.id == 646 or category.id == 818) %}
+          {# 5% #}
+          <div class="easter drag easter02"><a class="easter-link" title="5%" href="https://www.pentagonsports.de/rabattcodes/6487s5">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 34 or category.id == 55 or category.id == 50 or category.id == 59 or category.id == 37 or category.id == 58) %}
+          {# 10% #}
+          <div class="easter drag easter03"><a class="easter-link" title="10%" href="https://www.pentagonsports.de/rabattcodes/cqhry9">&nbsp;</a></div>
+          {% endif %}
+          {% if (category.id == 46 or category.id == 82 or category.id == 89) %}
+          {# 15% #}
+          <div class="easter drag easter04"><a class="easter-link" title="15%" href="https://www.pentagonsports.de/rabattcodes/mkn7g4">&nbsp;</a></div>
+          {% endif %}
+          {% if (item.documents[0].data.item.id == 812555 or category.id == 164 or category.id == 876) %}
+          {# 20% #}
+          <div class="easter drag easter05"><a class="easter-link" title="20%" href="https://www.pentagonsports.de/rabattcodes/gfa32dv/">&nbsp;</a></div>
+          {% endif %}
+      {% endif %}
+      
+
+      {# Ostern end #}
+        {{ context.renderState() }}
+        <lazy-hydrate when-idle>
+            <notifications template="#vue-notifications" :initial-notifications="{{ notifications | json_encode() }}"></notifications>
+        </lazy-hydrate>
+{% if category.id == '603' %}
+{% else %}
+        {% include getPartial('header') %}
+        {% if not services.template.isHome() %}
+      {% else %}
+    {% include "Theme5PS::PageDesign.Components.psBannerSlide" %}
+     {% endif %}
+        <div id="page-body" class="main">
+        
+        {% if date() >= date("2025-01-01") and date() <= date("2026-09-02")  %}
+        
+            {% if (category.id == 1036) %}
+            <a href="/angebot-des-monats"><div style="text-align: center;font-size: 24px;padding: 10px 20px;color: #FFF; font-weight:900; background: #0b4f4a;"><strong>Angebote im Juli</strong><br>
+            <strong>Brandneue Trekking E-Bikes, E-Bike Dreirad und retro Citybikes</strong></div></a>
+            {% endif %}
+            
+            {% if (category.id == '1036' or services.template.isHome()) %}
+            {% else %}
+            <a href="/angebot-des-monats"><div style="text-align: center;font-size: 24px;padding: 10px 20px;color: #FFF; font-weight:900; background: #0b4f4a;"><strong>Angebote im Juli</strong><br>
+            <strong>Brandneue Trekking E-Bikes, E-Bike Dreirad und retro Citybikes</strong></div></a>
+            {% endif %}
+            
+        {% endif %}
+        
+      
+        
+        
+            {% block PageBody %}{% endblock %}
+
+            {% if services.template.isHome() %}
+                        
+            
+            <lazy-hydrate>
+            <div class="container angerow mt-0 mt-sm-4">
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3 col-xxl-3 angebot ang1 px-0">
+                    <a href="/angebot-des-monats">
+                        <img src="https://cdn02.plentyone.com/4in9ikd3ipve/frontend/category_images/banners/26-08_home.webp" alt="DEALS 2026" class="w-100">
+                        </a>
+                        <h3 class="pt-4 px-4 pb-2 text-left">Angebote im August</h3>
+                        <p class="text-left pt-2 pb-4 px-4 m-0"><b>Brandneue Trekking E-Bikes, E-Bike Dreirad und retro Citybikes.</b> / Bis 31. August 2026</p>
+                        <small class="d-block text-center p-0 m-0">Verbleibende Zeit bis zum Ende der Aktion:</small>
+                    <div id="container" class="countdown py-2 px-1"></div>
+                    </div>
+            
+                    <div class="col-12 col-md-8 col-lg-9 col-xxl-9 px-0 angr pt-3 pb-2">
+                        <div id="tophome-two" class="owl-carousel owl-theme owl-single-item">
+                          {% set list = services.itemList.getItemList( "category",653, "variation.position_desc", 12).documents %}
+                          {% for items in list %}
+                            <div class="item">
+                              <category-item
+                                  :item-data="{{ items.data | json_encode }}"
+                                  :decimal-count="{{ decimalCount }}"
+                                  >
+                                  <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                                  <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+                              </category-item>
+                            </div>
+                          {% endfor %}
+                          </div>
+                          <div class="text-center mehr pt-2 px-4 pb-1"><a href="/angebot-des-monats">Zur Aktion</a></div>
+                    </div>
+                </div>
+            </div>
+            </lazy-hydrate>
+            
+            <lazy-hydrate>
+            <div class="container mt-2">
+            
+              <div class="headlineHome dark px-3 py-3 text-center">Beliebte Kategorien</div>
+              
+              <div class="row">
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                      <a class="text-center" href="/fahrrad">
+                          <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat1.webp" class="w-100 px-2 pb-3 pt-1" alt="Fahrrad">
+                          Fahrrad
+                      </a>
+                  </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/e-bike">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat2.webp" class="w-100 px-2 pb-3 pt-1" alt="E-Bike">
+                            E-Bike
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradzubehoer">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat3.webp" class="w-100 px-2 pb-3 pt-1" alt="Zubehör">
+                            Zubehör
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradteile">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat4.webp" class="w-100 px-2 pb-3 pt-1" alt="Teile">
+                            Teile
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/freizeit">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat6.webp" class="w-100 px-2 pb-3 pt-1" alt="Sport + Freizeit">
+                            Sport + Freizeit
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/bekleidung">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat5.webp" class="w-100 px-2 pb-3 pt-1" alt="Bekleidung">
+                            Bekleidung
+                        </a>
+                    </div>
+              </div>
+              
+              
+              
+            </div>
+            </lazy-hydrate>
+            
+              
+          
+          <div class="container">
+
+          <div class="headlineHome dark px-3 py-3 text-center">Neuheiten</div>
+          <div id="tophome-four" class="owl-carousel owl-theme owl-single-item">
+          {% set list = services.itemList.getItemList( "category",28, "variation.createdAt_desc", 15).documents %}
+          {% for items in list %}
+          <div class="item">
+            <category-item
+                :item-data="{{ items.data | json_encode }}"
+                :decimal-count="{{ decimalCount }}">
+                <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+            </category-item>
+          </div>
+          {% endfor %}
+          </div>
+          </div>
+          
+          
+          
+          
+          
+          
+                      
+          <div class="container angerow mt-3">
+          <div class="row">                
+              <div class="col-12 col-md-4 col-lg-3 col-xxl-3 angebot ang2 px-0">
+                  <a href="/fahrrad"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home1.webp" class="w-100" alt="Fahrrad"></a>
+                      <h3 class="pt-4 px-4 pb-2 text-left">Fahrräder und E-Bikes</h3>
+                      <p class="text-left pt-2 pb-4 px-4 m-0">Die beliebteste Modelle in unserem Katalog</p> 
+                      <div class="text-center darkmehr pt-2 px-4 pb-3">
+                      <a href="/fahrrad">Mehr Fahrräder und E-Bikes</a>
+                      </div>
+                  </div>
+                  
+                  
+                  
+                  <div class="col-12 col-md-8 col-lg-9 col-xxl-9 px-0 angr pt-4 pb-2">
+                      <div id="tophome-one" class="owl-carousel owl-theme owl-single-item">
+                        {% set list = services.itemList.getItemList( "category",28, "variation.position_desc", 12).documents %}
+                        {% for items in list %}
+                          <div class="item">
+                            <category-item
+                                :item-data="{{ items.data | json_encode }}"
+                                :decimal-count="{{ decimalCount }}">
+                                <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                                <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+                            </category-item>
+                          </div>
+                        {% endfor %}
+                        </div>
+                        <div class="text-center mehr pt-2 px-4 pb-1"><a href="/fahrrad">Alle Fahrräder und E-Bikes</a></div>
+                  </div>
+              </div>
+          </div>
+          
+          
+          
+          
+          <div class="container mt-2">
+          
+            <div class="headlineHome dark px-3 py-3 text-center">Fahrräder nach Typ</div>
+            
+            <div class="row">
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                      <a class="text-center" href="/fahrrad/e-bike">
+                          <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat2.webp" class="w-100 px-2 pb-3 pt-1" alt="E-Bike">
+                          E-Bike
+                      </a>
+                  </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrrad/mtb">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat7.webp" class="w-100 px-2 pb-3 pt-1" alt="Mountainbike">
+                            Mountainbike
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrrad/rennrad">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat1.webp" class="w-100 px-2 pb-3 pt-1" alt="Rennrad">
+                            Rennrad
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrrad/gravelbike-cyclocross">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat8.webp" class="w-100 px-2 pb-3 pt-1" alt="Gravel Bike">
+                            Gravel Bike
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrrad/trekkingraeder">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat9.webp" class="w-100 px-2 pb-3 pt-1" alt="Trekking Bike">
+                            Trekking Bike
+                        </a>
+                    </div>
+                    <!--
+                    <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                          <a class="text-center" href="/fahrrad/crossrad-fitnessbike-urbanbike">
+                              <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat10.webp" class="w-100 px-2 pb-3 pt-1" alt="City Bike">
+                              City Bike
+                          </a>
+                      </div>
+                      <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                          <a class="text-center" href="/fahrrad/crossrad-fitnessbike-urbanbike">
+                              <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat11.webp" class="w-100 px-2 pb-3 pt-1" alt="Fitness Bike">
+                              Fitness Bike
+                          </a>
+                      </div>
+                      <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                          <a class="text-center" href="/fahrrad/suv-bike">
+                              <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat16.webp" class="w-100 px-2 pb-3 pt-1" alt="SUV Bike">
+                              SUV Bike
+                          </a>
+                      </div>
+                      <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                            <a class="text-center" href="/fahrrad/faltrad">
+                                <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat12.webp" class="w-100 px-2 pb-3 pt-1" alt="Klapprad">
+                                Klapprad
+                            </a>
+                        </div>
+                      <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                            <a class="text-center" href="/fahrrad/bmx">
+                                <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat13.webp" class="w-100 px-2 pb-3 pt-1" alt="BMX"> 
+                                BMX
+                            </a>
+                        </div>
+                      <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                            <a class="text-center" href="/fahrrad/jugendrad">
+                                <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat14.webp" class="w-100 px-2 pb-3 pt-1" alt="Jungendfahrrad">
+                                Jungendfahrrad
+                            </a>
+                        </div>
+                        -->
+                      <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                            <a class="text-center" href="/fahrrad/kinderfahrrad">
+                                <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat15.webp" class="w-100 px-2 pb-3 pt-1" alt="Kinderfahrrad">
+                                Kinderfahrrad
+                            </a>
+                        </div>
+            </div>
+            <div class="text-center mehr pt-2 px-4 pb-3">
+              <a href="/fahrrad">Alle Fahrräder</a>
+              </div>
+            
+            
+            
+          </div>
+          
+          
+          <!--
+          <div class="container mt-2">
+            
+              <div class="headlineHome dark px-3 py-3 text-center">E-Bikes nach Typ</div>
+              
+              <div class="row">
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/e-bike/e-bike-mountainbike">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/e-mtb.webp" class="w-100 px-2 pb-3 pt-1" alt="E-Bike">
+                            E Bike Mountainbike
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                          <a class="text-center" href="/fahrrad/e-bike/e-bike-mountainbike/e-bike-mountainbike-fully">
+                              <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/e-fully.webp" class="w-100 px-2 pb-3 pt-1" alt="E-Bike Fully">
+                              E-Bike Fully
+                          </a>
+                      </div>
+                    <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                          <a class="text-center" href="/fahrrad/e-bike/e-bike-trekking">
+                              <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/e-bike-trekking.webp" class="w-100 px-2 pb-3 pt-1" alt="Trekking E-Bike">
+                              Trekking E-Bike
+                          </a>
+                      </div>
+                    <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                          <a class="text-center" href="/fahrrad/e-bike/e-bikes-rennrad-gravel">
+                              <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/e_gravelbike.webp" class="w-100 px-2 pb-3 pt-1" alt="E-Gravelbike">
+                              E-Gravelbike
+                          </a>
+                      </div>
+                    <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                          <a class="text-center" href="/fahrrad/e-bike/e-bike-klapprad-faltrad">
+                              <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/e_klapprad.webp" class="w-100 px-2 pb-3 pt-1" alt="E Bike Klapprad">
+                              E Bike Klapprad
+                          </a>
+                      </div>
+                      <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                            <a class="text-center" href="/fahrrad/e-bike/e-lastenfahrrad">
+                                <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/e-lastenbike.webp" class="w-100 px-2 pb-3 pt-1" alt="E-Lastenbike">
+                                E-Lastenbike
+                            </a>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                              <a class="text-center" href="/fahrrad/e-bike/20-zoll">
+                              E-Bike 20 Zoll
+                          </a>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                              <a class="text-center" href="/fahrrad/e-bike/24-zoll">
+                              E-Bike 24 Zoll
+                          </a>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                              <a class="text-center" href="/fahrrad/e-bike/26-zoll">
+                              E-Bike 26 Zoll
+                          </a>
+                          </div>
+                        <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                              <a class="text-center" href="/fahrrad/e-bike/27-5-zoll">
+                                  E-Bike 27.5 Zoll
+                              </a>
+                          </div>
+                        <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                              <a class="text-center" href="/fahrrad/e-bike/28-zoll">
+                                  E Bike 28 Zoll
+                              </a>
+                          </div>
+                        <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                              <a class="text-center" href="/fahrrad/e-bike/29-zoll">
+                                  E Bike 29 Zoll
+                              </a>
+                          </div>
+              </div>
+              <div class="text-center mehr pt-2 px-4 pb-3">
+                <a href="/fahrrad/e-bike">Alle Elektrofahrräder</a>
+                </div>
+              
+              
+              
+            </div>
+            -->
+          
+          
+          
+          
+                      
+          <div class="container angerow mt-2">
+          <div class="row">                
+              <div class="col-12 col-md-4 col-lg-3 col-xxl-3 angebot ang2 px-0">
+                  <a href="/fahrradzubehoer"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home2.webp" class="w-100" alt="Fahrradzubehör"></a>
+                      <h3 class="pt-4 px-4 pb-2 text-left">Fahrradzubehör</h3>
+                      <p class="text-left pt-2 pb-4 px-4 m-0">Beleuchtung, Fahrradschlösser, Schutzbleche, Spiegel und vieles mehr</p> 
+                      <div class="text-center darkmehr pt-2 px-4 pb-3">
+                        <a href="/fahrradzubehoer">Mehr Zubehör</a>
+                        </div>
+                  </div>
+                  
+                  
+                  
+                  <div class="col-12 col-md-8 col-lg-9 col-xxl-9 px-0 angr pt-3 pb-2">
+                  
+                      <div id="tophome-three" class="owl-carousel owl-theme owl-single-item">
+                        {% set list = services.itemList.getItemList( "category",48, "variation.position_desc", 12).documents %}
+                        {% for items in list %}
+                          <div class="item">
+                            <category-item
+                                :item-data="{{ items.data | json_encode }}"
+                                :decimal-count="{{ decimalCount }}">
+                                <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                                <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+                            </category-item>
+                          </div>
+                        {% endfor %}
+                        </div>
+                        <div class="text-center mehr pt-2 px-4 pb-1"><a href="/fahrradzubehoer">Alle Zubehörartikel</a></div>
+                  </div>
+              </div>
+          </div>
+          
+          
+          
+          
+          <div class="container mt-2">
+          
+            <div class="headlineHome dark px-3 py-3 text-center">Zubehör für dein Fahrrad</div>
+            
+            <div class="row">
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                      <a class="text-center" href="/fahrradzubehoer/beleuchtung">
+                          <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat17.webp" class="w-100 px-2 pb-3 pt-1" alt="Beleuchtung">
+                          Beleuchtung
+                      </a>
+                  </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradzubehoer/fahrradschloss">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat18.webp" class="w-100 px-2 pb-3 pt-1" alt="Fahrradschloss">
+                            Fahrradschloss
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradzubehoer/fahrradstaender">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat3.webp" class="w-100 px-2 pb-3 pt-1" alt="Fahrradständer">
+                            Fahrradständer
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradzubehoer/luftpumpe">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat19.webp" class="w-100 px-2 pb-3 pt-1" alt="Luftpumpe">
+                            Luftpumpe
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradzubehoer/flaschen-flaschenhalter">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat20.webp" class="w-100 px-2 pb-3 pt-1" alt="Flaschen">
+                            Flaschen
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradzubehoer/helm">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat21.webp" class="w-100 px-2 pb-3 pt-1" alt="Helme">
+                            Helme
+                        </a>
+                    </div>
+            </div>
+            <div class="text-center mehr pt-2 px-4 pb-3">
+              <a href="/fahrradzubehoer">Alle Zubehörartikel</a>
+              </div>
+            
+            
+            
+          </div>
+          
+          
+          
+          
+          
+                      
+          <div class="container angerow mt-2">
+          <div class="row">                
+              <div class="col-12 col-md-4 col-lg-3 col-xxl-3 angebot ang2 px-0">
+                  <a href="/fahrradteile"><img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home3.webp" class="w-100" alt="Fahrradteile"></a>
+                      <h3 class="pt-4 px-4 pb-2 text-left">Fahrradteile</h3>
+                      <p class="text-left pt-2 pb-4 px-4 m-0">Laufräder, Reifen, Bremsen, Pedale, Sättel und vieles mehr</p> 
+                      <div class="text-center darkmehr pt-2 px-4 pb-3">
+                      <a href="/fahrradteile">Mehr Teile</a>
+                      </div>
+                  </div>
+                  
+                  
+                  
+                  <div class="col-12 col-md-8 col-lg-9 col-xxl-9 px-0 angr pt-3 pb-2">
+                  
+                      <div id="tophome-six" class="owl-carousel owl-theme owl-single-item">
+                        {% set list = services.itemList.getItemList( "category",65, "variation.position_desc", 12).documents %}
+                        {% for items in list %}
+                          <div class="item">
+                            <category-item
+                                :item-data="{{ items.data | json_encode }}"
+                                :decimal-count="{{ decimalCount }}">
+                                <template slot="BeforePrices">{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", items.data) }}</template>
+                                <template slot="AfterPrices">{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", items.data) }}</template>
+                            </category-item>
+                          </div>
+                        {% endfor %}
+                        </div>
+                        <div class="text-center mehr pt-2 px-4 pb-1"><a href="/fahrradteile">Alle Teile</a></div>
+                  </div>
+              </div>
+          </div>
+          
+          
+          
+          
+          <div class="container mt-2">
+          
+            <div class="headlineHome dark px-3 py-3 text-center">Teile für dein Fahrrad</div>
+            
+            <div class="row">
+                <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                      <a class="text-center" href="/fahrradteile/ersatzteile-fuer-elektro-fahrraeder">
+                          <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat22.webp" class="w-100 px-2 pb-3 pt-1" alt="Akkus und E-Bike Teile">
+                          Akkus und E-Bike Teile
+                      </a>
+                  </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradteile/laufraeder">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat23.webp" class="w-100 px-2 pb-3 pt-1" alt="Laufräder">
+                            Laufräder
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradteile/reifen">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat4.webp" class="w-100 px-2 pb-3 pt-1" alt="Reifen">
+                            Reifen
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradteile/bremsen-fahrrad">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat24.webp" class="w-100 px-2 pb-3 pt-1" alt="Bremsen">
+                            Bremsen
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradteile/antrieb">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat25.webp" class="w-100 px-2 pb-3 pt-1" alt="Antrieb">
+                            Antrieb und Schaltung
+                        </a>
+                    </div>
+                  <div class="col-6 col-sm-4 col-md-4 col-xl-2 homecats px-1 pb-1">
+                        <a class="text-center" href="/fahrradteile/saettel">
+                            <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/cat26.webp" class="w-100 px-2 pb-3 pt-1" alt="Sättel">
+                            Sättel
+                        </a>
+                    </div>
+            </div>
+            <div class="text-center mehr pt-2 px-4 pb-3">
+              <a href="/fahrradteile">Alle Teile</a>
+              </div>
+            
+            
+            
+          </div>
+                
+            
+            
+            <div class="container">
+              <div class="headlineHome dark px-3 py-3 text-center">Top Marken</div>
+                    
+                    <div id="tophome-five" class="owl-carousel owl-theme owl-single-item">
+                    
+                    <div class="item">
+                                                 <article class="cmp cmp-product-thumb">
+                                                 <div>
+                                                 <div class="thumb-image"><div class="prop-1-1">
+                                                 <a href="/marken/zuendapp">
+                                                 <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Zundapp.webp" data-picture-class="img-fluid" data-alt="Zündapp" data-title="Zündapp" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Zundapp.webp"><img alt="Zündapp" title="Zündapp" class="img-fluid"></picture></a></div></div>
+                                                 </div></article>
+                                                 </div>
+                                              
+                      
+                     
+                      
+                         <div class="item">
+                         <article class="cmp cmp-product-thumb">
+                         <div>
+                         <div class="thumb-image"><div class="prop-1-1">
+                         <a href="/marken/agon">
+                         <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Agon.webp" data-picture-class="img-fluid" data-alt="Agon Bikes" data-title="Agon Bikes" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Agon.webp"><img alt="Agon Bikes" title="Agon Bikes" class="img-fluid"></picture></a></div></div>
+                         </div></article>
+                         </div>
+                         
+                         
+                         <div class="item">
+                            <article class="cmp cmp-product-thumb">
+                            <div>
+                            <div class="thumb-image"><div class="prop-1-1">
+                            <a href="/marken/galano">
+                            <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Galano.webp" data-picture-class="img-fluid" data-alt="Galano" data-title="Galano" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Galano.webp"><img alt="Galano" title="Galano" class="img-fluid"></picture></a></div></div>
+                            </div></article>
+                            </div>
+                            
+                            
+                            <div class="item">
+                              <article class="cmp cmp-product-thumb">
+                              <div>
+                              <div class="thumb-image"><div class="prop-1-1">
+                              <a href="/marken/ghost">
+                              <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Ghost.webp" data-picture-class="img-fluid" data-alt="Ghost" data-title="Ghost" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Ghost.webp"><img alt="Ghost" title="Ghost" class="img-fluid"></picture></a></div></div>
+                              </div></article>
+                              </div>
+                            
+                            
+                                                                   
+                             <div class="item">
+                                                      <article class="cmp cmp-product-thumb">
+                                                      <div>
+                                                      <div class="thumb-image"><div class="prop-1-1">
+                                                      <a href="/marken/tretwerk">
+                                                      <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Tretwerk.webp" data-picture-class="img-fluid" data-alt="Tretwerk" data-title="Tretwerk" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Tretwerk.webp"><img alt="Tretwerk" title="Tretwerk" class="img-fluid"></picture></a></div></div>
+                                                      </div></article>
+                                                      </div>
+                         
+                        
+                         <div class="item">
+                             <article class="cmp cmp-product-thumb">
+                             <div>
+                             <div class="thumb-image"><div class="prop-1-1">
+                             <a href="/marken/ezyroller">
+                             <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_EzyRoller.webp" data-picture-class="img-fluid" data-alt="EzyRoller" data-title="EzyRoller" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_EzyRoller.webp"><img alt="EzyRoller" title="EzyRoller" class="img-fluid"></picture></a></div></div>
+                             </div></article>
+                             </div>
+                             
+                             
+                             <div class="item">
+                               <article class="cmp cmp-product-thumb">
+                               <div>
+                               <div class="thumb-image"><div class="prop-1-1">
+                               <a href="/marken/brix-it">
+                               <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_BrixIT.webp" data-picture-class="img-fluid" data-alt="Brix-IT" data-title="Brix-IT" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_BrixIT.webp"><img alt="Brix-IT" title="Brix-IT" class="img-fluid"></picture></a></div></div>
+                               </div></article>
+                               </div>
+            
+                          
+                         <div class="item">
+                                <article class="cmp cmp-product-thumb">
+                                <div>
+                                <div class="thumb-image"><div class="prop-1-1">
+                                <a href="/marken/fuji-bikes">
+                                <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Fuji.webp" data-picture-class="img-fluid" data-alt="Fuji Bikes" data-title="Fuji Bikes" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Fuji.webp"><img alt="Fuji Bikes" title="Fuji Bikes" class="img-fluid"></picture></a></div></div>
+                                </div></article>
+                                </div>
+                             
+                         
+                                
+                        
+                                   
+                         <div class="item">
+                                         <article class="cmp cmp-product-thumb">
+                                         <div>
+                                         <div class="thumb-image"><div class="prop-1-1">
+                                         <a href="/marken/gt-bikes">
+                                         <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_GT_bicycles.webp" data-picture-class="img-fluid" data-alt="GT Bicycles" data-title="GT Bicycles" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_GT_bicycles.webp"><img alt="GT Bicycles" title="GT Bicycles" class="img-fluid"></picture></a></div></div>
+                                         </div></article>
+                                         </div>
+                                      
+                         <div class="item">
+                                            <article class="cmp cmp-product-thumb">
+                                            <div>
+                                            <div class="thumb-image"><div class="prop-1-1">
+                                            <a href="/marken/lapierre">
+                                            <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Lapierre.webp" data-picture-class="img-fluid" data-alt="Lapierre" data-title="Lapierre" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_Lapierre.webp"><img alt="Lapierre" title="Lapierre" class="img-fluid"></picture></a></div></div>
+                                            </div></article>
+                                            </div>
+                                         
+                         <div class="item">
+                                               <article class="cmp cmp-product-thumb">
+                                               <div>
+                                               <div class="thumb-image"><div class="prop-1-1">
+                                               <a href="/marken/se-bikes">
+                                               <picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_SE_Bikes.webp" data-picture-class="img-fluid" data-alt="SE Bikes" data-title="SE Bikes" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/category_images/marken_home/mp_brand_SE_Bikes.webp"><img alt="SE Bikes" title="SE Bikes" class="img-fluid"></picture></a></div></div>
+                                               </div></article>
+                                               </div>
+                                               
+                                               
+<div class="item">
+<article class="cmp cmp-product-thumb">
+<div>
+<div class="thumb-image"><div class="prop-1-1">
+<a href="/marken/muc-off">
+<picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/documents/brandlogo/mp_brand_Muc-Off.png" data-picture-class="img-fluid" data-alt="Muc-Off" data-title="Muc-Off" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/documents/brandlogo/mp_brand_Muc-Off.png"><img alt="Muc-Off" title="Muc-Off" class="img-fluid"></picture></a></div></div>
+</div></article>
+</div>                                               
+
+<div class="item">
+<article class="cmp cmp-product-thumb">
+<div>
+<div class="thumb-image"><div class="prop-1-1">
+<a href="/marken/volare">
+<picture data-iesrc="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/documents/brandlogo/mp_brand_Volare.png" data-picture-class="img-fluid" data-alt="Volare" data-title="Volare" class="" data-loaded="true"> <source srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/documents/brandlogo/mp_brand_Volare.png"><img alt="Volare" title="Volare" class="img-fluid"></picture></a></div></div>
+</div></article>
+</div>                                               
+            
+                                               
+                        
+                      
+                      </div>
+            </div>
+
+            
+<div class="container my-2">	
+
+<div class="category-description-2 px-3 row">
+<div class="col-12 col-sm-6">
+<h1>Pentagon Sports - dein Online Fahrradladen</h1>
+<p>Willkommen bei Pentagon Sports, einem der größten Online Fahrrad und E Bike Händler Deutschlands! Radfahren ist unsere große Leidenschaft, die wir mit unseren Kunden teilen wollen. Seit über zehn Jahren vertreiben wir Pedelecs, Fahrräder sowie Ersatzteile, Fahrradzubehör und Fun-Fahrzeuge und sind immer auf der Suche nach neuen Top Produkten und Marken.</p>
+<h2>Angebote mit Zukunft</h2>
+<p>Wir wollen jedem das Fahrradfahren ermöglichen. Deshalb umfasst unser Sortiment nicht nur bekannte Marken, sondern auch Fahrräder, die günstiger sind als in deinem Fahrradgeschäft in der Nähe! Von namhaften Herstellern wie <a href="https://www.pentagonsports.de/marken/zuendapp">Zündapp</a>, <a href="https://www.pentagonsports.de/marken/ghost">Ghost</a>, <a href="https://www.pentagonsports.de/marken/fuji-bikes">Fuji</a> oder <a href="https://www.pentagonsports.de/marken/gt-bikes">GT Bicycles</a> geht es über <a href="https://www.pentagonsports.de/marken/tretwerk">Tretwerk</a> und <a href="https://www.pentagonsports.de/marken/lapierre">Lapierre</a> bis hin zu unseren preiswerten Eigenmarken <a href="https://www.pentagonsports.de/marken/galano">Galano</a> und Hi5. Dabei bieten wir alle Arten von Rädern an. Bei uns findest du dein E Bike, Trekking Bike, Mountainbike, Klapprad, Kinderfahrrad oder Hollandfahrrad. Egal ob als herkömmliches oder Elektrofahrrad. Außerdem kannst du bei uns nicht nur ein Fahrrad kaufen, sondern auch Ersatzteile oder praktisches Fahrradzubehör wie beispielsweise Fahrradlicht, Fahrradkorb oder Fahrradanhänger.</p>
+</div>
+<div class="col-12 col-sm-6">
+<h2>Kundenservice mit Fahrrad-Kompetenz</h2>
+<p>Für uns sind fundierte Beratung und unkomplizierte Kundenbetreuung eine Selbstverständlichkeit. Unser Serviceteam beantwortet via Kundenhotline oder Mail gern deine Fragen oder löst Probleme - egal ob vor oder nach dem Kauf. Solltest du dein Fahrrad reparieren lassen müssen, können wir dir durch unser gut ausgebautes Netzwerk in nahezu allen Teilen Deutschlands auch einen mobilen Techniker nach Hause schicken, der sich dein Bike vor Ort ansieht. In unserem Blog sowie der Pentagonservice Seite findest du außerdem jede Menge Infos und kannst die richtige Fahrrad Größe mit unserem Rahmenrechner ermitteln. 
+Unsere <a href="https://serviceformular.pentagonservice.de/" target=_blank rel="nofollow">Kunden Service</a> Telefonnummer: <a href="tel:+49079619679700">+49 (0)7961 967 97 00</a></p>
+<h2>Unkompliziertes Fahrradleasing</h2>
+<p><a href="https://www.pentagonsports.de/leasing">Fahrrad Leasing</a> und besonders E Bike Leasing erfreut sich zunehmender Beliebtheit. Zumeist läuft der Bikeleasing Service über den Arbeitgeber aufgrund steuerlicher Vorteile als Mitarbeiter-Benefit, du kannst aber auch E Bike Leasing privat ohne Arbeitgeber in Anspruch nehmen. In beiden Fällen kannst du dein Fahrrad oder Pedelec natürlich privat nutzen. Wir arbeiten mit mehreren Anbietern zusammen: JobRad, Businessbike und Bikeleasing.</p>
+</div>
+<div class="col-12">
+<h2>Produktion und Lieferung</h2>
+<p>Die E Bike Produktion unserer Eigenmarken erfolgt innerhalb der EU und hat dadurch wirtschaftliche, ökologische und soziale Vorteile. Hierzu gehören Schaffung von Arbeitsplätzen, kürzere Lieferketten und dadurch weniger Abhängigkeit von störungsanfälligen, internationalen Lieferungen und die Einhaltung von hohen Qualitätsstandards, was zu langlebigen und zuverlässigen Produkten führt. Durch  kürzere Transportwege verbessert sich der CO2-Fußabdruck gegenüber dem Import aus Übersee. In der EU gelten zudem hohe Standards für Arbeitsbedingungen, sodass du sicher sein kannst, dass dein Pedelec unter fairen Bedingungen hergestellt wurde. Die Produktion in der EU macht uns auch unabhängig von globalen Schwankungen wie Handelskonflikten oder Zöllen, trägt zur wirtschaftlichen Stabilität bei und führt letztendlich dazu, dass wir durch geringe Lieferkosten den Verbraucherpreis der Endprodukte niedrig halten können - ein klarer Vorteil für dich als Kunde.</p>
+<h2>Bleib auf dem Laufenden mit unserem Blog</h2>
+<p>In unserem <a href="/newsblog">News Blog</a> findest du regelmäßig Informationen zu Neuigkeiten oder interessanten Themen rund um unsere Produkte. Entdecke nützliche Tipps zu Komponenten, der richtigen Wartung eines Bikes oder Informationen zu neuen Fahrrädern und Marken.</p>
+</div>
+</div>
+
+</div>
+            
+            {% endif %}
+
+
+
+
+
+        </div>
+
+        {% cacheblock %}
+            {% include getPartial('footer') %}
+            {% block PartialFooter %}{% endblock %}
+        {% endcacheblock %}
+
+        <!-- LOGIN MODAL -->
+        <div id="login-modal-wrapper">
+            <div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title h3">{{ trans("Ceres::Template.login") }}</div>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="{{ trans("Ceres::Template.closeIcon") }}">&times;</button>
+                        </div>
+                        <lazy-load component="login-modal">
+                            <login modal-element="login-modal-wrapper">
+                                <template #extend-overlay-buttons>
+                                    {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
+                                </template>
+                            </login>
+                        </lazy-load>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./LOGIN MODAL -->
+
+        <!-- REGISTRATION MODAL -->
+        <div id="simple-registration-modal-wrapper">
+            <div class="modal fade" id="registration" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <lazy-load component="register-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title h3">
+                                    {{ trans("Ceres::Template.regCreateAccount") }}
+
+                                </div>
+
+                                <popper v-cloak class="ml-auto">
+                                    <template #handle>
+                                        <button class="btn btn-icon btn-secondary btn-sm">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </template>
+                                    <template #title>
+                                        {{ trans("Ceres::Template.regContactInformations") }}
+                                    </template>
+                                    <template #content>
+                                        <ul class='pl-3'>
+                                            <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText1') }}</li>
+                                            <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText2') }}</li>
+                                            <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText3') }}</li>
+                                            <li>{{ trans('Ceres::Template.regContactInfoText4') }}</li>
+                                        </ul>
+                                    </template>
+                                </popper>
+
+                                <button type="button" class="close ml-0" data-dismiss="modal" aria-hidden="true" aria-label="{{ trans("Ceres::Template.closeIcon") }}">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <registration :is-simple-registration="true" modal-element="simple-registration-modal-wrapper">
+                                    <template #extend-overlay-buttons>
+                                        {{ LayoutContainer.show("Ceres::RegistrationOverlay.ExtendOverlayButtons") }}
+                                    </template>
+                                    <template #custom-address-fields>
+                                        {{ LayoutContainer.show("Ceres::Checkout.CustomAddressField") }}
+                                    </template>
+                                </registration>
+                            </div>
+                        </div>
+                    </lazy-load>
+                </div>
+            </div>
+        </div>
+        <!-- ./REGISTRATION MODAL -->
+
+        <!-- BASKET MODAL -->
+        <lazy-load component="add-item-to-basket-overlay">
+            <add-item-to-basket-overlay>
+                <template slot="extendOverlayButtons">
+                    {{ LayoutContainer.show("Ceres::Basket.ExtendOverlayButtons") }}
+                </template>
+            </add-item-to-basket-overlay>
+        </lazy-load>
+        <!-- ./BASKET MODAL -->
+
+        <!-- PASSWORD RESET MODAL -->
+        <lazy-load component="forgot-password-modal">
+            <forgot-password-modal :current-template="{{ services.template.getCurrentTemplate() | json_encode }}">
+                <template slot="extendOverlayButtons">
+                    {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
+                </template>
+            </forgot-password-modal>
+        </lazy-load>
+        <!-- ./PASSWORD RESET MODAL -->
+
+        <!-- SHIPPINGCOSTS MODAL -->
+        {% if ceresConfig.global.shippingCostsCategoryId > 0 %}
+            <div id="shippingscosts-modal-wrapper">
+                <div class="modal fade" id="shippingscosts" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="modal-title h3">{{ trans('Ceres::Template.shippingInfoCosts') }}</div>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="{{ trans("Ceres::Template.closeIcon") }}">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                {% set shopBuilderShippingTemplate = shop_builder_category_template(ceresConfig.global.shippingCostsCategoryId) %}
+                                {% if shopBuilderShippingTemplate | trim is not empty %}
+                                    {{ shopBuilderShippingTemplate | raw }}
+                                {% else %}
+                                    {% include category_template(ceresConfig.global.shippingCostsCategoryId, lang, webstoreConfig.webstoreId) ignore missing %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <!-- ./SHIPPINGCOSTS MODAL -->
+
+
+        <!-- Root element of PhotoSwipe -->
+                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="pswp__bg"></div>
+                                <div class="pswp__scroll-wrap">
+
+                                    <div class="pswp__container">
+                                        <div class="pswp__item"></div>
+                                        <div class="pswp__item"></div>
+                                        <div class="pswp__item"></div>
+                                    </div>
+
+                                    <div class="pswp__ui pswp__ui--hidden">
+                                      <div class="pswp__top-bar">
+                                          <div class="pswp__counter"></div>
+
+                                          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                          <div class="pswp__preloader">
+                                              <div class="pswp__preloader__icn">
+                                                <div class="pswp__preloader__cut">
+                                                  <div class="pswp__preloader__donut"></div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>
+
+                                        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                                        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+                                        <div class="pswp__caption">
+                                            <div class="pswp__caption__center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./Root element of PhotoSwipe -->
+
+{% endif %}
+    </div>
+    <!-- /SSR -->
+
+    {#
+          <div role="alert" data-autohide="false" class="toast bg-dark text-white w-20 mw-20 hinweis fixed-bottom m-4 hide">
+              <div class="toast-body p-4 d-flex flex-column">
+                  <h4>Erhöhte Lieferzeit bei Speditionsware</h4>
+                  <p>
+    Aufgrund des derzeit sehr hohen Transportaufkommens bei den deutschen Spediteuren kann es in manchen Fällen zu erhöhten Avisierungs-/ und Transportzeiten kommen. Wir bitten an dieser Stelle um Verständnis und entschuldigen uns für längere Lieferzeiten.
+            </p>
+                  <div class="ml-auto">
+                      <button type="button" class="btn btn-light btn-sm" id="btnAccept">
+                          OK
+                      </button>
+                  </div>
+              </div>
+          </div>
+    #}
+
+    <!-- SSR:global(App) -->
+    <script id="app-data" type="application/json">
+        {
+            "config": {{ ceresConfig | json_encode | raw }},
+            "urls": {{ urls | json_encode | raw }},
+            "activeCurrency": "{{ currencyData[currencyFormat] }}",
+            "currencyPattern": {{  services.checkout.getCurrencyPattern() | json_encode | raw }},
+            "isCategoryView": {% if services.template.isCategory() == "1" %}true{% else %}false{% endif %},
+            "isCheckoutView": {% if services.template.isCheckout() == "1" %}true{% else %}false{% endif %},
+            "isSearch": {% if services.template.isSearch() == "1" %}true{% else %}false{% endif %},
+            "isItemView": {% if isItem %}true{% else %}false{% endif %},
+            "templateEvent": "{{ templateEvent }}",
+            "templateType": "{{ urls.templateType }}",
+            "language": "{{ lang }}",
+            "defaultLanguage": "{{ defaultLanguage }}",
+            "decimalSeparator": "{{ config("IO.format.separator_decimal") }}",
+            "urlTrailingSlash": {{ urls.appendTrailingSlash | json_encode }},
+            "propertyFileUrl": "{{ services.propertyFile.getPropertyFileUrl() }}",
+            "isShopBuilder": {{ isShopBuilder | default(false) | json_encode }},
+            "bundleSetting": {{ webstoreConfig.dontSplitItemBundle | default(1) }},
+            "bundlePrefix": "{{ services.order.getOrderItemPrefix(2) }}",
+            "bundleComponentPrefix": "{{ services.order.getOrderItemPrefix(3) }}",
+            "initialPleaseSelect": {{ webstoreConfig.attributeSelectDefaultOption | default(0) }},
+            "publicPath": "{{ plugin_path('Theme5PS') ~ '/js/dist/' }}",
+            "isCheapestSorting": "{{ services.template.isCheapestSorting() }}",
+            "useVariationOrderProperties": {% if webstoreConfig.useVariationOrderProperties | default(0) %}true{% else %}false{% endif %},
+            "initialData": {
+                "shippingCountries": {{ services.country.getActiveCountriesList() | filterFields(["id", "currLangName", "isoCode2", "states.id", "states.name", "vatCodes"]) | json_encode | raw }},
+                "shippingCountryId": {{ services.checkout.getShippingCountryId() }},
+                "showNetPrices": {{ showNetPrices | json_encode }}
+            },
+            "features": {},
+            "languageMap": {{ webstoreConfig.browserLanguage | json_encode | raw }}
+        }
+    </script>
+    <!-- /SSR -->
+    <script>
+        window.App = JSON.parse(document.getElementById("app-data").innerText);
+        window.__loadPluginChunk = function(source) {
+            return source += "?v={{ buildHash }}";
+        };
+    </script>
+
+    {{ Loader.include_components() }}
+
+    {{ LayoutContainer.show("Ceres::Script.Loader") }}
+
+    {{ Translations.add( "Ceres", "Template" ) }}
+
+    {{ get_json_data() }}
+
+    {% set minSuffix = '.min' %}
+    {% if ceresConfig.log.performanceLevel  == 'development' %}
+        {% set minSuffix = '' %}
+    {% endif %}
+
+    <!-- SSR:entry({{ ssr_entry('Theme5PS', 'resources/js/dist/ceres-server' ~ minSuffix ~ '.js') }}) -->
+    <!-- SSR:on() -->
+    <script src="{{ plugin_path('Theme5PS') }}/js/dist/ceres-client{{ minSuffix }}.js?v={{ buildHash }}"></script>
+    <!-- /SSR -->
+    <!-- SSR:off() -->
+    <script src="{{ plugin_path('Theme5PS') }}/js/dist/{{ assetName }}{{ minSuffix }}.js?v={{ buildHash }}"></script>
+    <!-- /SSR -->
+    <script src="{{ plugin_path('Theme5PS') }}/js/dist/project.js?v={{ buildHash }}"></script>
+
+
+    {% for scriptTemplate in get_additional_scripts() %}
+        {% include scriptTemplate.path ignore missing with scriptTemplate.params %}
+    {% endfor %}
+
+{% if category.id == '603' %}
+{% else %}
+    {{ LayoutContainer.show("Ceres::Script.AfterScriptsLoaded") }}
+{% endif %}
+    {% if assetName == 'ceres-checkout' %}
+        {{ LayoutContainer.show("Ceres::Checkout.AfterScriptsLoaded") }}
+    {% endif %}
+
+    {% if isItem %}
+        {{ LayoutContainer.show("Ceres::SingleItem.AfterScriptsLoaded") }}
+    {% endif %}
+
+    <!-- SSR:on() -->
+    <script>
+        window.createApp("#vue-app");
+    </script>
+    <!-- /SSR -->
+
+    <!-- SSR:off() -->
+    <script>
+        window.vueEventHub = new Vue();
+        if (App.config.log.checkSyntax)
+        {
+            var rootElement = document.getElementById("vue-app");
+            rootElement.innerHTML = rootElement.innerHTML.replace(/(?:^|\s)(?::|v-bind:)\S+=(?:""|'')/g, "");
+            window.vueApp = new Vue({
+                store: window.ceresStore
+            });
+            vueApp.$mount( rootElement.cloneNode(true) );
+            if (vueApp.$el.id === "vue-app")
+            {
+                document.body.replaceChild( vueApp.$el, rootElement );
+            }
+        }
+        else
+        {
+            // eslint-disable-next-line no-unused-vars
+            window.vueApp = new Vue({
+                el: "#vue-app",
+                store: window.ceresStore
+            });
+        }
+    </script>
+    <!-- /SSR -->
+
+
+    {% if isShopBuilder %}
+        {% include "Ceres::Widgets.ShopBuilderDataStore" %}
+    {% endif %}
+
+    <script>
+        {% if request.get("openBasketPreview") == 1 %}window.ceresStore.dispatch("loadComponent", "basket-preview"){% endif %}
+        {% if request.get("show") == "forgotPassword" %}window.ceresStore.dispatch("loadComponent", "forgot-password-modal"){% endif %}
+    </script>
+
+    {{ get_filtered_tags() }}
+
+    {{ get_shop_builder_scripts( "latest", ceresConfig.log.performanceLevel == 'live') }}
+
+    {% if not services.template.shouldBeCached() %}
+        <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
+    {% endif %}
+{% if category.id == '603' %}
+<script type="text/javascript" src="https://t.adcell.com/js/trad.js"></script>
+<script>Adcell.Tracking.track();</script>
+{% else %}
+    <!-- start GoogleBadge -->
+    <script src="https://apis.google.com/js/platform.js?onload=renderBadge" async defer></script>
+    <script>
+      window.renderBadge = function() {
+        var ratingBadgeContainer = document.createElement("div");
+        document.body.appendChild(ratingBadgeContainer);
+        window.gapi.load('ratingbadge', function() {
+          window.gapi.ratingbadge.render(ratingBadgeContainer, {"merchant_id": 8844712, "position": "BOTTOM_RIGHT"});
+        });
+      }
+    </script>
+    <!-- end GoogleBadge -->
+    <!-- Belboon Start  -->
+    {% if services.template.getCurrentTemplate() == "tpl.home.category" %}
+    <script type="text/javascript">
+        (function(d) {
+            var s = d.createElement("script");
+            s.async = true;
+            s.src = "https://containertags.belboon.com/js/93783/start/script.js";
+            var a = d.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(s, a);
+        }(document));
+    </script>
+    {% endif %}
+
+    {% if services.template.getCurrentTemplate() == "tpl.category.item" %}
+    <script type="text/javascript">
+        belboonTag = {
+            "categoryId": "{{ category.id }}"
+        };
+    </script>
+    <script type="text/javascript">
+        (function(d) {
+            var s = d.createElement("script");
+            s.async = true;
+            s.src = "https://containertags.belboon.com/js/93783/category/script.js";
+            var a = d.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(s, a);
+        }(document));
+    </script>
+    {% endif %}
+
+    {% if services.template.getCurrentTemplate() == "tpl.item" %}
+    {% set itemData = item.documents[0].data %}
+    <script type="text/javascript">
+        belboonTag = {
+            "productBrand": "{{ itemData.item.manufacturer.externalName }}",
+            "categoryId": "{{ defaultCategory.details[0].name }}",
+            "products": [
+                {
+                    "id": "{{ itemData.variation.id }}",
+                    "price": "{{ itemData.prices.default.data.priceNet | number_format(2, '.', '') }}"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript">
+        (function(d) {
+            var s = d.createElement("script");
+            s.async = true;
+            s.src = "https://containertags.belboon.com/js/93783/product/script.js";
+            var a = d.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(s, a);
+        }(document));
+    </script>
+    {% endif %}
+
+    {% if services.template.getCurrentTemplate() == "tpl.basket" %}
+    {% set basketItems = services.basket.getBasketItems %}
+    {% set basket = services.basket.getBasketForTemplate %}
+    <script type="text/javascript">
+        belboonTag = {
+            "productBrand": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.data.item.manufacturer.externalName }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+            "orderProducts": [
+                {
+                    "id": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.id }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+                    "price": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.data.prices.default.data.basePriceNet  | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+                    "qty": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]"
+                }
+            ]
+        };
+    </script>
+    <script type="text/javascript">
+        (function(d) {
+            var s = d.createElement("script");
+            s.async = true;
+            s.src = "https://containertags.belboon.com/js/93783/basket/script.js";
+            var a = d.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(s, a);
+        }(document));
+    </script>
+    {% endif %}
+
+    {% if services.template.getCurrentTemplate() == "tpl.confirmation" %}
+
+    {#
+    {% for item in data.order.orderItems %}
+            OrderID: {{ orderId }}
+            priceNet: {{ item.amounts[0].priceNet }}
+
+            orderProducts:
+
+            id: {{ item.itemVariationId }},
+            price: {{ item.amounts[0].priceNet }},
+            qty: {{ item.quantity }},
+            Nettowarenwert: {{ data.order.amounts[0].netTotal }},
+            Rabbatwert des Gutscheins: {{ data.totals.couponValue }},
+            Gutscheincode: {{ data.totals.couponCode }},
+    {% endfor %}
+
+    "id": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.itemVariationId }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+    "price": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.amounts[0].priceNet | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+    "qty": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]"
+    #}
+
+
+    <script type="text/javascript">
+        belboonTag = {
+            "orderId": "{{ orderId }}",
+            "orderProducts": [
+                {
+                    "id": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.itemVariationId }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+                    "price": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.amounts[0].priceNet | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+                    "qty": "[{% for item in data.order.orderItems %}{% if item.itemVariationId != 0 %}'{{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]"
+                }
+            ],
+            "orderTransactionAmount": "{{ data.order.amounts[0].netTotal }}"
+        };
+    </script>
+
+    <script type="text/javascript">
+        (function(d) {
+            var s = d.createElement("script");
+            s.async = true;
+            s.src = "https://containertags.belboon.com/js/93783/checkout/script.js";
+            var a = d.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(s, a);
+        }(document));
+    </script>
+
+    <!-- BEGIN BELBOON - PERFORMANCE MARKETING NETWORK TRACKING CODE version 4.31 -->
+    <script type="text/javascript">
+    var itsConv = {
+
+        trcCat     : 'default',
+        convTarget : 'sale',
+
+        convId     : '{{ orderId }}', //Bestellnummer
+
+        //clickIds   : ['${CLICK_IDS}'],  //Session-Tracking via belboon=Parameter in der URL
+
+        ordCurr    : 'EUR',
+        ordValue   : '{{ data.order.amounts[0].netTotal }}', //Nettowarenwert
+        discValue  : '{{ data.totals.couponValue }}', //Rabbatwert des Gutscheins
+        discCode   : '{{ data.totals.couponCode }}', //Gutscheincode
+
+
+        //gdpr         : '${GDPR}',  //Consent 1=Ja 2=Nein
+        //gdprConsent  : '${GDPR_CONSENT}', //Consentstring aus CMP
+
+        locationHref : window.location.href,
+
+        // DO NOT CHANGE. The following parameters are used to identify the advertiser in the network.
+        advId : '93783',
+        trcDomain : 'gatneo.pentagonsports.de'
+
+      };
+      // DO NOT CHANGE. The following lines assure tracking functionality.
+      en=function(v){if(v){if(typeof(encodeURIComponent)=='function'){return(encodeURIComponent(v));}return(escape(v));}};ts=function(){var d=new Date();var t=d.getTime();return(t);};im=function(s){if(document.images){if(typeof(ia)!="object"){
+      var ia=new Array();};var i=ia.length;ia[i]=new Image();ia[i].src=s;ia[i].onload=function(){};}else{document.write('<img src="'+s+'" height="1" width="1" border="0" alt="" style="display:none;">');}};var pr='https:';
+      fr=function(s){var d=document;var i=d.createElement("iframe");i.src=s;i.frameBorder=0;i.width=0;i.height=0;i.vspace=0;i.hspace=0;i.marginWidth=0;i.marginHeight=0;i.scrolling="no";i.allowTransparency=true;i.style.display="none";try{d.body.insertBefore(i,d.body.firstChild);}catch(e){
+      d.write('<ifr'+'ame'+' src="'+s+'" width="0" height="0" frameborder="0" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="true" style="display:none;"></ifr'+'ame>');}};ap=function(o){var v='tst='+ts();if(o.trcCat){v+='&trc='+en(o.trcCat);}
+      v+='&ctg='+en(o.convTarget);v+='&cid='+en(o.convId);if(o.ordValue){v+='&orv='+en(o.ordValue);}if(o.ordCurr){v+='&orc='+en(o.ordCurr);}if(o.discValue){v+='&dsv='+en(o.discValue);}if(o.discCode){v+='&dsc='+en(o.discCode);}
+      if(o.invValue){v+='&inv='+en(o.invValue);}if(o.payMethod){v+='&pmt='+en(o.payMethod);}if(o.userVal1){v+='&uv1='+en(o.userVal1);}if(o.userVal2){v+='&uv2='+en(o.userVal2);}if(o.userVal3){
+      v+='&uv3='+en(o.userVal3);}if(o.userVal4){v+='&uv4='+en(o.userVal4);}if(o.isCustNew){var n=o.isCustNew.toLowerCase();v+='&csn=';v+=(n=="true"||n=="false")?n:"null";}if(o.custId){v+='&csi='+en(o.custId);}if(o.sessionId){v+='&session='+en(o.sessionId);}if(o.basket){v+='&bsk='+en(JSON.stringify(o.basket));}if(o.uniqid){v+='&uniqid='+en(o.uniqid);}if(o.clickIds && o.clickIds.length > 0){v+='&cli='+en(o.clickIds.join('%2C'));}if(o.siteId){v+='&sid='+en(o.siteId);}var s=(screen.width)?screen.width:"0";
+      s+="X";s+=(screen.height)?screen.height:"0";s+="X";s+=(screen.colorDepth)?screen.colorDepth:"0";v+='&scr='+s;v+='&nck=';v+=(navigator.cookieEnabled)?navigator.cookieEnabled:"null";v+='&njv=';v+=(navigator.javaEnabled())?navigator.javaEnabled():"null";if (o.locationHref){v+='&hrf='+en(o.locationHref);}if(o.gdpr){v+='&gdpr='+en(o.gdpr);}if(o.gdprConsent){v+='&gdpr_consent='+en(o.gdprConsent);}v+='&ver='+en('4.31');return(v);};
+      itsStartConv=function(o){var s=pr+'//'+o.trcDomain+'/ts/'+o.advId+'/tsa?typ=f&'+ap(o);fr(s);};itsStartConv(itsConv);
+
+      var a = document.createElement('script'); a.type = 'text/javascript'; a.async = true; a.src = 'https://'+itsConv.trcDomain+'/scripts/ts/'+itsConv.advId+'contA.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(a, s);
+
+    </script>
+    <noscript>
+    <!-- ------------ SET THE PARAMETERS FOR NOSCRIPT PART HERE ---------------- -->
+    <!-- The parameter values have to be set in realtime. Every special characters have to be URL-encoded. -->
+    <img src="https://gatneo.pentagonsports.de/ts/93783/tsa?typ=i&trc=default&ctg=sale&cid={{ orderId }}&orv={{ data.order.amounts[0].netTotal }}&orc=EUR&dsv={{ data.totals.couponValue }}&dsc={{ data.totals.couponCode }}&ver=4.31" width="1" height="1" border="0" style="display:none;">
+    </noscript>
+    <!-- END BELBOON - PERFORMANCE MARKETING NETWORK TRACKING CODE 1 -->
+
+
+
+    {% endif %}
+    <!-- Belboon End -->
+
+    {% if ceresConfig.log.performanceLevel  == 'development' %}
+    <script>
+    console.log("%c---- START SHOP DATA ---","color:blue")
+    console.log("%cORDER-DATA","color:blue",{{ data | json_encode | raw }});
+    console.log("%cBASKET-DATA","color:blue", {{ services.basket.getBasket() | json_encode | raw }});
+    console.log("%cBASKET-Items","color:blue", {{ services.basket.getBasketItems() | json_encode | raw }});
+    console.log("%cCHECKOUT-DATA","color:blue", {{ services.checkout.getCheckout() | json_encode | raw }});
+    console.log("%cCATEGORY-DATA","color:blue", {{ services.category.getCurrentCategory() | json_encode | raw }});
+    console.log("%cITEM-DATA", "color:blue",{{ item.documents[0].data | json_encode | raw }});
+    console.log("%cITEM-LIST-DATA","color:blue", {{ itemList | json_encode | raw }});
+    console.log("%cCUSTOMER-DATA","color:blue", {{services.customer.getContact() | json_encode | raw}});
+    console.log("%cTEMPLATE","color:blue", {{services.template.getCurrentTemplate() | json_encode | raw}});
+    console.log("%c---- END SHOP DATA ---","color:blue");
+    </script>
+    {% endif %}
+
+{% endif %}
+
+{% if services.template.isHome() %}
+<script src="{{ plugin_path('Theme5PS') }}/js/jquery.fliptimer.js"></script>
+{% endif %}
+ 
+{% if services.template.isHome() %}
+{% block javascripts %}
+{% verbatim %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".countdown").flipTimer({
+          date:"2026/09/01 23:59:59",
+          timeZone:2,
+          past:false,
+          
+          //Current date
+          currentDate:false,
+     
+          //The number of days to be shown
+          dayTextNumber:2,
+     
+          //Show-Hide Day, Hour, Minute, Second
+          showDay:true,
+          showHour:true,
+          showMinute:true,
+          showSecond:true,
+     
+          //Texts
+          dayText:"Tage",
+          hourText:"Stunden",
+          minuteText:"Minuten",
+          secondText:"Sekunden",
+     
+          //Flip style
+          bgColor:"#FFF",
+          dividerColor:"#737373",
+          digitColor:"#000",
+          textColor:"#FFF",
+          borderRadius:0,
+          boxShadow:true,
+          
+          //Multi color
+          multiColor:false,
+          
+          //Auto reset
+          autoReset:false,
+          resetInterval:86400, //1 day as seconds
+     
+          //Expire
+          expireType:"message", //message, hide, redirect
+          message:"Sorry, you are too late!",
+          hide:false,
+          redirect:""
+        });
+      });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".countdown2").flipTimer({
+          date:"2024/12/02 23:59:59",
+          timeZone:2,
+          past:false,
+          
+          //Current date
+          currentDate:false,
+     
+          //The number of days to be shown
+          dayTextNumber:2,
+     
+          //Show-Hide Day, Hour, Minute, Second
+          showDay:true,
+          showHour:true,
+          showMinute:true,
+          showSecond:true,
+     
+          //Texts
+          dayText:"Tage",
+          hourText:"Stunden",
+          minuteText:"Minuten",
+          secondText:"Sekunden",
+     
+          //Flip style
+          bgColor:"#FFF",
+          dividerColor:"#737373",
+          digitColor:"#000",
+          textColor:"#000",
+          borderRadius:0,
+          boxShadow:true,
+          
+          //Multi color
+          multiColor:false,
+          
+          //Auto reset
+          autoReset:false,
+          resetInterval:86400, //1 day as seconds
+     
+          //Expire
+          expireType:"message", //message, hide, redirect
+          message:"Sorry, you are too late!",
+          hide:false,
+          redirect:""
+        });
+      });
+</script>
+
+{% endverbatim %}
+{% endblock %}
+{% endif %}
+
+</body>
+</html>

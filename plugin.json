@@ -1,0 +1,42 @@
+{
+    "version"           : "5.0.72",
+    "name"                  :"Theme5PS",
+    "description"           :"Work in vue components",
+    "namespace"             :"Theme5PS",
+    "author"                :"Daniel B.",
+    "keywords"              : ["theme", "Ceres5", "template"],
+    "type"                  :"theme",
+    "require"           : {
+        "IO": "~5.0.00"
+    },
+    "platform"          : {
+        "php": ">=7.3 <8.1"
+    },
+    "serviceProvider"       :"Theme5PS\\Providers\\Theme5PSServiceProvider",
+    "dataProviders"     :
+    [
+        {
+            "key"           :"Theme5PS\\Containers\\Theme5PSStyleContainer",
+            "name"          :"Stylesheet",
+            "description"   :"Add changes to the CSS file",
+            "defaultLayoutContainer": "Ceres::Template.Style"
+        },
+        {
+            "key"           :"Theme5PS\\Containers\\Theme5PSScriptContainer",
+            "name"          :"Script",
+            "description"   :"Add Script File",
+            "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
+        },
+        {
+            "key"           :"Theme5PS\\Containers\\Theme5PSCategoryItem",
+            "name"          :"Container for CategoryItem Component Template",
+            "description"   :"Container for CategoryItem Component Template",
+            "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
+        },
+        {
+            "key"           : "Search.SearchBar",
+            "name"          : "Search: Override the search bar",
+            "description"   : "Override the search bar in the header."
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="{{ plugin_path('Theme5PS') }}/css/main.min.css?v={{ buildHash }}">
+{% if isShopBuilder %}
+<link rel="stylesheet" href="{{ plugin_path('Theme5PS') }}/css/shopbuilderPs.css?v=1">
+{% endif %}
+{% if date() >= date("2022-11-16") and date() <= date("2022-11-29")  %}
+<link rel="stylesheet" href="{{ plugin_path('Theme5PS') }}/css/aktion.css?v=1">
+{% endif %}

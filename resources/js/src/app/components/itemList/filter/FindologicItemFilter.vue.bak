@@ -1,0 +1,61 @@
+<script type="x/template" id="vue-findologic-item-filter">
+  <div v-if="facet.name && ((typeof facet.minValue === 'undefined' && typeof facet.maxValue === 'undefined') || (facet.minValue !== facet.maxValue))" class="card" :class="facet.cssClass">
+        <div :class="facet.name" class="h5" v-text="facet.name"></div>
+        <div v-if="facet.type === 'price'">
+            <client-only><item-filter-price template-override="#vue-findologic-item-price" :facet="facet"></item-filter-price></client-only>
+        </div>
+        <div v-else-if="facet.findologicFilterType === 'range-slider'">
+          <client-only> <item-range-slider :facet="facet"></item-range-slider></client-only>
+        </div>
+        <div v-else-if="facet.findologicFilterType === 'image'">
+            <div v-if="!facet.noAvailableFiltersText">
+                <div class="form-check" v-for="value in facet.values" :key="value.id">
+                    <input :id="'option-' + value.id" class="form-check-input hidden-xs-up" type="checkbox" :checked="value.selected" @change="updateFacet(value)" :disabled="isLoading">
+                    <label :for="'option-' + value.id" class="form-check-label">
+                        <img v-show="value.imageUrl" :src="value.imageUrl" width="80px"/>
+                        <span v-show="!value.imageUrl" v-text="value.name"></span>
+                    </label>
+                    <div class="filter-badge" v-text="value.count"></div>
+                </div>
+            </div>
+            <p v-if="facet.noAvailableFiltersText" v-text="facet.noAvailableFiltersText"></p>
+        </div>
+      <div v-else-if="facet.findologicFilterType === 'color'">
+            <div v-if="!facet.noAvailableFiltersText">
+                <client-only> <item-color-tiles template-override="#vue-findologic-item-color-tiles" :facet="facet"></item-color-tiles>  </client-only>
+            </div>
+            <p v-if="facet.noAvailableFiltersText" v-text="facet.noAvailableFiltersText"></p>
+        </div>
+        <div v-else-if="facet.id === 'cat'">
+            <div v-if="!facet.noAvailableFiltersText" class="form-check" v-for="value in facet.values" :key="value.id">
+                <div class="category-container fl-dropdown">
+                    <input :id="'option-' + value.id"
+                           class="form-check-input hidden-xs-up"
+                           type="checkbox"
+                           :checked="value.selected"
+                           @change="updateFacet(value)"
+                           :disabled="isLoading"
+                    >
+                    <label :for="'option-' + value.id" class="form-check-label" v-text="value.name"></label>
+                    <div class="filter-badge" v-text="value.count"></div>
+                </div>
+            </div>
+            <p v-if="facet.noAvailableFiltersText" v-text="facet.noAvailableFiltersText"></p>
+        </div>
+        <div v-else-if="facet.type === 'select'" class="select">
+            <div v-if="!facet.noAvailableFiltersText">
+                <client-only><item-dropdown template-override="#vue-findologic-item-dropdown" :facet="facet"></item-dropdown></client-only>
+            </div>
+            <p v-if="facet.noAvailableFiltersText" v-text="facet.noAvailableFiltersText"></p>
+        </div>
+        <div v-else>
+          <div class="fl-dropdown">
+              <div class="form-check" v-for="value in facet.values" :key="value.id">
+                  <input :id="'option-' + value.id" class="form-check-input hidden-xs-up" type="checkbox" :checked="value.selected" @change="updateFacet(value)" :disabled="isLoading">
+                  <label :for="'option-' + value.id" class="form-check-label" v-text="value.name"></label>
+                  <div class="filter-badge" v-text="value.count"></div>
+              </div>
+            </div>
+        </div>
+  </div>
+</script>

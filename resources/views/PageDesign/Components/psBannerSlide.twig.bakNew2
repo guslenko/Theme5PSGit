@@ -1,0 +1,142 @@
+{% set slide1TextBig = config("Theme5PS.homepage.sliderItemTextBig1") %}
+{% set slide1Img = config("Theme5PS.homepage.sliderImageUrl1") %}
+{% set slide1Link = config("Theme5PS.homepage.sliderItemId1") %}
+{% set slide1DateFrom = config("Theme5PS.homepage.sliderItemDateFrom1") %}
+{% set slide1DateUntil = config("Theme5PS.homepage.sliderItemDateUntil1") %}
+
+{% set slide2TextBig = config("Theme5PS.homepage.sliderItemTextBig2") %}
+{% set slide2Img = config("Theme5PS.homepage.sliderImageUrl2") %}
+{% set slide2Link = config("Theme5PS.homepage.sliderItemId2") %}
+{% set slide2DateFrom = config("Theme5PS.homepage.sliderItemDateFrom2") %}
+{% set slide2DateUntil = config("Theme5PS.homepage.sliderItemDateUntil2") %}
+
+{% set slide3TextBig = config("Theme5PS.homepage.sliderItemTextBig3") %}
+{% set slide3Img = config("Theme5PS.homepage.sliderImageUrl3") %}
+{% set slide3Link = config("Theme5PS.homepage.sliderItemId3") %}
+{% set slide3DateFrom = config("Theme5PS.homepage.sliderItemDateFrom3") %}
+{% set slide3DateUntil = config("Theme5PS.homepage.sliderItemDateUntil3") %}
+
+{% set slide4TextBig = config("Theme5PS.homepage.sliderItemTextBig4") %}
+{% set slide4Img = config("Theme5PS.homepage.sliderImageUrl4") %}
+{% set slide4Link = config("Theme5PS.homepage.sliderItemId4") %}
+{% set slide4DateFrom = config("Theme5PS.homepage.sliderItemDateFrom4") %}
+{% set slide4DateUntil = config("Theme5PS.homepage.sliderItemDateUntil4") %}
+
+
+<div class="container-fluid px-0 px-xl-0 mt-0">
+
+  <section data-uid-image-slider="45af5668gd1709" data-auto-slide="1" class="home-slider home-slider--45af5668gd1709">
+    <div class="swiper-container slider--home swiper-container-initialized swiper-container-horizontal">
+      <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+
+      {% if date() >= date("{{ slide1DateFrom }}") and date() <= date("{{ slide1DateUntil }}")  %}
+              <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+                  <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+                    <a href="{{ slide1Link }}" title="{{ slide1TextBig }}">
+                      <picture class="object-fit--picture swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide1Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide1Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide1Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide1Img }}_2200.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide1Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide1Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide1Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide1Img }}_2200.jpg" type="image/jpeg" class="swiper-lazy">
+                        <img data-srcset="{{ slide1Img }}_1920.jpg" alt="{{ slide1TextBig }}" title="{{ slide1TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                      </picture>
+                      <div class="swiper-lazy-preloader"></div>
+                    </a>
+                  </div>
+                </div>
+      {% endif %}
+
+      {% if date() >= date("{{ slide2DateFrom }}") and date() <= date("{{ slide2DateUntil }}")  %}
+              <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+                  <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+                    <a href="{{ slide2Link }}" title="{{ slide2TextBig }}">
+                      <picture class="object-fit--picture swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide2Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide2Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide2Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide2Img }}_2200.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide2Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide2Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide2Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide2Img }}_2200.jpg" type="image/jpeg" class="swiper-lazy">
+                        <img data-srcset="{{ slide2Img }}_1920.jpg" alt="{{ slide2TextBig }}" title="{{ slide2TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                      </picture>
+                      <div class="swiper-lazy-preloader"></div>
+                    </a>
+                  </div>
+                </div>
+      {% endif %}
+
+      {% if date() >= date("{{ slide3DateFrom }}") and date() <= date("{{ slide3DateUntil }}")  %}
+              <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+                  <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+                    <a href="{{ slide3Link }}" title="{{ slide3TextBig }}">
+                      <picture class="object-fit--picture swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide3Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide3Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide3Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide3Img }}_2200.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide3Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide3Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide3Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide3Img }}_2200.jpg" type="image/jpeg" class="swiper-lazy">
+                        <img data-srcset="{{ slide3Img }}_1920.jpg" alt="{{ slide3TextBig }}" title="{{ slide3TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                      </picture>
+                      <div class="swiper-lazy-preloader"></div>
+                    </a>
+                  </div>
+                </div>
+      {% endif %}
+
+      {% if date() >= date("{{ slide4DateFrom }}") and date() <= date("{{ slide4DateUntil }}")  %}
+              <div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+                  <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+                    <a href="{{ slide4Link }}" title="{{ slide4TextBig }}">
+                      <picture class="object-fit--picture swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide4Img }}_550.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide4Img }}_980.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide4Img }}_1920.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide4Img }}_2200.webp" type="image/webp" class="swiper-lazy">
+                        <source media="(max-width: 550px)" data-srcset="{{ slide4Img }}_550.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 980px)" data-srcset="{{ slide4Img }}_980.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(max-width: 1920px)" data-srcset="{{ slide4Img }}_1920.jpg" type="image/jpeg" class="swiper-lazy">
+                        <source media="(min-width: 1921px)" data-srcset="{{ slide4Img }}_2200.jpg" type="image/jpeg" class="swiper-lazy">
+                        <img data-srcset="{{ slide4Img }}_1920.jpg" alt="{{ slide4TextBig }}" title="{{ slide4TextBig }}" class="img-fluid home-slide__img swiper-lazy">
+                      </picture>
+                      <div class="swiper-lazy-preloader"></div>
+                    </a>
+                  </div>
+                </div>
+      {% endif %}
+
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev fa fa-chevron-left"></div>
+      <div class="swiper-button-next fa fa-chevron-right"></div>
+      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
+  </section>
+</div>
+
+{#
+<!-- BEISPIEL LAZY LOAD -->
+<div class="swiper-slide object-fit--picture-fallback swiper-slide-active" style="width: 2546px;">
+  <div class="home-slide text__black--md-down btn-bg__black--md-down text__black--lg-up btn-bg__black--lg-up">
+
+    <a href="{{ slide2Link }}" title="{{ slide2bgtitle }}">
+      <picture class="object-fit--picture swiper-lazy">
+        <source media="(max-width: 767px)" data-srcset="{{ slide2Img980WebP }}" type="image/webp" class="swiper-lazy">
+        <source media="(min-width: 768px)" data-srcset="{{ slide2Img1920WebP }}" type="image/webp" class="swiper-lazy">
+        <source media="(max-width: 767px)" data-srcset="{{ slide2Img980 }}" type="image/jpeg" class="swiper-lazy">
+        <source media="(max-width: 768px)" data-srcset="{{ slide2Img1920 }}" type="image/jpeg" class="swiper-lazy">
+        <img data-srcset="{{ slide2Img980 }}" alt="{{ slide2bgtitle }}" title="{{ slide2bgtitle }}" class="img-fluid home-slide__img swiper-lazy">
+      </picture>
+      <div class="swiper-lazy-preloader"></div>
+    </a>
+  </div>
+</div>
+#}

@@ -1,0 +1,286 @@
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+
+<header id="page-header" class="header top-bar">
+  <div class="header-wrapper">
+    <div class="container-fluid px-0 top-header-badge1">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-3">
+            <span data-toggle="tooltip" data-placement="bottom" title="Wir sind dienstags bis freitags von 13:00 bis 16:00 Uhr telefonisch für dich erreichbar.">Hotline Onlineshop: <b><span style="white-space: nowrap;"><a href="tel:+4979619679700" style="color: #000">+49 (0)7961 967 97 00</a></span></b></span>
+          </div>
+          <div class="col-6 col-md-3">
+            <span data-toggle="tooltip" data-placement="bottom" title="Bei Geldeingang bis 12 Uhr Werktag-Mittag erfolgt der Versand noch am selben Nachmittag! Die Lieferzeit beträgt in der Regel 3 - 6 Werktage (Spedition 5 bis 14 Werktage). Bei der Zahlungsart: Vorkasse verlängert sich die Lieferzeit abhängig von der Laufzeit deiner Überweisung.">Versand am selben Tag<sup>1</sup></span>
+          </div>
+          <div class="col-6 col-md-3">
+            <span data-toggle="tooltip" data-placement="bottom" title="Wir gewähren dir neben dem gesetzlichen Widerrufsrecht ein freiwilliges Rückgaberecht von insgesamt 30 Tagen ab Warenerhalt auf unbenutzte Artikel. Das Rückgaberecht gilt für alle online abgeschlossenen Käufe.">30 Tage Rückgaberecht</span>
+          </div>
+          <div class="col-5 col-md-2">
+            <span data-toggle="tooltip" data-placement="bottom" title="Wir versenden unsere Pakete bereits ab einem Warenwert von 100 Euro innerhalb Deutschland Versandkostenfrei">Versandkostenfrei ab 100 Euro<sup>2</sup></span>
+          </div>
+      <div class="col-1 col-md-1 text-right">
+          <div class="list-inline-item dropdown control-languages">
+              <a data-toggle="collapse" href="#countrySettings" aria-expanded="false"
+                 aria-controls="countrySettings"
+                 data-parent="#controlsList">
+                  <i class="flag-icon flag-icon-{{ lang }}"></i>
+              </a>
+          </div>
+
+          {% if enableCurrencySelect == "true" %}
+              <div class="list-inline-item dropdown control-languages">
+                  <a class=""
+                     data-toggle="collapse"
+                     href="#currencySelect"
+                     aria-expanded="false"
+                     aria-controls="currencySelect"
+                     data-parent="#controlsList">
+                      <span>{{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+                  </a>
+              </div>
+          {% endif %}
+    </div>
+
+        </div>
+      </div>
+
+      <div class="container-max page-header">
+          <div class="row mx-0">
+              {% if enableCurrencySelect == "true" %}
+                  <div id="currencySelect" class="cmp cmp-currency-select collapse">
+                      <div class="container-max">
+                          <div class="row p-3">
+
+                              <div class="currency-list col-12">
+                                  <div class="list-title">
+                                      <strong>{{ trans("Ceres::Template.headerCurrency") }}</strong>
+                                      <hr>
+                                  </div>
+                                  <ul class="text-center text-sm-left">
+                                      {% for currency in services.checkout.getCurrencyList() if currency.name in activeCurrencies or activeCurrencies[0] == 'all' or currency.name == services.checkout.getCurrencyData().name %}
+                                          <li{% if currency.name == services.checkout.getCurrencyData().name %} class="active"{% endif %}>
+                                              <a href="{{ queryString({"currency": currency.name}) }}" rel="nofollow">
+                                                  {% if currencyFormatSelect == 'all' %}
+                                                      {{ currency.name }} <br class="d-block d-sm-none" />({{ currency.symbol }})
+                                                  {% else %}
+                                                      {{ currency[currencyFormatSelect] }}
+                                                  {% endif %}
+                                              </a>
+                                          </li>
+                                      {% endfor %}
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              {% endif %}
+
+
+                  <div id="countrySettings" class="cmp cmp-country-settings collapse">
+                      <div class="container-max">
+                          <div class="row p-3">
+                              <div class="col-12 col-lg-6">
+
+                                  <div class="language-settings">
+                                      <div class="list-title">
+                                          <strong>{{ trans("Ceres::Template.headerSelectLanguage") }}</strong>
+                                          <hr>
+                                      </div>
+
+                                      {% set languageList = services.webstoreConfig.getActiveLanguageList() %}
+                                      {% set languageUrls = services.url.getLanguageURLs() %}
+                                      <ul>
+                                          {% for language in languageList %}
+                                              <li{% if lang == language %} class="active"{% endif %}>
+                                                  <a href="{% if languageUrls[language] is defined %}{{ languageUrls[language] ~ queryString() }}{% elseif language != defaultLanguage %}/{{ language }}{{ urls.trailingSlashSuffix }}{% else %}/{% endif %}" data-update-url>
+                                                      <i class="flag-icon flag-icon-{{ language }}"></i>
+                                                      {{ trans("Ceres::Template.header" ~ language | capitalize) }}
+                                                  </a>
+                                              </li>
+                                          {% endfor %}
+                                      </ul>
+                                  </div>
+                              </div>
+                              <div class="col-12 col-lg-6">
+                                  <div class="shipping-settings">
+                                      <div class="list-title">
+                                          <strong>{{ trans("Ceres::Template.headerSelectShippingCountry") }}</strong>
+                                          <hr>
+                                      </div>
+                                      <shipping-country-select :disable-input="{{ services.template.isCheckout() | json_encode() }}"></shipping-country-select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+          </div>
+      </div>
+
+
+    </div>
+    {% if date() >= date("2022-11-16") and date() <= date("2022-12-05")  %}
+    <div class="container-fluid promoAction" style="background: #000;">
+          <div class="container">
+              <div class="row">
+              <div class="col-12 col-md-9 bwd-banner">
+              <a href="/fahrrad/black-week-deals">
+                <picture>
+                <source media="(max-width: 550px)" srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/vorinflaDeal122022_Promo400.jpg" type="image/jpeg">
+                <source media="(max-width: 980px)" srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/vorinflaDeal122022_Promo768.jpg" type="image/jpeg">
+                <source media="(min-width: 981px)" srcset="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/vorinflaDeal122022_Promo.jpg" type="image/jpeg">
+                <img src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/home/vorinflaDeal122022_Promo.jpg" alt="Vorinflationspreis sichern! - Cyper Week Deals" title="Vorinflationspreis sichern! - Cyper Week Deals">
+              </picture>
+              </a>
+
+              </div>
+            <div class="col-12 col-md-3">
+              <div id="sitecountdown" class="row"></div>
+            </div>
+  </div>
+          </div>
+        </div>
+   {% endif %}
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-4 col-xxl-3 pt-0 pt-lg-4 order-4 order-lg-1">
+<div class="search_wrapper">
+
+          <item-search
+          :show-item-images="true">
+          </item-search>
+
+
+          </div>
+        </div>
+        <div class="col-1 col-xxl-0 col-lg-auto px-lg-0 order-1 order-lg-2">
+          <button v-open-mobile-navigation class="navbar-toggler d-lg-none p-3" type="button">
+              &#9776;
+          </button>
+        </div>
+        <div class="col-10 col-sm-4 col-xxl-6 order-2 order-lg-3 mt-1 mt-sm-3 px-3 pt-lg-0 logoWrapHead">
+          {% if date() >= date("2022-12-12") and date() <= date("2022-12-27")  %}
+          <div role="banner" class="shop-nav-logo-wrapper"><a href="https://www.pentagonsports.de" title="Pentagon Sports GmbH & Co. KG - der offizielle Pentagon Sports Shop"><img alt="Pentagon Sports GmbH & Co. KG - der offizielle Pentagon Sports Shop"
+            src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/pentagonSportsChristmas.svg" class="shop-nav-logo"></a></div>
+          {% else %}
+          <div role="banner" class="shop-nav-logo-wrapper"><a href="https://www.pentagonsports.de" title="Pentagon Sports GmbH & Co. KG - der offizielle Pentagon Sports Shop"><img alt="Pentagon Sports GmbH & Co. KG - der offizielle Pentagon Sports Shop"
+            src="https://cdn02.plentymarkets.com/4in9ikd3ipve/frontend/ps2k19/img/pentagonSports.svg" class="shop-nav-logo"></a></div>
+          {% endif %}
+        </div>
+        <div class="col-12 col-sm-7 col-lg-4 col-xxl-3 pt-lg-4 pt-xl-4 mt-lg-n2 order-3 order-sm-3 order-lg-4 storeQlWrap">
+          <nav class="header__controls">
+            <ul role="menubar" class="shop-nav__list">
+
+              {#
+              <li class="menuitem">
+                  <a data-toggle="modal" data-target="#store" href="#store">
+                  <button class="shop-nav__btn">
+                    <i class="icon__store">&nbsp;</i>
+                    <span class="store-text">Store</span>
+                  </button>
+                </a>
+              </li>
+            #}
+
+              <li role="menuitem"><span id="login-change" class="dropdown__wrapper">
+                  <span class="dropdown">
+                    <a href="#" id="accountMenuListTwo" data-toggle="dropdown" data-offset="10" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle shop-nav__btn"><i aria-hidden="true" class="icon__user"></i><span class="user-login-text">Anmelden</span></a>
+                    <span class="dropdown-menu dropdown-menu-right">
+                      <span aria-labelledby="accountMenuListTwo" class="user-login__cta-wrapper">
+
+                        <a data-toggle="modal" data-target="#login" href="#login" class="user-login__cta"><span>{{ trans("Ceres::Template.login") }}</span></a>
+                        <span class="user-login__cta--pipe"></span>
+                        <a data-toggle="modal" data-target="#registration" href="#registration" class="user-login__cta"><span>{{ trans("Ceres::Template.loginRegister") }}</span></a>
+
+                        <span class="user-login__sepperator"></span> <a href="/my-account" class="user-login__cta user-login__cta--block">
+                          Mein Konto
+                        </a> <a href="/my-account" class="user-login__cta user-login__cta--block">
+                          Meine Bestellungen
+                        </a> <a href="/my-account" class="user-login__cta user-login__cta--block">
+                          Retoure
+                        </a> <a href="/my-account" class="user-login__cta user-login__cta--block">
+                          Hilfe &amp; Kontakt
+                        </a></span> <span class="user-login__close"><svg width="20" height="20">
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-close"></use>
+                        </svg></span></span></span></span></li>
+
+
+                        <li class="menuitem">
+                    <wish-list-count>
+
+                          </wish-list-count>
+
+                        </li>
+
+
+
+
+              <li role="menuitem">
+                  <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
+                  <button class="shop-nav__btn shop-nav__btn-basket-preview">
+                    <i class="icon__cart">
+                          <span class="shop-nav__amount-wrap"><span class="shop-nav__amount" v-basket-item-quantity="$store.state.basket.data.itemQuantity">0</span></span>
+                    </i>
+                    <span class="basket-text">Warenkorb</span>
+                  </button>
+                </a>
+
+              </li>
+
+
+            </ul>
+          </nav>
+        </div>
+
+
+        <basket-preview v-if="$store.state.lazyComponent.components['basket-preview']" :show-net-prices="{{ showNetPrices | json_encode }}">
+            <template #before-basket-item>
+                {{ LayoutContainer.show("Ceres::BasketList.BeforeItem") }}
+            </template>
+            <template #after-basket-item>
+                {{ LayoutContainer.show("Ceres::BasketList.AfterItem") }}
+            </template>
+            <template #before-basket-totals>
+                {{ LayoutContainer.show("Ceres::BasketPreview.BeforeBasketTotals") }}
+            </template>
+            <template #before-item-sum>
+                {{ LayoutContainer.show("Ceres::BasketTotals.BeforeItemSum") }}
+            </template>
+            <template #after-item-sum>
+                {{ LayoutContainer.show("Ceres::BasketTotals.AfterItemSum") }}
+            </template>
+            <template #before-shipping-costs>
+                {{ LayoutContainer.show("Ceres::BasketTotals.BeforeShippingCosts") }}
+            </template>
+            <template #after-shipping-costs>
+                {{ LayoutContainer.show("Ceres::BasketTotals.AfterShippingCosts") }}
+            </template>
+            <template #before-total-sum>
+                {{ LayoutContainer.show("Ceres::BasketTotals.BeforeTotalSum") }}
+            </template>
+            <template #before-vat>
+                {{ LayoutContainer.show("Ceres::BasketTotals.BeforeVat") }}
+            </template>
+            <template #after-vat>
+                {{ LayoutContainer.show("Ceres::BasketTotals.AfterVat") }}
+            </template>
+            <template #after-total-sum>
+                {{ LayoutContainer.show("Ceres::BasketTotals.AfterTotalSum") }}
+            </template>
+            <template #after-basket-totals>
+                {{ LayoutContainer.show("Ceres::BasketPreview.AfterBasketTotals") }}
+            </template>
+            <template #before-checkout-button>
+                {{ LayoutContainer.show("Ceres::BasketPreview.BeforeCheckoutButton") }}
+            </template>
+            <template #after-checkout-button>
+                {{ LayoutContainer.show("Ceres::BasketPreview.AfterCheckoutButton") }}
+            </template>
+        </basket-preview>
+      </div>
+    </div>
+
+{% include "Theme5PS::PageDesign.Partials.Header.Navigation" %}
+  </div>
+</header>

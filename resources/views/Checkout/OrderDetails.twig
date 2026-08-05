@@ -1,0 +1,224 @@
+{% set basketTotalsCurrency = totals.currency %}
+
+
+<script type="text/javascript">
+    belboonTag = {
+        "orderId": "{{ orderId }}",
+        "orderProducts": [
+            {
+                "id": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.id }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+                "price": "[{% for item in basketItems %}{% if item.variation.id != 0 %}'{{ item.variation.data.prices.default.data.basePriceNet  | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]",
+                "qty": "{{ basket.itemQuantity }}"
+            }
+        ],
+        "orderTransactionAmount": "{{ basket.basketAmountNet }}"
+    };
+</script>
+<script type="text/javascript">
+    (function(d) {
+        var s = d.createElement("script");
+        s.async = true;
+        s.src = "https://containertags.belboon.com/js/93783/checkout/script.js";
+        var a = d.getElementsByTagName("script")[0];
+        a.parentNode.insertBefore(s, a);
+    }(document));
+</script>
+
+  <!-- BEGIN BELBOON - PERFORMANCE MARKETING NETWORK TRACKING CODE version 4.31 -->
+  <script type="text/javascript">
+  var itsConv = {
+
+      trcCat     : 'default',
+      convTarget : 'sale',
+
+      convId     : '{{orderId }}', //Bestellnummer
+
+      clickIds   : [''],  //Session-Tracking via belboon=Parameter in der URL
+
+      ordCurr    : 'EUR',
+      ordValue   : '{{ basket.basketAmountNet }}', //Nettowarenwert
+      discValue  : '{{ basket.couponDiscount }}', //Rabbatwert des Gutscheins
+      discCode   : '{{ basket.couponCode }}', //Gutscheincode
+
+
+      locationHref : window.location.href,
+
+      // DO NOT CHANGE. The following parameters are used to identify the advertiser in the network.
+      advId : '93783',
+      trcDomain : 'gatneo.pentagonsports.de'
+
+    };
+    // DO NOT CHANGE. The following lines assure tracking functionality.
+    en=function(v){if(v){if(typeof(encodeURIComponent)=='function'){return(encodeURIComponent(v));}return(escape(v));}};ts=function(){var d=new Date();var t=d.getTime();return(t);};im=function(s){if(document.images){if(typeof(ia)!="object"){
+    var ia=new Array();};var i=ia.length;ia[i]=new Image();ia[i].src=s;ia[i].onload=function(){};}else{document.write('<img src="'+s+'" height="1" width="1" border="0" alt="" style="display:none;">');}};var pr='https:';
+    fr=function(s){var d=document;var i=d.createElement("iframe");i.src=s;i.frameBorder=0;i.width=0;i.height=0;i.vspace=0;i.hspace=0;i.marginWidth=0;i.marginHeight=0;i.scrolling="no";i.allowTransparency=true;i.style.display="none";try{d.body.insertBefore(i,d.body.firstChild);}catch(e){
+    d.write('<ifr'+'ame'+' src="'+s+'" width="0" height="0" frameborder="0" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="true" style="display:none;"></ifr'+'ame>');}};ap=function(o){var v='tst='+ts();if(o.trcCat){v+='&trc='+en(o.trcCat);}
+    v+='&ctg='+en(o.convTarget);v+='&cid='+en(o.convId);if(o.ordValue){v+='&orv='+en(o.ordValue);}if(o.ordCurr){v+='&orc='+en(o.ordCurr);}if(o.discValue){v+='&dsv='+en(o.discValue);}if(o.discCode){v+='&dsc='+en(o.discCode);}
+    if(o.invValue){v+='&inv='+en(o.invValue);}if(o.payMethod){v+='&pmt='+en(o.payMethod);}if(o.userVal1){v+='&uv1='+en(o.userVal1);}if(o.userVal2){v+='&uv2='+en(o.userVal2);}if(o.userVal3){
+    v+='&uv3='+en(o.userVal3);}if(o.userVal4){v+='&uv4='+en(o.userVal4);}if(o.isCustNew){var n=o.isCustNew.toLowerCase();v+='&csn=';v+=(n=="true"||n=="false")?n:"null";}if(o.custId){v+='&csi='+en(o.custId);}if(o.sessionId){v+='&session='+en(o.sessionId);}if(o.basket){v+='&bsk='+en(JSON.stringify(o.basket));}if(o.uniqid){v+='&uniqid='+en(o.uniqid);}if(o.clickIds && o.clickIds.length > 0){v+='&cli='+en(o.clickIds.join('%2C'));}if(o.siteId){v+='&sid='+en(o.siteId);}var s=(screen.width)?screen.width:"0";
+    s+="X";s+=(screen.height)?screen.height:"0";s+="X";s+=(screen.colorDepth)?screen.colorDepth:"0";v+='&scr='+s;v+='&nck=';v+=(navigator.cookieEnabled)?navigator.cookieEnabled:"null";v+='&njv=';v+=(navigator.javaEnabled())?navigator.javaEnabled():"null";if (o.locationHref){v+='&hrf='+en(o.locationHref);}if(o.gdpr){v+='&gdpr='+en(o.gdpr);}if(o.gdprConsent){v+='&gdpr_consent='+en(o.gdprConsent);}v+='&ver='+en('4.31');return(v);};
+    itsStartConv=function(o){var s=pr+'//'+o.trcDomain+'/ts/'+o.advId+'/tsa?typ=f&'+ap(o);fr(s);};itsStartConv(itsConv);
+
+    var a = document.createElement('script'); a.type = 'text/javascript'; a.async = true; a.src = 'https://'+itsConv.trcDomain+'/scripts/ts/'+itsConv.advId+'contA.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(a, s);
+  </script>
+  <noscript>
+  <img src="https://gatneo.pentagonsports.de/ts/93783/tsa?typ=i&trc=default&ctg=sale&cid={{ basket.orderId }} {{ orderData.order.id }}&orv={{basket.basketAmountNet}}&orc=EUR&dsv={{basket.couponDiscount}}&dsc={{basket.couponCode}}&cli=CLICK_IDS&ver=4.31" width="1" height="1" border="0" style="display:none;">
+  </noscript>
+  <!-- END BELBOON - PERFORMANCE MARKETING NETWORK TRACKING CODE -->
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="confirmation-order-list">
+            {% for item in orderData.order.orderItems %}
+            <p>
+                  {% set itemPrice = itemAmount.priceOriginalNet %}
+            [{% for item in orderData.order.orderItems %}{% if item.itemVariationId > 0  %}'{{ item.itemVariationId }} {{ itemPrice | number_format(2, '.', '') }} {{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]
+
+            [{% for item in orderData.order.orderItems %}{% if item.itemVariationId > 0 %}'{{ itemPrice | number_format(2, '.', '') }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]
+
+            [{% for item in orderData.order.orderItems %}{% if item.itemVariationId > 0 %}'{{ item.quantity }}'{% if not loop.last %},{% endif %}{% endif %}{% endfor %}]
+
+             </p>
+                {% if item.itemVariationId > 0 and not services.order.containsComponentPrefix(item.orderItemName) %}
+
+
+
+
+
+                    {% set currentVariationId = item.itemVariationId | trimNewlines %}
+                    <article class="cmp cmp-order-item">
+                        <a href="{{ orderData.itemURLs | getObjectValue(currentVariationId) }}" class="item-image">
+                            <img src="{{ orderData.itemImages | getObjectValue(currentVariationId) }}" alt="{{ item.orderItemName }}" title="{{ item.orderItemName }}">
+                        </a>
+                        <div class="item-details small">
+                            <a href="{{ orderData.itemURLs | getObjectValue(currentVariationId)  }}" class="clearfix">
+                                <div class="item-name">
+                                    {{ ItemName.get(item.orderItemName, item.bundleType) }}
+                                </div>
+                            </a>
+
+                            {% if splitItemBundle != "1" and item.bundleType == "bundle" %}
+                                <div class="item-bundle small font-weight-bold mb-3">
+                                    {% for bundleComponent in item.bundleComponents %}
+                                        <div>
+                                            <span class="text-muted">{{ bundleComponent.quantity }} x</span>
+                                            <a href="{{ bundleComponent.data | itemURL }}"> {{ bundleComponent.data | itemName }} </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            {% set itemAmount = item.amounts[0] %}
+                            {% for amount in item.amounts if not amount.isSystemCurrency %}
+                                {% set itemAmount = amount %}
+                            {% endfor %}
+
+                            {% set itemPrice = 0 %}
+                            {% if orderData.highlightNetPrices %}
+                                {% set itemPrice = itemAmount.priceOriginalNet %}
+                                {% set discountAmount = item.quantity * (itemAmount.priceOriginalNet - itemAmount.priceNet) %}
+                                {% set itemPriceTotal = item.quantity * itemAmount.priceNet %}
+                            {% else %}
+                                {% set itemPrice = itemAmount.priceOriginalGross %}
+                                {% set discountAmount = item.quantity * (itemAmount.priceOriginalGross - itemAmount.priceGross) %}
+                                {% set itemPriceTotal = item.quantity * itemAmount.priceGross %}
+                            {% endif %}
+
+                            <div class="row">
+                                <strong class="col-6 col-sm-3 col-md-5">{{ trans("Ceres::Template.orderConfirmationPricePerPiece") }}</strong>
+                                <span class="col-6 col-sm-9 col-md-7 text-right">{{ itemPrice | formatMonetary( itemAmount.currency ) }}</span>
+                            </div>
+
+                            <div class="row">
+                                <strong class="col-6 col-sm-3 col-md-5">{{ trans("Ceres::Template.orderConfirmationQuantity") }}</strong>
+                                <span class="col-6 col-sm-9 col-md-7 text-right">{{ item.quantity }}</span>
+                            </div>
+                            {% if itemAmount.discount > 0 %}
+                                <div class="row rebate-hint">
+                                    <strong class="col-6 col-sm-3 col-md-5">{{ trans("Ceres::Template.orderConfirmationItemDiscount") }}</strong>
+                                    <span class="col-6 col-sm-9 col-md-7 text-right">{{ discountAmount | formatMonetary( itemAmount.currency ) }}</span>
+                                </div>
+                            {% endif %}
+                            <div class="row">
+                                <strong class="col-6 col-sm-3 col-md-5">{{ trans("Ceres::Template.orderConfirmationTotal") }}</strong>
+                                <strong class="col-6 col-sm-9 col-md-7 text-right">{{ itemPriceTotal | formatMonetary( itemAmount.currency ) }}</strong>
+                            </div>
+
+                            {% for propertyGroup in item.variationProperties %}
+                                <div>
+                                    {% for property in propertyGroup.properties %}
+                                        <div>
+                                            <strong>{{ propertyGroup.name }}</strong>
+                                            <span>{{ property.names.name }}</span>
+                                            <span>
+                                                {% if property.cast == "file" %}
+                                                    <a :href="'{{ property.values.value }}' | propertyFileUrl" v-html="'{{ property.values.value }}'" target="_blank"></a>
+                                                {% else %}
+                                                    {{ property.values.value | raw }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+
+                            {% for attribute in item.attributes %}
+                                <div>
+                                    <strong>{{ attribute.name }}: </strong>
+                                    <span>{{ attribute.value }}</span>
+                                </div>
+                            {% endfor %}
+
+                            {% if item.orderProperties %}
+                                {% for property in item.orderProperties %}
+                                    <div class="row">
+                                        <strong class="col-6 col-sm-3 col-md-5 item-word-break">{{ property | propertyName }}</strong>
+                                        {% if property.type == 'file' %}
+                                            <span class="col-6 col-sm-9 item-word-break">
+                                                {% if property.fileUrl is not empty %}
+                                                    <a href="{{ property.fileUrl }}" target="_blank">
+                                                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                                                        {{ property.value }}
+                                                    </a>
+                                                {% else %}
+                                                    {% set splitPath = property.value |split('/') %}
+                                                    {% set filename = '' %}
+                                                    {% set path = '' %}
+                                                    {% for temp in splitPath %}
+                                                        {% if loop.first %}
+                                                            {% set path =  temp %}
+                                                        {% elseif loop.last %}
+                                                            {% set filename = temp %}
+                                                        {% else %}
+                                                            {% set path =  path ~ '/' ~ temp %}
+                                                        {% endif %}
+                                                    {% endfor %}
+
+                                                    <a href="{{ urls.orderPropertyFile(path) }}?filename={{ filename }}{% if services.customer.getContactId() == 0 %}&orderId={{ orderData.order.id }}{% endif %}" target="_blank">
+                                                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                                                        {{ splitPath | last }}
+                                                    </a>
+                                                {% endif %}
+                                            </span>
+                                        {% elseif property.type == "selection" %}
+                                            <span class="col-6 col-sm-9 col-md-7 item-word-break">
+                                                {{ property | propertySelectionValueName }}
+                                            </span>
+                                        {% elseif property.type | length > 0 %}
+                                            <span class="col-6 col-sm-9 col-md-7 item-word-break">{{ property.value }}</span>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+        {{ Totals.forOrder(orderData) }}
+    </div>
+</div>

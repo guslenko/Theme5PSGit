@@ -1,0 +1,48 @@
+<?php
+
+namespace Theme5PS\Providers;
+
+use Plenty\Plugin\ServiceProvider;
+use Plenty\Plugin\Events\Dispatcher;
+use Plenty\Plugin\Templates\Twig;
+use IO\Extensions\Functions\Partial;
+use IO\Helper\TemplateContainer;
+
+class Theme5PSServiceProvider extends ServiceProvider
+{
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+    }
+
+    /**
+     * Boot a template for the footer that will be displayed in the template plugin instead of the original footer.
+     */
+    public function boot(Twig $twig, Dispatcher $dispatcher)
+    {
+
+        // override partials
+        $dispatcher->listen('IO.init.templates', function (Partial $partial) {
+            $partial->set('page-design', 'Theme5PS::PageDesign.PageDesign');
+            $partial->set('header', 'Theme5PS::PageDesign.Partials.Header.Header');
+            $partial->set('footer', 'Theme5PS::PageDesign.Partials.Footer');
+            return false;
+        }, 0);
+
+        // override category view and add manufacturer information
+        /* */
+        $dispatcher->listen('IO.tpl.category.item', function (TemplateContainer $container) {
+            $container->setTemplate('Theme5PS::Category.Item.CategoryItem');
+            return false;
+        }, 0);
+
+        $dispatcher->listen('IO.tpl.search', function (TemplateContainer $container) {
+            $container->setTemplate('Theme5PS::Category.Item.CategoryItem');
+            return false;
+        }, 0);
+
+
+    }
+}

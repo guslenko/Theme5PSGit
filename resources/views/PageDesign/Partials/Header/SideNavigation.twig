@@ -1,0 +1,20 @@
+{% import "Theme5PS::Category.Macros.CategoryTree" as Tree %}
+
+{% set lang = services.sessionStorage.getLang() %}
+{% set categoryBreadcrumbs = services.category.getHierarchy() %}
+
+{% for first in categoryBreadcrumbs %}
+ {% if first.level == 1 %}
+
+   {% set lvl2Categories = [] %}
+   {% set rootCategoryIds = [first.id] %}
+   {% set firstUrl = first.details[0].nameUrl %}
+
+   {% for category in categories if category.children | length > 0 and category.id in rootCategoryIds %}
+     {% set lvl2Categories = lvl2Categories | merge(category.children) %}
+   {% endfor %}
+
+   {{ Tree.get_sidemnuSecond(categoryBreadcrumbs, lvl2Categories, firstUrl, 1) }}
+
+ {% endif %}
+{% endfor %}

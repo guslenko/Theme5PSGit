@@ -1,0 +1,18 @@
+[
+  "defaultCategories*",
+  "images.all.names.alternate",
+  "images.all.names.lang",
+  "images.all.path",
+  "images.all.position",
+  "images.all.urlPreview",
+  "images.variation.names.alternate",
+  "images.variation.names.lang",
+  "images.variation.path",
+  "images.variation.position",
+  "images.variation.urlPreview",
+  "item.id",
+  "texts*",
+  "variation.id",
+  "variation.itemId",
+  "variation.name"
+]

@@ -1,0 +1,16 @@
+{% import "Theme5PS::Category.Macros.CategoryTree" as Tree %}
+
+{% set categoryBreadcrumbs = services.category.getHierarchy() %}
+
+<ul role="menubar" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" class="megamenu__list">
+    {{ Tree.get_nav_bar(categoryBreadcrumbs,
+        categories,
+        currentScopeUrl,
+        3,
+        {
+            "1": ceresConfig.header.megamenuItemsStage1,
+            "2": ceresConfig.header.megamenuItemsStage2,
+            "3": ceresConfig.header.megamenuItemsStage3
+        }
+    ) }}
+</ul>
