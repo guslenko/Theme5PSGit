@@ -32,10 +32,6 @@ class Theme5PSGitServiceProvider extends TemplateServiceProvider
     {
         $enabledOverrides = explode(", ", $config->get("Theme5PSGit.templates.override"));
 
-        // plentyShop LTS requests this legacy Ceres template directly.
-        // Map it to the theme's local fallback before template resolution.
-        $this->overrideTemplate("Ceres::Homepage.Homepage", "Theme5PSGit::Homepage.Homepage");
-
         $this->overrideTemplate("Ceres::Search.Filter", "Theme5PSGit::ItemList.Components.Filter.FindologicFilterWrapper");
         $this->overrideTemplate("Findologic::Category.Item.Partials.SearchFilters", "Theme5PSGit::Category.Item.Partials.SearchFilters");
         $this->overrideTemplate("Findologic::content.scripts", "Theme5PSGit::ItemList.Components.Filter.Scripts");
@@ -60,13 +56,6 @@ class Theme5PSGitServiceProvider extends TemplateServiceProvider
             $partial->set('page-design', 'Theme5PSGit::PageDesign.PageDesign');
             $partial->set('footer', 'Theme5PSGit::PageDesign.Partials.Footer');
 
-            return false;
-        }, self::PRIORITY);
-
-        // Keep IO from falling back to the missing Ceres::Homepage.Homepage template.
-        $dispatcher->listen('IO.tpl.home', function (TemplateContainer $container)
-        {
-            $container->setTemplate('Theme5PSGit::Homepage.Homepage');
             return false;
         }, self::PRIORITY);
 

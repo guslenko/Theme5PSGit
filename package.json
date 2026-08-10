@@ -1,7 +1,7 @@
 {
   "name": "Theme5PSGit",
   "license": "AGPL-3.0",
-  "version": "5.0.87",
+  "version": "5.0.88",
   "repository": {
     "type": "git",
     "url": "https://github.com/plentymarkets/plugin-ceres.git"
