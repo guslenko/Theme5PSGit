@@ -20,7 +20,8 @@ use Plenty\Modules\Webshop\Template\Providers\TemplateServiceProvider;
  */
 class Theme5PSServiceProvider extends TemplateServiceProvider
 {
-    const PRIORITY = 0;
+    // Run template overrides before plentyShop LTS registers its legacy Ceres fallback.
+    const PRIORITY = 1000;
 
     public function register()
     {
