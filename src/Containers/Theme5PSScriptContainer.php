@@ -8,6 +8,6 @@ class Theme5PSScriptContainer
 {
     public function call(Twig $twig):string
     {
-        return $twig->render('Theme5PS::Script');
+        return $twig->render('Theme5PSGit::Script');
     }
 }

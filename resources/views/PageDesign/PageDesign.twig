@@ -2,11 +2,11 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.Translations" as Translations %}
 {{ component( "Ceres::PageDesign.Components.Notifications" ) }}
-{{ component( "Theme5PS::Basket.Components.BasketPreview" ) }}
+{{ component( "Theme5PSGit::Basket.Components.BasketPreview" ) }}
 {{ component( "Ceres::Customer.Components.Login" ) }}
-{{ component( "Theme5PS::Customer.Components.Registration" ) }}
-{{ component( "Theme5PS::PageDesign.Components.StoreList" ) }}
-{#{ component( "Theme5PS::PageDesign.Components.FrameCalculator" ) }#}
+{{ component( "Theme5PSGit::Customer.Components.Registration" ) }}
+{{ component( "Theme5PSGit::PageDesign.Components.StoreList" ) }}
+{#{ component( "Theme5PSGit::PageDesign.Components.FrameCalculator" ) }#}
 {{ component( "Ceres::Basket.Components.AddItemToBasketOverlay" ) }}
 {{ component( "Ceres::PageDesign.Components.Popper" ) }}
 {{ component( "Ceres::Customer.Components.ForgotPassword" ) }}
@@ -100,7 +100,7 @@
         {% include getPartial('header') %}
         {% if not services.template.isHome() %}
       {% else %}
-    {% include "Theme5PS::PageDesign.Components.psBannerSlide" %}
+    {% include "Theme5PSGit::PageDesign.Components.psBannerSlide" %}
      {% endif %}
         <div id="page-body" class="main">
         

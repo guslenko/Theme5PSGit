@@ -36636,7 +36636,7 @@ var render = function() {
                               _vm._v(
                                 _vm._s(
                                   _vm.$translate(
-                                    "Theme5PS::Template.SingleItemPropertyGroup"
+                                    "Theme5PSGit::Template.SingleItemPropertyGroup"
                                   )
                                 )
                               )

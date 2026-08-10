@@ -133,7 +133,7 @@
                                     <a :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="nav-link" data-toggle="tab" href="#assessments-details" role="tab">{{ $translate("Ceres::Template.singleItemMoreDetails") }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="nav-link" data-toggle="tab" href="#propertyGroup" role="tab">{{ $translate("Theme5PS::Template.SingleItemPropertyGroup") }}</a>
+                                    <a :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="nav-link" data-toggle="tab" href="#propertyGroup" role="tab">{{ $translate("Theme5PSGit::Template.SingleItemPropertyGroup") }}</a>
                                 </li>
 
                                 <slot name="add-detail-tabs"></slot>

@@ -8,6 +8,6 @@ class Theme5PSStyleContainer
 {
     public function call(Twig $twig):string
     {
-        return $twig->render('Theme5PS::Stylesheet');
+        return $twig->render('Theme5PSGit::Stylesheet');
     }
 }

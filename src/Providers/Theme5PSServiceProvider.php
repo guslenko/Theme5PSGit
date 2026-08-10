@@ -34,18 +34,18 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
         // plentyShop LTS requests this legacy Ceres template directly.
         // Map it to the theme's local fallback before template resolution.
-        $this->overrideTemplate("Ceres::Homepage.Homepage", "Theme5PS::Homepage.Homepage");
+        $this->overrideTemplate("Ceres::Homepage.Homepage", "Theme5PSGit::Homepage.Homepage");
 
-        $this->overrideTemplate("Ceres::Search.Filter", "Theme5PS::ItemList.Components.Filter.FindologicFilterWrapper");
-        $this->overrideTemplate("Findologic::Category.Item.Partials.SearchFilters", "Theme5PS::Category.Item.Partials.SearchFilters");
-        $this->overrideTemplate("Findologic::content.scripts", "Theme5PS::ItemList.Components.Filter.Scripts");
+        $this->overrideTemplate("Ceres::Search.Filter", "Theme5PSGit::ItemList.Components.Filter.FindologicFilterWrapper");
+        $this->overrideTemplate("Findologic::Category.Item.Partials.SearchFilters", "Theme5PSGit::Category.Item.Partials.SearchFilters");
+        $this->overrideTemplate("Findologic::content.scripts", "Theme5PSGit::ItemList.Components.Filter.Scripts");
 
         $dispatcher->listen('IO.Resources.Import',
             function (ResourceContainer $container) {
-                $container->addScriptTemplate('Theme5PS::ItemList.Components.Filter.FindologicItemFilterList');
-                $container->addScriptTemplate('Theme5PS::ItemList.Components.Filter.FindologicItemFilter');
-                $container->addScriptTemplate('Theme5PS::ItemList.Components.Filter.FindologicItemDropdown');
-                //$container->addScriptTemplate('Theme5PS::ItemList.Components.Filter.FindologicItemPrice');
+                $container->addScriptTemplate('Theme5PSGit::ItemList.Components.Filter.FindologicItemFilterList');
+                $container->addScriptTemplate('Theme5PSGit::ItemList.Components.Filter.FindologicItemFilter');
+                $container->addScriptTemplate('Theme5PSGit::ItemList.Components.Filter.FindologicItemDropdown');
+                //$container->addScriptTemplate('Theme5PSGit::ItemList.Components.Filter.FindologicItemPrice');
             }
         );
 
@@ -60,22 +60,22 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             if (in_array("head", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('head', 'Theme5PS::PageDesign.Partials.Head');
+                $partial->set('head', 'Theme5PSGit::PageDesign.Partials.Head');
             }
 
             if (in_array("header", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('header', 'Theme5PS::PageDesign.Partials.Header.Header');
+                $partial->set('header', 'Theme5PSGit::PageDesign.Partials.Header.Header');
             }
 
             if (in_array("page_design", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('page-design', 'Theme5PS::PageDesign.PageDesign');
+                $partial->set('page-design', 'Theme5PSGit::PageDesign.PageDesign');
             }
 
             if (in_array("footer", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
-                $partial->set('footer', 'Theme5PS::PageDesign.Partials.Footer');
+                $partial->set('footer', 'Theme5PSGit::PageDesign.Partials.Footer');
             }
 
             return false;
@@ -84,7 +84,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
         // Keep IO from falling back to the missing Ceres::Homepage.Homepage template.
         $dispatcher->listen('IO.tpl.home', function (TemplateContainer $container)
         {
-            $container->setTemplate('Theme5PS::Homepage.Homepage');
+            $container->setTemplate('Theme5PSGit::Homepage.Homepage');
             return false;
         }, self::PRIORITY);
 
@@ -94,7 +94,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.category.content', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Category.Content.CategoryContent');
+                $container->setTemplate('Theme5PSGit::Category.Content.CategoryContent');
                 return false;
             }, self::PRIORITY);
         }
@@ -105,7 +105,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.category.item', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Category.Item.CategoryItem');
+                $container->setTemplate('Theme5PSGit::Category.Item.CategoryItem');
                 return false;
             }, self::PRIORITY);
         }
@@ -116,7 +116,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.basket', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Basket.Basket');
+                $container->setTemplate('Theme5PSGit::Basket.Basket');
                 return false;
             }, self::PRIORITY);
         }
@@ -127,7 +127,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.checkout', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Checkout.CheckoutView');
+                $container->setTemplate('Theme5PSGit::Checkout.CheckoutView');
                 return false;
             }, self::PRIORITY);
         }
@@ -138,7 +138,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.confirmation', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Checkout.OrderConfirmation');
+                $container->setTemplate('Theme5PSGit::Checkout.OrderConfirmation');
                 return false;
             }, self::PRIORITY);
         }
@@ -149,7 +149,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.login', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Customer.Login');
+                $container->setTemplate('Theme5PSGit::Customer.Login');
                 return false;
             }, self::PRIORITY);
         }
@@ -160,7 +160,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.register', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Customer.Register');
+                $container->setTemplate('Theme5PSGit::Customer.Register');
                 return false;
             }, self::PRIORITY);
         }
@@ -171,7 +171,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.item', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Item.SingleItemWrapper');
+                $container->setTemplate('Theme5PSGit::Item.SingleItemWrapper');
                 return false;
             }, self::PRIORITY);
         }
@@ -182,7 +182,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.search', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Category.Item.CategoryItem');
+                $container->setTemplate('Theme5PSGit::Category.Item.CategoryItem');
                 return false;
             }, self::PRIORITY);
         }
@@ -193,7 +193,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.my-account', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::MyAccount.MyAccountView');
+                $container->setTemplate('Theme5PSGit::MyAccount.MyAccountView');
                 return false;
             }, self::PRIORITY);
         }
@@ -204,7 +204,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.wish-list', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::WishList.WishListView');
+                $container->setTemplate('Theme5PSGit::WishList.WishListView');
                 return false;
             }, self::PRIORITY);
         }
@@ -215,7 +215,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.contact', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Customer.Contact');
+                $container->setTemplate('Theme5PSGit::Customer.Contact');
                 return false;
             }, self::PRIORITY);
         }
@@ -226,7 +226,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.order.return', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::OrderReturn.OrderReturnView');
+                $container->setTemplate('Theme5PSGit::OrderReturn.OrderReturnView');
                 return false;
             }, self::PRIORITY);
         }
@@ -237,7 +237,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.order.return.confirmation', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::OrderReturn.OrderReturnConfirmation');
+                $container->setTemplate('Theme5PSGit::OrderReturn.OrderReturnConfirmation');
                 return false;
             }, self::PRIORITY);
         }
@@ -248,7 +248,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.cancellation-rights', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::StaticPages.CancellationRights');
+                $container->setTemplate('Theme5PSGit::StaticPages.CancellationRights');
                 return false;
             }, self::PRIORITY);
         }
@@ -259,7 +259,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.cancellation-form', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::StaticPages.CancellationForm');
+                $container->setTemplate('Theme5PSGit::StaticPages.CancellationForm');
                 return false;
             }, self::PRIORITY);
         }
@@ -270,7 +270,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.legal-disclosure', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::StaticPages.LegalDisclosure');
+                $container->setTemplate('Theme5PSGit::StaticPages.LegalDisclosure');
                 return false;
             }, self::PRIORITY);
         }
@@ -281,7 +281,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.privacy-policy', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::StaticPages.PrivacyPolicy');
+                $container->setTemplate('Theme5PSGit::StaticPages.PrivacyPolicy');
                 return false;
             }, self::PRIORITY);
         }
@@ -292,7 +292,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.terms-conditions', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::StaticPages.TermsAndConditions');
+                $container->setTemplate('Theme5PSGit::StaticPages.TermsAndConditions');
                 return false;
             }, self::PRIORITY);
         }
@@ -303,7 +303,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.item-not-found', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::StaticPages.ItemNotFound');
+                $container->setTemplate('Theme5PSGit::StaticPages.ItemNotFound');
                 return false;
             }, self::PRIORITY);
         }
@@ -314,7 +314,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.page-not-found', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::StaticPages.PageNotFound');
+                $container->setTemplate('Theme5PSGit::StaticPages.PageNotFound');
                 return false;
             }, self::PRIORITY);
         }
@@ -325,7 +325,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
             $dispatcher->listen('IO.tpl.newsletter.opt-out', function (TemplateContainer $container)
             {
-                $container->setTemplate('Theme5PS::Newsletter.NewsletterOptOut');
+                $container->setTemplate('Theme5PSGit::Newsletter.NewsletterOptOut');
                 return false;
             }, self::PRIORITY);
         }
@@ -346,31 +346,31 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
                 // Override list item result fields
                 if (in_array("list_item", $enabledResultFields) || in_array("all", $enabledResultFields))
                 {
-                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_LIST_ITEM] = 'Theme5PS::ResultFields.ListItem';
+                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_LIST_ITEM] = 'Theme5PSGit::ResultFields.ListItem';
                 }
 
                 // Override single item view result fields
                 if (in_array("single_item", $enabledResultFields) || in_array("all", $enabledResultFields))
                 {
-                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_SINGLE_ITEM] = 'Theme5PS::ResultFields.SingleItem';
+                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_SINGLE_ITEM] = 'Theme5PSGit::ResultFields.SingleItem';
                 }
 
                 // Override basket item result fields
                 if (in_array("basket_item", $enabledResultFields) || in_array("all", $enabledResultFields))
                 {
-                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_BASKET_ITEM] = 'Theme5PS::ResultFields.BasketItem';
+                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_BASKET_ITEM] = 'Theme5PSGit::ResultFields.BasketItem';
                 }
 
                 // Override auto complete list item result fields
                 if (in_array("auto_complete_list_item", $enabledResultFields) || in_array("all", $enabledResultFields))
                 {
-                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_AUTOCOMPLETE_ITEM_LIST] = 'Theme5PS::ResultFields.AutoCompleteListItem';
+                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_AUTOCOMPLETE_ITEM_LIST] = 'Theme5PSGit::ResultFields.AutoCompleteListItem';
                 }
 
                 // Override category tree result fields
                 if (in_array("category_tree", $enabledResultFields) || in_array("all", $enabledResultFields))
                 {
-                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_CATEGORY_TREE] = 'Theme5PS::ResultFields.CategoryTree';
+                    $templatesToOverride[ResultFieldTemplate::TEMPLATE_CATEGORY_TREE] = 'Theme5PSGit::ResultFields.CategoryTree';
                 }
 
                 $templateContainer->setTemplates($templatesToOverride);

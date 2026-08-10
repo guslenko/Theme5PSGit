@@ -8,6 +8,6 @@ class Theme5PSCategoryItem
 {
     public function call(Twig $twig): string
     {
-        return $twig->render('Theme5PS::ItemList.Components.CategoryItem');
+        return $twig->render('Theme5PSGit::ItemList.Components.CategoryItem');
     }
 }
