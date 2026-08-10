@@ -36,6 +36,9 @@
     {% for styleTemplate in get_additional_styles() %}
         {% include styleTemplate.path ignore missing with styleTemplate.params %}
     {% endfor %}
+    {# Load the theme stylesheet directly so the Git copy does not depend on
+       a legacy container mapping from the original plugin. #}
+    {% include "Theme5PSGit::Stylesheet" %}
     {% if assetName == 'ceres-checkout' %}
         {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
     {% endif %}
