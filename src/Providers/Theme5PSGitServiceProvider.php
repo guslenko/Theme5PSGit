@@ -50,33 +50,15 @@ class Theme5PSGitServiceProvider extends TemplateServiceProvider
         );
 
 
-        // Override partials
-        $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
+        // The Git theme is the active storefront theme. Apply its layout directly
+        // instead of depending on persisted checkbox values from another plugin.
+        $dispatcher->listen('IO.init.templates', function (Partial $partial)
         {
+            // Keep the standard head, matching the working legacy-theme setup.
             $partial->set('head', 'Ceres::PageDesign.Partials.Head');
-            $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
-            $partial->set('page-design', 'Ceres::PageDesign.PageDesign');
-            $partial->set('footer', 'Ceres::PageDesign.Partials.Footer');
-
-            if (in_array("head", $enabledOverrides) || in_array("all", $enabledOverrides))
-            {
-                $partial->set('head', 'Theme5PSGit::PageDesign.Partials.Head');
-            }
-
-            if (in_array("header", $enabledOverrides) || in_array("all", $enabledOverrides))
-            {
-                $partial->set('header', 'Theme5PSGit::PageDesign.Partials.Header.Header');
-            }
-
-            if (in_array("page_design", $enabledOverrides) || in_array("all", $enabledOverrides))
-            {
-                $partial->set('page-design', 'Theme5PSGit::PageDesign.PageDesign');
-            }
-
-            if (in_array("footer", $enabledOverrides) || in_array("all", $enabledOverrides))
-            {
-                $partial->set('footer', 'Theme5PSGit::PageDesign.Partials.Footer');
-            }
+            $partial->set('header', 'Theme5PSGit::PageDesign.Partials.Header.Header');
+            $partial->set('page-design', 'Theme5PSGit::PageDesign.PageDesign');
+            $partial->set('footer', 'Theme5PSGit::PageDesign.Partials.Footer');
 
             return false;
         }, self::PRIORITY);
