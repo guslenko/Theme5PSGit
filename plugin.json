@@ -1,5 +1,5 @@
 {
-    "version"           : "5.0.84",
+    "version"           : "5.0.85",
     "name"                  :"Theme5PSGit",
     "description"           :"Work in vue components",
     "namespace"             :"Theme5PSGit",
@@ -12,23 +12,23 @@
     "platform"          : {
         "php": ">=7.3 <8.1"
     },
-    "serviceProvider"       :"Theme5PSGit\\Providers\\Theme5PSServiceProvider",
+    "serviceProvider"       :"Theme5PSGit\\Providers\\Theme5PSGitServiceProvider",
     "dataProviders"     :
     [
         {
-            "key"           :"Theme5PSGit\\Containers\\Theme5PSStyleContainer",
+            "key"           :"Theme5PSGit\\Containers\\Theme5PSGitStyleContainer",
             "name"          :"Stylesheet",
             "description"   :"Add changes to the CSS file",
             "defaultLayoutContainer": "Ceres::Template.Style"
         },
         {
-            "key"           :"Theme5PSGit\\Containers\\Theme5PSScriptContainer",
+            "key"           :"Theme5PSGit\\Containers\\Theme5PSGitScriptContainer",
             "name"          :"Script",
             "description"   :"Add Script File",
             "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
         },
         {
-            "key"           :"Theme5PSGit\\Containers\\Theme5PSCategoryItem",
+            "key"           :"Theme5PSGit\\Containers\\Theme5PSGitCategoryItem",
             "name"          :"Container for CategoryItem Component Template",
             "description"   :"Container for CategoryItem Component Template",
             "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"

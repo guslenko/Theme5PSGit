@@ -4,7 +4,7 @@ namespace Theme5PSGit\Containers;
 
 use Plenty\Plugin\Templates\Twig;
 
-class Theme5PSScriptContainer
+class Theme5PSGitScriptContainer
 {
     public function call(Twig $twig):string
     {
