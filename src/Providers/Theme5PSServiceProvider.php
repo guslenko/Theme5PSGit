@@ -31,6 +31,10 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
     {
         $enabledOverrides = explode(", ", $config->get("Theme5PSGit.templates.override"));
 
+        // plentyShop LTS requests this legacy Ceres template directly.
+        // Map it to the theme's local fallback before template resolution.
+        $this->overrideTemplate("Ceres::Homepage.Homepage", "Theme5PS::Homepage.Homepage");
+
         $this->overrideTemplate("Ceres::Search.Filter", "Theme5PS::ItemList.Components.Filter.FindologicFilterWrapper");
         $this->overrideTemplate("Findologic::Category.Item.Partials.SearchFilters", "Theme5PS::Category.Item.Partials.SearchFilters");
         $this->overrideTemplate("Findologic::content.scripts", "Theme5PS::ItemList.Components.Filter.Scripts");
