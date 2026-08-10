@@ -29,7 +29,7 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
     public function boot(Twig $twig, Dispatcher $dispatcher, ConfigRepository $config)
     {
-        $enabledOverrides = explode(", ", $config->get("Theme5PS.templates.override"));
+        $enabledOverrides = explode(", ", $config->get("Theme5PSGit.templates.override"));
 
         $this->overrideTemplate("Ceres::Search.Filter", "Theme5PS::ItemList.Components.Filter.FindologicFilterWrapper");
         $this->overrideTemplate("Findologic::Category.Item.Partials.SearchFilters", "Theme5PS::Category.Item.Partials.SearchFilters");
@@ -327,9 +327,9 @@ class Theme5PSServiceProvider extends TemplateServiceProvider
 
         $enabledResultFields = [];
 
-        if(!empty($config->get("Theme5PS.result_fields.override")))
+        if(!empty($config->get("Theme5PSGit.result_fields.override")))
         {
-            $enabledResultFields = explode(", ", $config->get("Theme5PS.result_fields.override"));
+            $enabledResultFields = explode(", ", $config->get("Theme5PSGit.result_fields.override"));
         }
 
         if(!empty($enabledResultFields))
