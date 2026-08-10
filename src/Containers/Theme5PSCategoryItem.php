@@ -1,6 +1,6 @@
 <?php
 
-namespace Theme5PS\Containers;
+namespace Theme5PSGit\Containers;
 
 use Plenty\Plugin\Templates\Twig;
 

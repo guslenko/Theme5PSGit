@@ -1,6 +1,6 @@
 <?php
 
-namespace Theme5PS\Providers;
+namespace Theme5PSGit\Providers;
 
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Events\Dispatcher;
