@@ -107,16 +107,16 @@
      {% endif %}
         <div id="page-body" class="main">
         
-        {% if date() >= date("2025-01-01") and date() <= date("2026-09-02")  %}
+        {% if date() >= date("2025-01-01") and date() <= date("2026-10-02")  %}
         
             {% if (category.id == 1036) %}
-            <a href="/angebot-des-monats"><div style="text-align: center;font-size: 24px;padding: 10px 20px;color: #FFF; font-weight:900; background: #0b4f4a;"><strong>Angebote im Juli</strong><br>
+            <a href="/angebot-des-monats"><div style="text-align: center;font-size: 24px;padding: 10px 20px;color: #FFF; font-weight:900; background: #0b4f4a;"><strong>Angebote im September</strong><br>
             <strong>Brandneue Trekking E-Bikes, E-Bike Dreirad und retro Citybikes</strong></div></a>
             {% endif %}
             
             {% if (category.id == '1036' or services.template.isHome()) %}
             {% else %}
-            <a href="/angebot-des-monats"><div style="text-align: center;font-size: 24px;padding: 10px 20px;color: #FFF; font-weight:900; background: #0b4f4a;"><strong>Angebote im Juli</strong><br>
+            <a href="/angebot-des-monats"><div style="text-align: center;font-size: 24px;padding: 10px 20px;color: #FFF; font-weight:900; background: #0b4f4a;"><strong>Angebote im September</strong><br>
             <strong>Brandneue Trekking E-Bikes, E-Bike Dreirad und retro Citybikes</strong></div></a>
             {% endif %}
             
@@ -135,10 +135,10 @@
                 <div class="row">
                     <div class="col-12 col-md-4 col-lg-3 col-xxl-3 angebot ang1 px-0">
                     <a href="/angebot-des-monats">
-                        <img src="https://cdn02.plentyone.com/4in9ikd3ipve/frontend/category_images/banners/26-08_home.webp" alt="DEALS 2026" class="w-100">
+                        <img src="https://cdn02.plentyone.com/4in9ikd3ipve/frontend/category_images/banners/092026.webp" alt="DEALS 2026" class="w-100">
                         </a>
-                        <h3 class="pt-4 px-4 pb-2 text-left">Angebote im August</h3>
-                        <p class="text-left pt-2 pb-4 px-4 m-0"><b>Brandneue Trekking E-Bikes, E-Bike Dreirad und retro Citybikes.</b> / Bis 31. August 2026</p>
+                        <h3 class="pt-4 px-4 pb-2 text-left">Angebote im September</h3>
+                        <p class="text-left pt-2 pb-4 px-4 m-0"><b>Brandneue Trekking E-Bikes, E-Bike Dreirad und retro Citybikes.</b> / Bis 30. September 2026</p>
                         <small class="d-block text-center p-0 m-0">Verbleibende Zeit bis zum Ende der Aktion:</small>
                     <div id="container" class="countdown py-2 px-1"></div>
                     </div>
@@ -1344,7 +1344,7 @@ Unsere <a href="https://serviceformular.pentagonservice.de/" target=_blank rel="
 <script type="text/javascript">
     $(document).ready(function() {
         $(".countdown").flipTimer({
-          date:"2026/09/01 23:59:59",
+          date:"2026/10/01 23:59:59",
           timeZone:2,
           past:false,
           
@@ -1371,55 +1371,6 @@ Unsere <a href="https://serviceformular.pentagonservice.de/" target=_blank rel="
           dividerColor:"#737373",
           digitColor:"#000",
           textColor:"#FFF",
-          borderRadius:0,
-          boxShadow:true,
-          
-          //Multi color
-          multiColor:false,
-          
-          //Auto reset
-          autoReset:false,
-          resetInterval:86400, //1 day as seconds
-     
-          //Expire
-          expireType:"message", //message, hide, redirect
-          message:"Sorry, you are too late!",
-          hide:false,
-          redirect:""
-        });
-      });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".countdown2").flipTimer({
-          date:"2024/12/02 23:59:59",
-          timeZone:2,
-          past:false,
-          
-          //Current date
-          currentDate:false,
-     
-          //The number of days to be shown
-          dayTextNumber:2,
-     
-          //Show-Hide Day, Hour, Minute, Second
-          showDay:true,
-          showHour:true,
-          showMinute:true,
-          showSecond:true,
-     
-          //Texts
-          dayText:"Tage",
-          hourText:"Stunden",
-          minuteText:"Minuten",
-          secondText:"Sekunden",
-     
-          //Flip style
-          bgColor:"#FFF",
-          dividerColor:"#737373",
-          digitColor:"#000",
-          textColor:"#000",
           borderRadius:0,
           boxShadow:true,
           
